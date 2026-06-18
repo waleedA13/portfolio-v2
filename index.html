@@ -12,9 +12,8 @@
 <body>
 
   <nav>
-    <div class="nav-inner">
-      <span class="logo">waleed.dev</span>
-      <button class="hamburger" aria-label="Toggle navigation menu">
+    <div class="nav-container">
+      <button class="nav-toggle" aria-label="Toggle navigation menu">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links">
@@ -29,268 +28,292 @@
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="status-badge">
-      <span class="status-dot"></span> Currently working on McNair Research
-    </div>
-    <h1 class="kinetic">Waleed Alghaithi</h1>
-    <div class="hero-role">
-      I'm <span id="typing-article">a</span> <span class="typing-text" id="typing-text"></span><span class="cursor"></span>
-    </div>
-    <p class="hero-desc">
-      Undergraduate researcher probing how AI models perceive spatial relationships. Passionate about turning complex problems into clean, working systems.
-    </p>
-    <div class="hero-buttons">
-      <a class="btn-primary" href="#projects">See My Work <i class="fas fa-arrow-right"></i></a>
-      <a class="btn-outline" href="mailto:waleedalghaithi13@gmail.com">Say Hello</a>
-      <a class="btn-outline" href="assets/resume.html" target="_blank"><i class="fas fa-download"></i> Resume</a>
-    </div>
-    <div class="terminal">
-      <div class="terminal-dots">
-        <span class="terminal-dot dot-red"></span>
-        <span class="terminal-dot dot-yellow"></span>
-        <span class="terminal-dot dot-green"></span>
+  <section class="intro">
+    <div class="intro-content">
+      <div class="intro-text">
+        <div class="status">
+          <span class="pulse"></span> Currently working on McNair Research
+        </div>
+        <h1 class="shimmer-hero">Waleed Alghaithi</h1>
+        <div class="intro-role">
+          I'm <span id="article">a</span> <span class="typed" id="typed"></span><span class="caret"></span>
+        </div>
+        <p class="intro-desc">
+          Undergraduate researcher probing how AI models perceive spatial relationships. Passionate about turning complex problems into clean, working systems.
+        </p>
+        <div class="intro-actions">
+          <a class="button-primary" href="#projects">See My Work <i class="fas fa-arrow-right"></i></a>
+          <a class="button-outline" href="mailto:waleedalghaithi13@gmail.com">Say Hello</a>
+          <a class="button-outline" href="assets/resume.html" target="_blank"><i class="fas fa-file-alt"></i> Resume</a>
+        </div>
       </div>
-      <div class="terminal-code">
-        <div><span class="kw">def</span> <span class="fn">investigate</span><span class="kw">():</span></div>
-        <div>&nbsp;&nbsp;<span class="ret">models</span> = <span class="val">["Qwen3-VL", "GPT-4o"]</span></div>
-        <div>&nbsp;&nbsp;<span class="ret">question</span> = <span class="val">"why do they fail?"</span></div>
-        <div>&nbsp;&nbsp;<span class="kw">return</span> <span class="val">find_answer(models, question)</span></div>
+      <div class="intro-artwork">
+        <div class="orb-primary"></div>
+        <div class="orb-primary orb-secondary"></div>
+        <div class="code-window">
+          <div class="code-controls">
+            <span class="control-close"></span>
+            <span class="control-minimize"></span>
+            <span class="control-maximize"></span>
+          </div>
+          <div class="code-content">
+            <div><span class="syntax-keyword">def</span> <span class="syntax-function">investigate</span>():</div>
+            <div>&nbsp;&nbsp;<span class="syntax-variable">models</span> = <span class="syntax-string">["Qwen3-VL", "GPT-4o"]</span></div>
+            <div>&nbsp;&nbsp;<span class="syntax-variable">question</span> = <span class="syntax-string">"why do they fail?"</span></div>
+            <div>&nbsp;&nbsp;<span class="syntax-keyword">return</span> <span class="syntax-string">find_answer(models, question)</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section section-alt" id="about">
-    <div class="section-inner">
-      <div class="section-header reveal">
-        <h2 class="section-title kinetic-title">About Me</h2>
-        <hr class="section-line">
+  <section class="panel panel-shaded" id="about">
+    <div class="panel-inner">
+      <div class="panel-header animate-in">
+        <h2 class="panel-title shimmer-title">About Me</h2>
+        <hr class="panel-divider">
       </div>
 
-      <div class="about-intro reveal">
-        <div class="profile-photo-wrap">
-          <img src="assets/profile.jpg" alt="Waleed Alghaithi" class="profile-photo">
-        </div>
-        <div class="about-text">
-          <p>
-            I study <span class="hl">Computer Science</span> at <span class="hl">University of California - San Diego</span>, where I earned a spot in the McNair Scholars Program to research vision-language model failures under faculty mentorship. Before UCSD, I spent a summer at <span class="hl">Lawrence Berkeley National Lab</span> shipping ML pipelines that classify precipitation from mmWave radar data.
-          </p>
-          <p>
-            When I'm not dissecting model internals, I'm building end-to-end applications: agent-based travel planners, browser observability platforms, and anything that turns messy inputs into useful outputs.
-          </p>
+      <div class="bio-container animate-in">
+        <div class="bio">
+          <img src="assets/profile.jpg" alt="Waleed Alghaithi" class="avatar">
+          <div class="bio-description">
+            <p>
+              I study <span class="accent">Computer Science</span> at <span class="accent">University of California - San Diego</span>, where I earned a spot in the McNair Scholars Program to research vision-language model failures under faculty mentorship. Before UCSD, I spent a summer at <span class="accent">Lawrence Berkeley National Lab</span> shipping ML pipelines that classify precipitation from mmWave radar data.
+            </p>
+            <p>
+              When I'm not dissecting model internals, I'm building end-to-end applications: agent-based travel planners, browser observability platforms, and anything that turns messy inputs into useful outputs.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div class="about-row reveal">
+      <div class="stats-row animate-in">
+        <div class="stat-card">
+          <span class="stat-value">7+</span>
+          <span class="stat-caption">VLMs Evaluated</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">90%+</span>
+          <span class="stat-caption">Model Accuracy</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">4</span>
+          <span class="stat-caption">Shipped Projects</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">1</span>
+          <span class="stat-caption">Hackathon Win</span>
+        </div>
+      </div>
+
+      <div class="edu-grid animate-in">
         <div class="edu-card">
-          <h3>Education</h3>
-          <div class="edu-item">
-            <div class="edu-school">University of California - San Diego</div>
-            <div class="edu-degree">B.S. Computer Science</div>
-            <div class="edu-gpa">3.71 / 4.00 &middot; Expected Jun 2027</div>
+          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="edu-details">
+            <strong>University of California - San Diego</strong>
+            <div class="edu-subtitle">B.S. Computer Science &middot; 3.71 GPA &middot; Expected Jun 2027</div>
             <div class="edu-courses">Algorithms, Software Engineering, ML, AI: Search & Reasoning, Deep RL, Systems Programming</div>
           </div>
-          <div class="edu-item">
-            <div class="edu-school">City College of San Francisco</div>
-            <div class="edu-degree">A.S. Computer Science &middot; A.S. Science and Math</div>
-            <div class="edu-gpa">4.00 / 4.00 &middot; May 2025</div>
-          </div>
         </div>
-
-        <div class="stats-grid">
-          <div class="stat-card"><div class="stat-icon">&#129302;</div><div class="stat-value">7+</div><div class="stat-label">VLMs Evaluated</div></div>
-          <div class="stat-card"><div class="stat-icon">&#128200;</div><div class="stat-value">90%+</div><div class="stat-label">Model Accuracy</div></div>
-          <div class="stat-card"><div class="stat-icon">&#128187;</div><div class="stat-value">4</div><div class="stat-label">Shipped Projects</div></div>
-          <div class="stat-card"><div class="stat-icon">&#127942;</div><div class="stat-value">1</div><div class="stat-label">Hackathon Win</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="skills">
-    <div class="section-inner">
-      <div class="section-header reveal">
-        <h2 class="section-title kinetic-title">Skills</h2>
-        <hr class="section-line">
-      </div>
-
-      <div class="skills-grid">
-        <div class="skill-group reveal">
-          <h3 class="skill-group-title">Languages</h3>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">Python</span><span class="skill-pct">95%</span></div><div class="bar-track"><div class="bar-fill" data-level="95"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">JavaScript / TypeScript</span><span class="skill-pct">60%</span></div><div class="bar-track"><div class="bar-fill" data-level="60"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">C / C++</span><span class="skill-pct">40%</span></div><div class="bar-track"><div class="bar-fill" data-level="40"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">Java</span><span class="skill-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
-        </div>
-
-        <div class="skill-group reveal">
-          <h3 class="skill-group-title">AI & Data</h3>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">NumPy / Pandas</span><span class="skill-pct">65%</span></div><div class="bar-track"><div class="bar-fill" data-level="65"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">LangGraph / LiteLLM</span><span class="skill-pct">75%</span></div><div class="bar-track"><div class="bar-fill" data-level="75"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">SVM / K-Means / ML</span><span class="skill-pct">75%</span></div><div class="bar-track"><div class="bar-fill" data-level="75"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">Linear Algebra</span><span class="skill-pct">65%</span></div><div class="bar-track"><div class="bar-fill" data-level="65"></div></div></div>
-        </div>
-
-        <div class="skill-group reveal">
-          <h3 class="skill-group-title">Tools & Infra</h3>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">Git / GitHub</span><span class="skill-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">Docker / Linux</span><span class="skill-pct">65%</span></div><div class="bar-track"><div class="bar-fill" data-level="65"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">Jest / Playwright</span><span class="skill-pct">60%</span></div><div class="bar-track"><div class="bar-fill" data-level="60"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">Grafana / Jira</span><span class="skill-pct">45%</span></div><div class="bar-track"><div class="bar-fill" data-level="45"></div></div></div>
-        </div>
-
-        <div class="skill-group reveal">
-          <h3 class="skill-group-title">Web & Databases</h3>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">React / Node.js</span><span class="skill-pct">55%</span></div><div class="bar-track"><div class="bar-fill" data-level="55"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">FastAPI</span><span class="skill-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">SQL / SQLite</span><span class="skill-pct">50%</span></div><div class="bar-track"><div class="bar-fill" data-level="50"></div></div></div>
-          <div class="skill-row"><div class="skill-label"><span class="skill-name">HTML / CSS</span><span class="skill-pct">75%</span></div><div class="bar-track"><div class="bar-fill" data-level="75"></div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="experience">
-    <div class="section-inner">
-      <div class="section-header reveal">
-        <h2 class="section-title kinetic-title">Experience</h2>
-        <hr class="section-line">
-      </div>
-
-      <div class="exp-list">
-        <div class="exp-card reveal">
-          <div class="exp-header">
-            <h3 class="exp-title">Undergraduate Researcher, McNair Scholars</h3>
-            <span class="exp-period">Feb 2026 - Present</span>
-          </div>
-          <div class="exp-company">UC San Diego &middot; San Diego, CA</div>
-          <ul class="exp-bullets">
-            <li>Accepted into the McNair Scholars Program, a federal initiative supporting first-gen students through faculty-guided research.</li>
-            <li>Investigating spatial reasoning gaps in Qwen3-VL-30B by instrumenting MoE expert activations across the LEGO-Puzzles benchmark.</li>
-            <li>Deploying evaluation runs on RunPod GPUs and comparing failure modes across spatial categories.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag">Python</span><span class="tag">Qwen3-VL</span><span class="tag">RunPod</span><span class="tag">NumPy</span>
-          </div>
-        </div>
-
-        <div class="exp-card reveal">
-          <div class="exp-header">
-            <h3 class="exp-title">Tutor and Teaching Assistant</h3>
-            <span class="exp-period">Jan 2023 - May 2025</span>
-          </div>
-          <div class="exp-company">City College of San Francisco &middot; San Francisco, CA</div>
-          <ul class="exp-bullets">
-            <li>Guided 20+ students per week through Physics and CS coursework spanning Data Structures, Algorithms, and OOP in Java and Python.</li>
-            <li>Created reusable reference materials and coordinated with instructors on curriculum alignment.</li>
-            <li>Lifted average exam scores by 15% while sustaining 90% retention among returning students.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag">Physics</span><span class="tag">CS Tutoring</span><span class="tag">Java</span><span class="tag">Python</span>
-          </div>
-        </div>
-
-        <div class="exp-card reveal">
-          <div class="exp-header">
-            <h3 class="exp-title">Machine Learning Research Intern</h3>
-            <span class="exp-period">June 2023 - August 2023</span>
-          </div>
-          <div class="exp-company">Lawrence Berkeley National Laboratory &middot; Berkeley, CA</div>
-          <ul class="exp-bullets">
-            <li>Decoded raw mmWave radar binaries into structured CSV datasets using JSON-based header configs.</li>
-            <li>Trained and evaluated SVM and K-means classifiers for precipitation types, clearing 90%+ accuracy across conditions.</li>
-            <li>Shipped the pipeline to a Raspberry Pi (Linux) with sub-second inference for remote environmental monitoring.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag">Python</span><span class="tag">SVM</span><span class="tag">K-Means</span><span class="tag">Raspberry Pi</span><span class="tag">Linux</span>
+        <div class="edu-card">
+          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="edu-details">
+            <strong>City College of San Francisco</strong>
+            <div class="edu-subtitle">A.S. Computer Science &middot; A.S. Science and Math &middot; 4.00 GPA &middot; May 2025</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="projects">
-    <div class="section-inner">
-      <div class="section-header reveal">
-        <h2 class="section-title kinetic-title">Projects</h2>
-        <hr class="section-line">
+  <section class="panel" id="skills">
+    <div class="panel-inner">
+      <div class="panel-header animate-in">
+        <h2 class="panel-title shimmer-title">Skills</h2>
+        <hr class="panel-divider">
       </div>
 
-      <div class="projects-list">
-        <div class="proj-card reveal">
-          <div class="proj-icon">&#129504;</div>
-          <div class="proj-body">
-            <div class="proj-top">
-              <h3 class="proj-title">Spatial Reasoning Failures in VLMs</h3>
-              <span class="proj-badge"><i class="fas fa-star"></i> Research</span>
-            </div>
-            <p class="proj-desc">Traced why Qwen3-VL-30B mishandles spatial tasks by logging MoE expert activations on correct vs. incorrect answers, then ranked experts by per-category accuracy correlation.</p>
-            <div class="proj-tags"><span class="tag">Python</span><span class="tag">Qwen3-VL</span><span class="tag">RunPod</span><span class="tag">NumPy</span></div>
-            <div class="proj-links"><a class="proj-link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank"><i class="fab fa-github"></i> Code</a></div>
+      <div class="skills-cloud">
+        <div class="skill-card animate-in">
+          <div class="skill-badge"><i class="fas fa-code"></i></div>
+          <h3 class="skill-title">Languages</h3>
+          <div class="chips">
+            <span class="chip chip-highlight">Python</span>
+            <span class="chip chip-highlight">Java</span>
+            <span class="chip">JavaScript / TypeScript</span>
+            <span class="chip">C / C++</span>
           </div>
         </div>
-
-        <div class="proj-card reveal">
-          <div class="proj-icon">&#128065;</div>
-          <div class="proj-body">
-            <div class="proj-top">
-              <h3 class="proj-title">Watchtower: Observability Platform</h3>
-              <span class="proj-badge">Team Project</span>
-            </div>
-            <p class="proj-desc">Co-built a lightweight monitoring tool that captures JS errors, latency, and user interactions through a custom browser SDK, serving data via a Node.js + SQLite backend to a live dashboard.</p>
-            <div class="proj-tags"><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">SQLite</span><span class="tag">Clerk</span><span class="tag">Jest</span></div>
-            <div class="proj-links"><a class="proj-link" href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank"><i class="fab fa-github"></i> Code</a></div>
+        <div class="skill-card animate-in">
+          <div class="skill-badge"><i class="fas fa-brain"></i></div>
+          <h3 class="skill-title">AI & Data</h3>
+          <div class="chips">
+            <span class="chip chip-highlight">LangGraph / LiteLLM</span>
+            <span class="chip chip-highlight">SVM / K-Means</span>
+            <span class="chip">NumPy / Pandas</span>
+            <span class="chip">Linear Algebra</span>
           </div>
         </div>
-
-        <div class="proj-card reveal">
-          <div class="proj-icon">&#9992;&#65039;</div>
-          <div class="proj-body">
-            <div class="proj-top">
-              <h3 class="proj-title">Multi-Agent Travel Coordinator</h3>
-              <span class="proj-badge"><i class="fas fa-trophy"></i> Hackathon</span>
-            </div>
-            <p class="proj-desc">Orchestrated four autonomous agents with FastAPI and LangGraph to plan multi-leg trips from natural language, hitting 90%+ request accuracy with zero scheduling conflicts.</p>
-            <div class="proj-tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">LangGraph</span><span class="tag">Docker</span><span class="tag">React</span></div>
-            <div class="proj-links"><a class="proj-link" href="https://devpost.com/software/travel-agyntc" target="_blank"><i class="fas fa-external-link-alt"></i> Devpost</a></div>
+        <div class="skill-card animate-in">
+          <div class="skill-badge"><i class="fas fa-wrench"></i></div>
+          <h3 class="skill-title">Tools & Infra</h3>
+          <div class="chips">
+            <span class="chip chip-highlight">Git / GitHub</span>
+            <span class="chip">Docker / Linux</span>
+            <span class="chip">Jest / Playwright</span>
+            <span class="chip">Grafana / Jira</span>
           </div>
         </div>
-
-        <div class="proj-card reveal">
-          <div class="proj-icon">&#127783;&#65039;</div>
-          <div class="proj-body">
-            <div class="proj-top">
-              <h3 class="proj-title">Precipitation Classifier on Embedded Radar</h3>
-            </div>
-            <p class="proj-desc">Automated mmWave binary decoding and trained SVM/K-means classifiers reaching 90%+ accuracy, then deployed on a Raspberry Pi for sub-second inference in the field.</p>
-            <div class="proj-tags"><span class="tag">Python</span><span class="tag">Linux</span><span class="tag">NumPy</span><span class="tag">Raspberry Pi</span></div>
-            <div class="proj-links"><a class="proj-link" href="https://drive.google.com/file/d/1DSASDEsmYvp6f9jAXwpiorxnNO88CEZq/view?usp=sharing" target="_blank"><i class="fas fa-file-alt"></i> Report</a></div>
+        <div class="skill-card animate-in">
+          <div class="skill-badge"><i class="fas fa-globe"></i></div>
+          <h3 class="skill-title">Web & Databases</h3>
+          <div class="chips">
+            <span class="chip chip-highlight">FastAPI</span>
+            <span class="chip chip-highlight">HTML / CSS</span>
+            <span class="chip">React / Node.js</span>
+            <span class="chip">SQL / SQLite</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section section-alt" id="activity">
-    <div class="section-inner">
-      <div class="section-header reveal">
-        <h2 class="section-title kinetic-title">Activity</h2>
-        <hr class="section-line">
+  <section class="panel panel-shaded" id="experience">
+    <div class="panel-inner">
+      <div class="panel-header animate-in">
+        <h2 class="panel-title shimmer-title">Experience</h2>
+        <hr class="panel-divider">
       </div>
-      <div class="github-heatmap reveal">
-        <img src="https://ghchart.rshah.org/6366f1/waleedA13" alt="waleedA13's GitHub contribution chart" class="heatmap-img">
+
+      <div class="timeline">
+        <div class="timeline-entry animate-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <h3>Undergraduate Researcher, McNair Scholars</h3>
+              <span class="timeline-date">Feb 2026 - Present</span>
+            </div>
+            <div class="timeline-org">UC San Diego &middot; San Diego, CA</div>
+            <ul class="timeline-bullets">
+              <li>Accepted into the McNair Scholars Program, a federal initiative supporting first-gen students through faculty-guided research.</li>
+              <li>Investigating spatial reasoning gaps in Qwen3-VL-30B by instrumenting MoE expert activations across the LEGO-Puzzles benchmark.</li>
+              <li>Deploying evaluation runs on RunPod GPUs and comparing failure modes across spatial categories.</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">Python</span><span class="chip">Qwen3-VL</span><span class="chip">RunPod</span><span class="chip">NumPy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-entry animate-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <h3>Tutor and Teaching Assistant</h3>
+              <span class="timeline-date">Jan 2023 - May 2025</span>
+            </div>
+            <div class="timeline-org">City College of San Francisco &middot; San Francisco, CA</div>
+            <ul class="timeline-bullets">
+              <li>Guided 20+ students per week through Physics and CS coursework spanning Data Structures, Algorithms, and OOP in Java and Python.</li>
+              <li>Created reusable reference materials and coordinated with instructors on curriculum alignment.</li>
+              <li>Lifted average exam scores by 15% while sustaining 90% retention among returning students.</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">Physics</span><span class="chip">CS Tutoring</span><span class="chip">Java</span><span class="chip">Python</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-entry animate-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <h3>Machine Learning Research Intern</h3>
+              <span class="timeline-date">June 2023 - August 2023</span>
+            </div>
+            <div class="timeline-org">Lawrence Berkeley National Laboratory &middot; Berkeley, CA</div>
+            <ul class="timeline-bullets">
+              <li>Decoded raw mmWave radar binaries into structured CSV datasets using JSON-based header configs.</li>
+              <li>Trained and evaluated SVM and K-means classifiers for precipitation types, clearing 90%+ accuracy across conditions.</li>
+              <li>Shipped the pipeline to a Raspberry Pi (Linux) with sub-second inference for remote environmental monitoring.</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">Python</span><span class="chip">SVM</span><span class="chip">K-Means</span><span class="chip">Raspberry Pi</span><span class="chip">Linux</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="projects">
+    <div class="panel-inner">
+      <div class="panel-header animate-in">
+        <h2 class="panel-title shimmer-title">Projects</h2>
+        <hr class="panel-divider">
+      </div>
+
+      <div class="featured animate-in">
+        <div class="featured-tag"><i class="fas fa-star"></i> Featured Research</div>
+        <h3 class="featured-heading">Spatial Reasoning Failures in VLMs</h3>
+        <p class="featured-summary">Traced why Qwen3-VL-30B mishandles spatial tasks by logging MoE expert activations on correct vs. incorrect answers, then ranked experts by per-category accuracy correlation. Benchmarked against GPT-4o and Gemini Flash 2.0.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Qwen3-VL</span><span class="chip">RunPod</span><span class="chip">NumPy</span></div>
+        <a class="project-link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+      </div>
+
+      <div class="project-grid">
+        <div class="project-card animate-in">
+          <div class="project-tag">Team Project</div>
+          <h3 class="project-title">Watchtower: Observability Platform</h3>
+          <p class="project-summary">Co-built a lightweight monitoring tool that captures JS errors, latency, and user interactions through a custom browser SDK, serving data via a Node.js + SQLite backend to a live dashboard.</p>
+          <div class="chips"><span class="chip">JavaScript</span><span class="chip">Node.js</span><span class="chip">SQLite</span><span class="chip">Clerk</span><span class="chip">Jest</span></div>
+          <a class="project-link" href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank"><i class="fab fa-github"></i> Code</a>
+        </div>
+
+        <div class="project-card animate-in">
+          <div class="project-tag"><i class="fas fa-trophy"></i> Hackathon</div>
+          <h3 class="project-title">Multi-Agent Travel Coordinator</h3>
+          <p class="project-summary">Orchestrated four autonomous agents with FastAPI and LangGraph to plan multi-leg trips from natural language, hitting 90%+ request accuracy with zero scheduling conflicts.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">LangGraph</span><span class="chip">Docker</span><span class="chip">React</span></div>
+          <a class="project-link" href="https://devpost.com/software/travel-agyntc" target="_blank"><i class="fas fa-external-link-alt"></i> Devpost</a>
+        </div>
+
+        <div class="project-card animate-in">
+          <div class="project-tag">Research</div>
+          <h3 class="project-title">Precipitation Classifier on Embedded Radar</h3>
+          <p class="project-summary">Automated mmWave binary decoding and trained SVM/K-means classifiers reaching 90%+ accuracy, then deployed on a Raspberry Pi for sub-second inference in the field.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Linux</span><span class="chip">NumPy</span><span class="chip">Raspberry Pi</span></div>
+          <a class="project-link" href="https://drive.google.com/file/d/1DSASDEsmYvp6f9jAXwpiorxnNO88CEZq/view?usp=sharing" target="_blank"><i class="fas fa-file-alt"></i> Report</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel-shaded" id="activity">
+    <div class="panel-inner">
+      <div class="panel-header animate-in">
+        <h2 class="panel-title shimmer-title">Activity</h2>
+        <hr class="panel-divider">
+      </div>
+      <div class="contribution-section animate-in">
+        <img src="https://ghchart.rshah.org/6366f1/waleedA13" alt="waleedA13's GitHub contribution chart" class="contribution-chart">
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="footer-links">
-      <a href="mailto:waleedalghaithi13@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-      <a href="https://github.com/waleedA13" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-      <a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="mailto:waleedalghaithi13@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://github.com/waleedA13" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+      <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
     </div>
-    <p class="footer-copy">&copy; 2026 Waleed Alghaithi</p>
   </footer>
+
+  <button class="scroll-top" id="scroll-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
   <script src="script.js"></script>
 </body>

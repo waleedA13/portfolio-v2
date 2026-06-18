@@ -1,20 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-  detectLowPower();
-  initNavScroll();
-  initMobileNav();
-  initTypingEffect();
-  initScrollReveal();
-  initSkillBars();
-  initThemeToggle();
+  detectPerformance();
+  setupNavScroll();
+  setupMobileNav();
+  setupTyper();
+  setupReveal();
+  setupTheme();
+  setupTopButton();
+  setupActiveNav();
 });
 
-/**
- * Samples 10 rAF frames and adds .low-power to <body> if the average
- * frame time exceeds 33ms (~30fps). Also triggers immediately if the
- * device reports 4 or fewer logical cores, or if the OS has
- * "Save Data" / "prefers-reduced-motion" hints enabled.
- */
-function detectLowPower() {
+function detectPerformance() {
   var nav = navigator;
 
   if (nav.hardwareConcurrency && nav.hardwareConcurrency <= 4) {
@@ -43,9 +38,7 @@ function detectLowPower() {
 
     var sum = 0;
     for (var i = 0; i < samples.length; i++) { sum += samples[i]; }
-    var avg = sum / samples.length;
-
-    if (avg > SLOW_FRAME_MS) {
+    if (sum / samples.length > SLOW_FRAME_MS) {
       document.body.classList.add("low-power");
     }
   }
@@ -56,42 +49,32 @@ function detectLowPower() {
   });
 }
 
-/**
- * Adds/removes .scrolled on nav based on scroll position.
- */
-function initNavScroll() {
+function setupNavScroll() {
   var nav = document.querySelector("nav");
   window.addEventListener("scroll", function () {
-    nav.classList.toggle("scrolled", window.scrollY > 20);
+    nav.classList.toggle("nav-scrolled", window.scrollY > 20);
   });
 }
 
-/**
- * Hamburger toggle and auto-close on link click.
- */
-function initMobileNav() {
-  var btn = document.querySelector(".hamburger");
+function setupMobileNav() {
+  var btn = document.querySelector(".nav-toggle");
   var links = document.querySelector(".nav-links");
 
   btn.addEventListener("click", function () {
-    links.classList.toggle("open");
+    links.classList.toggle("nav-expanded");
   });
 
   links.querySelectorAll("a").forEach(function (a) {
     a.addEventListener("click", function () {
-      links.classList.remove("open");
+      links.classList.remove("nav-expanded");
     });
   });
 }
 
-/**
- * Types and deletes role titles in a loop.
- * Updates the article ("a" vs "an") based on the next word's starting letter.
- */
-function initTypingEffect() {
+function setupTyper() {
   var roles = ["Software Engineer", "ML Researcher", "Full-Stack Developer", "McNair Scholar"];
-  var el = document.getElementById("typing-text");
-  var articleEl = document.getElementById("typing-article");
+  var el = document.getElementById("typed");
+  var articleEl = document.getElementById("article");
   if (!el) return;
 
   var vowelSoundWords = ["ML"];
@@ -138,21 +121,18 @@ function initTypingEffect() {
   tick();
 }
 
-/**
- * Fades in .reveal elements when they enter the viewport.
- */
-function initScrollReveal() {
-  var els = document.querySelectorAll(".reveal");
+function setupReveal() {
+  var els = document.querySelectorAll(".animate-in");
 
   if (!("IntersectionObserver" in window)) {
-    els.forEach(function (el) { el.classList.add("visible"); });
+    els.forEach(function (el) { el.classList.add("animated"); });
     return;
   }
 
   var obs = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
+        entry.target.classList.add("animated");
         obs.unobserve(entry.target);
       }
     });
@@ -161,35 +141,7 @@ function initScrollReveal() {
   els.forEach(function (el) { obs.observe(el); });
 }
 
-/**
- * Animates skill bar widths when they scroll into view.
- */
-function initSkillBars() {
-  var bars = document.querySelectorAll(".bar-fill");
-
-  if (!("IntersectionObserver" in window)) {
-    bars.forEach(function (b) { b.style.width = b.dataset.level + "%"; });
-    return;
-  }
-
-  var obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.style.width = entry.target.dataset.level + "%";
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  bars.forEach(function (b) { obs.observe(b); });
-}
-
-
-/**
- * Toggles between dark and light mode, persisting the choice in localStorage.
- * Swaps the icon between moon (dark) and sun (light).
- */
-function initThemeToggle() {
+function setupTheme() {
   var btn = document.getElementById("theme-toggle");
   if (!btn) return;
 
@@ -197,13 +149,57 @@ function initThemeToggle() {
   var saved = localStorage.getItem("theme");
 
   if (saved === "light") {
-    document.body.classList.add("light");
+    document.body.classList.add("light-mode");
     icon.className = "fas fa-sun";
   }
 
   btn.addEventListener("click", function () {
-    var isLight = document.body.classList.toggle("light");
+    var isLight = document.body.classList.toggle("light-mode");
     icon.className = isLight ? "fas fa-sun" : "fas fa-moon";
     localStorage.setItem("theme", isLight ? "light" : "dark");
   });
+}
+
+function setupTopButton() {
+  var btn = document.getElementById("scroll-top");
+  if (!btn) return;
+
+  window.addEventListener("scroll", function () {
+    btn.classList.toggle("animated", window.scrollY > 400);
+  });
+
+  btn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+function setupActiveNav() {
+  var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  var sections = [];
+
+  navLinks.forEach(function (link) {
+    var id = link.getAttribute("href").substring(1);
+    var section = document.getElementById(id);
+    if (section) sections.push({ el: section, link: link });
+  });
+
+  if (!sections.length) return;
+
+  function update() {
+    var scrollY = window.scrollY + window.innerHeight / 3;
+    var active = null;
+
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (sections[i].el.offsetTop <= scrollY) {
+        active = sections[i];
+        break;
+      }
+    }
+
+    navLinks.forEach(function (l) { l.classList.remove("nav-active"); });
+    if (active) active.link.classList.add("nav-active");
+  }
+
+  window.addEventListener("scroll", update);
+  update();
 }
