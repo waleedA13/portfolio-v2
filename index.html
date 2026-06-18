@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waleed Alghaithi | Portfolio</title>
+  <meta name="description" content="Waleed Alghaithi - CS @ UC San Diego. ML research, software engineering, full-stack development.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <span class="logo">waleed.dev</span>
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="https://github.com/waleedA13" target="_blank"><i class="fab fa-github"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+        <li><button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode"><i class="fas fa-moon"></i></button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="status-badge">
+      <span class="status-dot"></span> Currently working on McNair Research
+    </div>
+    <h1 class="kinetic">Waleed Alghaithi</h1>
+    <div class="hero-role">
+      I'm <span id="typing-article">a</span> <span class="typing-text" id="typing-text"></span><span class="cursor"></span>
+    </div>
+    <p class="hero-desc">
+      Undergraduate researcher probing how AI models perceive spatial relationships. Passionate about turning complex problems into clean, working systems.
+    </p>
+    <div class="hero-buttons">
+      <a class="btn-primary" href="#projects">See My Work <i class="fas fa-arrow-right"></i></a>
+      <a class="btn-outline" href="mailto:waleedalghaithi13@gmail.com">Say Hello</a>
+      <a class="btn-outline" href="assets/resume.html" target="_blank"><i class="fas fa-download"></i> Resume</a>
+    </div>
+    <div class="terminal">
+      <div class="terminal-dots">
+        <span class="terminal-dot dot-red"></span>
+        <span class="terminal-dot dot-yellow"></span>
+        <span class="terminal-dot dot-green"></span>
+      </div>
+      <div class="terminal-code">
+        <div><span class="kw">def</span> <span class="fn">investigate</span><span class="kw">():</span></div>
+        <div>&nbsp;&nbsp;<span class="ret">models</span> = <span class="val">["Qwen3-VL", "GPT-4o"]</span></div>
+        <div>&nbsp;&nbsp;<span class="ret">question</span> = <span class="val">"why do they fail?"</span></div>
+        <div>&nbsp;&nbsp;<span class="kw">return</span> <span class="val">find_answer(models, question)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="about">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title kinetic-title">About Me</h2>
+        <hr class="section-line">
+      </div>
+
+      <div class="about-intro reveal">
+        <div class="profile-photo-wrap">
+          <img src="assets/profile.jpg" alt="Waleed Alghaithi" class="profile-photo">
+        </div>
+        <div class="about-text">
+          <p>
+            I study <span class="hl">Computer Science</span> at <span class="hl">UC San Diego</span>, where I earned a spot in the McNair Scholars Program to research vision-language model failures under faculty mentorship. Before UCSD, I spent a summer at <span class="hl">Lawrence Berkeley National Lab</span> shipping ML pipelines that classify precipitation from mmWave radar data.
+          </p>
+          <p>
+            When I'm not dissecting model internals, I'm building end-to-end applications: agent-based travel planners, browser observability platforms, and anything that turns messy inputs into useful outputs.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-row reveal">
+        <div class="edu-card">
+          <h3>Education</h3>
+          <div class="edu-item">
+            <div class="edu-school">UC San Diego</div>
+            <div class="edu-degree">B.S. Computer Science</div>
+            <div class="edu-gpa">3.71 / 4.00 &middot; Expected Jun 2027</div>
+            <div class="edu-courses">Algorithms, Software Engineering, ML, AI: Search & Reasoning, Deep RL, Systems Programming</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-school">City College of San Francisco</div>
+            <div class="edu-degree">A.S. Computer Science &middot; A.S. Science and Math</div>
+            <div class="edu-gpa">4.00 / 4.00 &middot; May 2025</div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon">&#129302;</div><div class="stat-value">7+</div><div class="stat-label">VLMs Evaluated</div></div>
+          <div class="stat-card"><div class="stat-icon">&#128200;</div><div class="stat-value">90%+</div><div class="stat-label">Model Accuracy</div></div>
+          <div class="stat-card"><div class="stat-icon">&#128187;</div><div class="stat-value">4</div><div class="stat-label">Shipped Projects</div></div>
+          <div class="stat-card"><div class="stat-icon">&#127942;</div><div class="stat-value">1</div><div class="stat-label">Hackathon Win</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title kinetic-title">Skills</h2>
+        <hr class="section-line">
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <h3 class="skill-group-title">Languages</h3>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">Python</span><span class="skill-pct">95%</span></div><div class="bar-track"><div class="bar-fill" data-level="95"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">JavaScript / TypeScript</span><span class="skill-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">C / C++</span><span class="skill-pct">80%</span></div><div class="bar-track"><div class="bar-fill" data-level="80"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">Java</span><span class="skill-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
+        </div>
+
+        <div class="skill-group reveal">
+          <h3 class="skill-group-title">AI & Data</h3>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">NumPy / Pandas</span><span class="skill-pct">90%</span></div><div class="bar-track"><div class="bar-fill" data-level="90"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">LangGraph / LiteLLM</span><span class="skill-pct">80%</span></div><div class="bar-track"><div class="bar-fill" data-level="80"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">SVM / K-Means / ML</span><span class="skill-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">Linear Algebra</span><span class="skill-pct">90%</span></div><div class="bar-track"><div class="bar-fill" data-level="90"></div></div></div>
+        </div>
+
+        <div class="skill-group reveal">
+          <h3 class="skill-group-title">Tools & Infra</h3>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">Git / GitHub</span><span class="skill-pct">95%</span></div><div class="bar-track"><div class="bar-fill" data-level="95"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">Docker / Linux</span><span class="skill-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">Jest / Playwright</span><span class="skill-pct">80%</span></div><div class="bar-track"><div class="bar-fill" data-level="80"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">Grafana / Jira</span><span class="skill-pct">75%</span></div><div class="bar-track"><div class="bar-fill" data-level="75"></div></div></div>
+        </div>
+
+        <div class="skill-group reveal">
+          <h3 class="skill-group-title">Web & Databases</h3>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">React / Node.js</span><span class="skill-pct">80%</span></div><div class="bar-track"><div class="bar-fill" data-level="80"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">FastAPI</span><span class="skill-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">SQL / SQLite</span><span class="skill-pct">80%</span></div><div class="bar-track"><div class="bar-fill" data-level="80"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span class="skill-name">HTML / CSS</span><span class="skill-pct">90%</span></div><div class="bar-track"><div class="bar-fill" data-level="90"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="experience">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title kinetic-title">Experience</h2>
+        <hr class="section-line">
+      </div>
+
+      <div class="exp-list">
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <h3 class="exp-title">Undergraduate Researcher, McNair Scholars</h3>
+            <span class="exp-period">Feb 2026 - Present</span>
+          </div>
+          <div class="exp-company">UC San Diego &middot; San Diego, CA</div>
+          <ul class="exp-bullets">
+            <li>Accepted into the McNair Scholars Program, a federal initiative supporting first-gen students through faculty-guided research.</li>
+            <li>Investigating spatial reasoning gaps in Qwen3-VL-30B by instrumenting MoE expert activations across the LEGO-Puzzles benchmark.</li>
+            <li>Deploying evaluation runs on RunPod GPUs and comparing failure modes across spatial categories.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Python</span><span class="tag">Qwen3-VL</span><span class="tag">RunPod</span><span class="tag">NumPy</span>
+          </div>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <h3 class="exp-title">Tutor and Teaching Assistant</h3>
+            <span class="exp-period">Jan 2023 - May 2025</span>
+          </div>
+          <div class="exp-company">City College of San Francisco &middot; San Francisco, CA</div>
+          <ul class="exp-bullets">
+            <li>Guided 20+ students per week through Physics and CS coursework spanning Data Structures, Algorithms, and OOP in Java and Python.</li>
+            <li>Created reusable reference materials and coordinated with instructors on curriculum alignment.</li>
+            <li>Lifted average exam scores by 15% while sustaining 90% retention among returning students.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Physics</span><span class="tag">CS Tutoring</span><span class="tag">Java</span><span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <h3 class="exp-title">Machine Learning Research Intern</h3>
+            <span class="exp-period">June 2023 - August 2023</span>
+          </div>
+          <div class="exp-company">Lawrence Berkeley National Laboratory &middot; Berkeley, CA</div>
+          <ul class="exp-bullets">
+            <li>Decoded raw mmWave radar binaries into structured CSV datasets using JSON-based header configs.</li>
+            <li>Trained and evaluated SVM and K-means classifiers for precipitation types, clearing 90%+ accuracy across conditions.</li>
+            <li>Shipped the pipeline to a Raspberry Pi (Linux) with sub-second inference for remote environmental monitoring.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Python</span><span class="tag">SVM</span><span class="tag">K-Means</span><span class="tag">Raspberry Pi</span><span class="tag">Linux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title kinetic-title">Projects</h2>
+        <hr class="section-line">
+      </div>
+
+      <div class="projects-list">
+        <div class="proj-card reveal">
+          <div class="proj-icon">&#129504;</div>
+          <div class="proj-body">
+            <div class="proj-top">
+              <h3 class="proj-title">Spatial Reasoning Failures in VLMs</h3>
+              <span class="proj-badge"><i class="fas fa-star"></i> Research</span>
+            </div>
+            <p class="proj-desc">Traced why Qwen3-VL-30B mishandles spatial tasks by logging MoE expert activations on correct vs. incorrect answers, then ranked experts by per-category accuracy correlation.</p>
+            <div class="proj-tags"><span class="tag">Python</span><span class="tag">Qwen3-VL</span><span class="tag">RunPod</span><span class="tag">NumPy</span></div>
+            <div class="proj-links"><a class="proj-link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank"><i class="fab fa-github"></i> Code</a></div>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-icon">&#128065;</div>
+          <div class="proj-body">
+            <div class="proj-top">
+              <h3 class="proj-title">Watchtower: Observability Platform</h3>
+              <span class="proj-badge">Team Project</span>
+            </div>
+            <p class="proj-desc">Co-built a lightweight monitoring tool that captures JS errors, latency, and user interactions through a custom browser SDK, serving data via a Node.js + SQLite backend to a live dashboard.</p>
+            <div class="proj-tags"><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">SQLite</span><span class="tag">Clerk</span><span class="tag">Jest</span></div>
+            <div class="proj-links"><a class="proj-link" href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank"><i class="fab fa-github"></i> Code</a></div>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-icon">&#9992;&#65039;</div>
+          <div class="proj-body">
+            <div class="proj-top">
+              <h3 class="proj-title">Multi-Agent Travel Coordinator</h3>
+              <span class="proj-badge"><i class="fas fa-trophy"></i> Hackathon</span>
+            </div>
+            <p class="proj-desc">Orchestrated four autonomous agents with FastAPI and LangGraph to plan multi-leg trips from natural language, hitting 90%+ request accuracy with zero scheduling conflicts.</p>
+            <div class="proj-tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">LangGraph</span><span class="tag">Docker</span><span class="tag">React</span></div>
+            <div class="proj-links"><a class="proj-link" href="https://devpost.com/software/travel-agyntc" target="_blank"><i class="fas fa-external-link-alt"></i> Devpost</a></div>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-icon">&#127783;&#65039;</div>
+          <div class="proj-body">
+            <div class="proj-top">
+              <h3 class="proj-title">Precipitation Classifier on Embedded Radar</h3>
+            </div>
+            <p class="proj-desc">Automated mmWave binary decoding and trained SVM/K-means classifiers reaching 90%+ accuracy, then deployed on a Raspberry Pi for sub-second inference in the field.</p>
+            <div class="proj-tags"><span class="tag">Python</span><span class="tag">Linux</span><span class="tag">NumPy</span><span class="tag">Raspberry Pi</span></div>
+            <div class="proj-links"><a class="proj-link" href="https://drive.google.com/file/d/1DSASDEsmYvp6f9jAXwpiorxnNO88CEZq/view?usp=sharing" target="_blank"><i class="fas fa-file-alt"></i> Report</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="activity">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title kinetic-title">Activity</h2>
+        <hr class="section-line">
+      </div>
+      <div class="github-heatmap reveal">
+        <img src="https://ghchart.rshah.org/6366f1/waleedA13" alt="waleedA13's GitHub contribution chart" class="heatmap-img">
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="mailto:waleedalghaithi13@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+      <a href="https://github.com/waleedA13" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Waleed Alghaithi</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
