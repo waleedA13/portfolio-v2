@@ -94,12 +94,17 @@ function initTypingEffect() {
   var articleEl = document.getElementById("typing-article");
   if (!el) return;
 
+  var vowelSoundWords = ["ML"];
   var vowels = "aeiouAEIOU";
   var i = 0;
   var c = 0;
   var deleting = false;
 
   function getArticle(word) {
+    var firstToken = word.split(/[\s\-]/)[0];
+    for (var v = 0; v < vowelSoundWords.length; v++) {
+      if (firstToken === vowelSoundWords[v]) return "an";
+    }
     return vowels.indexOf(word.charAt(0)) !== -1 ? "an" : "a";
   }
 
