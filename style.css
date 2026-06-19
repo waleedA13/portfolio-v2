@@ -167,7 +167,7 @@ nav.nav-scrolled {
   transition: transform var(--transition-speed), opacity var(--transition-speed);
 }
 
-/* ── HERO — split ── */
+/* ── HERO -split ── */
 .intro {
   min-height: 100vh;
   display: flex;
@@ -570,7 +570,7 @@ nav.nav-scrolled {
   margin-top: var(--spacing-xs);
 }
 
-/* ── SKILLS — chip cards with icons ── */
+/* ── SKILLS -chip cards with icons ── */
 .skills-cloud {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -620,7 +620,7 @@ nav.nav-scrolled {
   margin-bottom: var(--spacing-md);
 }
 
-/* ── EXPERIENCE — timeline ── */
+/* ── EXPERIENCE -timeline ── */
 .timeline {
   position: relative;
   padding-left: 2.5rem;
@@ -729,7 +729,7 @@ nav.nav-scrolled {
   border-top: 1px solid var(--border-default);
 }
 
-/* ── PROJECTS — featured + grid ── */
+/* ── PROJECTS -featured + grid ── */
 .featured {
   background: var(--surface-card);
   border: 1px solid var(--border-default);
