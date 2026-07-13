@@ -154,6 +154,7 @@
       <p><i class="fas fa-envelope"></i> <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
       <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></p>
       <p><i class="fab fa-github"></i> <a href="https://github.com/waleedA13" target="_blank">GitHub</a></p>
+      <p><i class="fas fa-globe"></i> <a href="https://waleeda13.github.io/portfolio-v2/" target="_blank">Portfolio</a></p>
     </div>
   </header>
 
@@ -180,8 +181,8 @@
     </div>
     <ul class="compact-list">
       <li>Selected for the McNair Scholars Program, a federally funded initiative preparing first-gen and underrepresented students for doctoral study through faculty-mentored research.</li>
-      <li>Conducting research on spatial reasoning failures in vision-language models, analyzing internal expert activations in Qwen3-VL-30B across the LEGO-Puzzles benchmark.</li>
-      <li>Running evaluation pipelines on RunPod GPU infrastructure, comparing model performance across height, position, rotation, and ordering spatial tasks to identify where and why models fail.</li>
+      <li>Investigated why Qwen3-VL-30B fails at spatial reasoning by profiling Mixture-of-Experts routing across 48 layers on the LEGO-Puzzles benchmark, then z-score ranking layers and clustering expert fingerprints with k-medoids (Jaccard distance) to isolate likely error sources.</li>
+      <li>Designed and ran a 40-experiment ablation study on RunPod A100s (layer, MoE-only, and expert-level ablation vs. random controls), then validated results with McNemar's test and a held-out 200-question set, finding errors are distributed broadly across layers rather than concentrated in specific components.</li>
     </ul>
 
     <div class="entry-header">
@@ -217,13 +218,13 @@
     <h2>Projects</h2>
     <div class="entry-header">
       <span><a href="https://github.com/waleedA13/McNairProgramResearch">Spatial Reasoning Failures in Vision-Language Models</a></span> |
-      <span class="entry-tools">Python, Qwen3-VL, RunPod, NumPy, Pandas</span>
+      <span class="entry-tools">Python, Qwen3-VL, RunPod, NumPy, Pandas, scikit-learn</span>
       <span class="entry-details-dates">Feb 2026 - Present</span>
     </div>
     <ul class="compact-list">
-      <li>Analyzed why Qwen3-VL-30B struggles at spatial reasoning by tracking which internal experts activate on correct vs. incorrect answers.</li>
-      <li>Ranked experts by how strongly their activation correlated with correct answers across height, position, rotation, and ordering tasks.</li>
-      <li>Benchmarked Qwen3-VL against GPT-4o and Gemini Flash 2.0 on RunPod to compare failure patterns across models.</li>
+      <li>Profiled MoE expert routing for Qwen3-VL-30B across 48 layers on 400 LEGO-Puzzles questions, z-score ranking layers and clustering expert fingerprints with k-medoids (Jaccard distance) to isolate likely error sources.</li>
+      <li>Designed and ran a 40-experiment ablation study on RunPod A100s (layer, MoE-only, and expert-level ablation vs. random controls), lifting test accuracy from 23% to 26.5% on the best configuration.</li>
+      <li>Validated results with McNemar's test and a held-out 200-question set (29% to 27%), showing the gain didn't generalize and errors are distributed broadly rather than concentrated in specific layers.</li>
     </ul>
 
     <div class="entry-header">

@@ -197,11 +197,11 @@
             <div class="timeline-org">UC San Diego &middot; San Diego, CA</div>
             <ul class="timeline-bullets">
               <li>Accepted into the McNair Scholars Program, a federal initiative supporting first-gen students through faculty-guided research.</li>
-              <li>Investigating spatial reasoning gaps in Qwen3-VL-30B by instrumenting MoE expert activations across the LEGO-Puzzles benchmark.</li>
-              <li>Deploying evaluation runs on RunPod GPUs and comparing failure modes across spatial categories.</li>
+              <li>Traced spatial reasoning failures in Qwen3-VL-30B by profiling MoE expert routing across 48 layers on the LEGO-Puzzles benchmark, then z-score ranking layers and clustering expert fingerprints with k-medoids.</li>
+              <li>Ran a 40-experiment ablation study on RunPod A100s and validated with McNemar's test and a held-out set, finding errors are spread broadly across layers rather than concentrated in a few components.</li>
             </ul>
             <div class="chips">
-              <span class="chip">Python</span><span class="chip">Qwen3-VL</span><span class="chip">RunPod</span><span class="chip">NumPy</span>
+              <span class="chip">Python</span><span class="chip">Qwen3-VL</span><span class="chip">RunPod</span><span class="chip">NumPy</span><span class="chip">scikit-learn</span>
             </div>
           </div>
         </div>
@@ -257,8 +257,8 @@
       <div class="featured animate-in">
         <div class="featured-tag"><i class="fas fa-star"></i> Featured Research</div>
         <h3 class="featured-heading">Spatial Reasoning Failures in VLMs</h3>
-        <p class="featured-summary">Traced why Qwen3-VL-30B mishandles spatial tasks by logging MoE expert activations on correct vs. incorrect answers, then ranked experts by per-category accuracy correlation. Benchmarked against GPT-4o and Gemini Flash 2.0.</p>
-        <div class="chips"><span class="chip">Python</span><span class="chip">Qwen3-VL</span><span class="chip">RunPod</span><span class="chip">NumPy</span></div>
+        <p class="featured-summary">Traced why Qwen3-VL-30B mishandles spatial tasks by profiling MoE expert routing across 48 layers, then ran a 40-experiment RunPod ablation study lifting test accuracy from 23% to 26.5%. Validated with McNemar's test and a held-out set, finding the gain didn't generalize and errors are spread broadly across layers rather than concentrated in a few components.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Qwen3-VL</span><span class="chip">RunPod</span><span class="chip">NumPy</span><span class="chip">scikit-learn</span></div>
         <a class="project-link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
       </div>
 
