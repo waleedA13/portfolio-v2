@@ -7,129 +7,182 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
+    :root {
+      /* Colors */
+      --color-primary: #2c3e50;
+      --color-primary-light: #3b5e82;
+      --color-muted: #7f8c8d;
+      --color-bg: #f9f9f9;
+      --color-surface: #fff;
+      --color-on-primary: #ecf0f1;
+      --color-link-hover: #2980b9;
+
+      /* Typography */
+      --font-family-base: 'Poppins', sans-serif;
+      --fs-base: 0.833rem;   /* ~10pt */
+      --fs-h1: 1.25rem;      /* ~15pt */
+      --fs-h2: 0.917rem;     /* ~11pt */
+      --fs-contact: 0.75rem; /* ~9pt */
+      --fs-tools: 0.75rem;   /* ~9pt */
+      --fs-details: 0.667rem;/* ~8pt */
+      --fs-gpa: 0.583rem;    /* ~7pt */
+      --line-height-base: 1.6;
+
+      /* Spacing scale */
+      --space-3xs: 0.0625rem;
+      --space-2xs: 0.125rem;
+      --space-xs: 0.3125rem;
+      --space-sm: 0.625rem;
+      --space-md: 1.25rem;
+
+      /* Layout */
+      --content-max-width: 53.125rem; /* ~850px */
+      --radius-base: 0.5rem;
+      --shadow-header: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+      --transition-base: color 0.3s ease;
+    }
+
+    html {
+      font-size: 100%; /* 1rem = 16px, scales with user/browser preferences */
+    }
+
+    @media (max-width: 37.5rem) {
+      html { font-size: 93.75%; }
+    }
+
+    @media (max-width: 25rem) {
+      html { font-size: 87.5%; }
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      color: #2c3e50;
-      max-width: 850px;
+      font-family: var(--font-family-base);
+      line-height: var(--line-height-base);
+      color: var(--color-primary);
+      width: 100%;
+      max-width: var(--content-max-width);
       margin: 0 auto;
-      padding: 20px;
-      font-size: 10pt;
-      background-color: #f9f9f9;
+      padding: var(--space-md);
+      font-size: var(--fs-base);
+      background-color: var(--color-bg);
     }
 
     header {
       text-align: center;
-      margin-bottom: 1px;
-      background-color: #2c3e50;
-      padding: 10px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: var(--space-3xs);
+      background-color: var(--color-primary);
+      padding: var(--space-sm);
+      border-radius: var(--radius-base);
+      box-shadow: var(--shadow-header);
     }
 
     h1 {
-      font-size: 15pt;
+      font-size: var(--fs-h1);
       font-weight: 700;
-      margin: 0 0 2px 0;
-      color: #fff;
+      margin: 0 0 var(--space-2xs) 0;
+      color: var(--color-surface);
     }
 
     .contact-info {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
-      font-size: 9pt;
+      gap: var(--space-sm);
+      font-size: var(--fs-contact);
       font-weight: 300;
-      color: #ecf0f1;
+      color: var(--color-on-primary);
     }
 
     .contact-info p { margin: 0; }
 
     .contact-info a {
-      color: #ecf0f1;
+      color: var(--color-on-primary);
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: var(--transition-base);
     }
 
-    .contact-info a:hover { color: #2c3e50; }
+    .contact-info a:hover { color: var(--color-primary); }
 
-    .fab, .fas { margin-right: 5px; }
+    .fab, .fas { margin-right: var(--space-2xs); }
 
     h2 {
-      font-size: 11pt;
+      font-size: var(--fs-h2);
       font-weight: 600;
-      border-bottom: 1px solid #3b5e82;
-      padding-bottom: 2px;
-      margin: 5px 0 5px 0;
-      color: #2c3e50;
+      border-bottom: 1px solid var(--color-primary-light);
+      padding-bottom: var(--space-2xs);
+      margin: var(--space-xs) 0;
+      color: var(--color-primary);
     }
 
     .entry-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: var(--space-sm);
       font-weight: 600;
-      color: #2c3e50;
-      flex-wrap: nowrap;
+      color: var(--color-primary);
+      flex-wrap: wrap;
     }
 
     .entry-details {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
       font-style: italic;
-      margin-bottom: 1px;
-      font-size: 8pt;
-      color: #7f8c8d;
+      margin-bottom: var(--space-3xs);
+      font-size: var(--fs-details);
+      color: var(--color-muted);
     }
 
     .entry-tools {
       font-style: italic;
-      font-size: 9pt;
-      color: #7f8c8d;
+      font-size: var(--fs-tools);
+      color: var(--color-muted);
       flex-grow: 1;
-      white-space: nowrap;
     }
 
     .entry-details-dates {
       font-style: italic;
       font-weight: 600;
-      font-size: 8pt;
-      color: #7f8c8d;
+      font-size: var(--fs-details);
+      color: var(--color-muted);
       white-space: nowrap;
     }
 
     .entry-details-gpa {
       font-style: italic;
-      font-size: 7pt;
-      color: #7f8c8d;
+      font-size: var(--fs-gpa);
+      color: var(--color-muted);
     }
 
     .compact-list {
-      margin: 2px 0;
-      padding-left: 20px;
+      margin: var(--space-2xs) 0;
+      padding-left: var(--space-md);
     }
 
-    .compact-list li { margin-bottom: 1px; }
+    .compact-list li { margin-bottom: var(--space-3xs); }
 
     a {
-      color: #2c3e50;
+      color: var(--color-primary);
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: var(--transition-base);
     }
 
     a:hover {
-      color: #2980b9;
+      color: var(--color-link-hover);
       text-decoration: underline;
     }
 
     @media print {
       body {
+        width: auto;
+        max-width: none;
         padding: 0;
         margin: 1cm;
         font-size: 9pt;
-        background-color: #fff;
+        background-color: var(--color-surface);
         -webkit-print-color-adjust: exact;
         color-adjust: exact;
       }
