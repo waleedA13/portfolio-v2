@@ -405,6 +405,12 @@ nav.nav-scrolled {
   50% { opacity: 0.5; transform: scale(1.3); }
 }
 
+.intro-badge {
+  width: 90px;
+  height: auto;
+  margin-top: var(--spacing-lg);
+}
+
 /* ── CHIPS ── */
 .chip {
   padding: var(--spacing-xs) 0.6rem;
@@ -785,9 +791,31 @@ nav.nav-scrolled {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: var(--spacing-xl);
 }
+
+/* ── PROJECT THUMBS (placeholders until real screenshots are in) ── */
+.project-thumb {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-radial), var(--surface-elevated);
+  border: 1px solid var(--border-default);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  color: var(--text-quaternary);
+  margin-bottom: var(--spacing-md);
+}
+.project-thumb i { font-size: var(--font-size-xl); opacity: 0.6; }
+.project-thumb span {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.featured .project-thumb { aspect-ratio: 21 / 9; margin-bottom: var(--spacing-lg); }
 
 .project-card {
   background: var(--surface-card);
@@ -849,6 +877,12 @@ nav.nav-scrolled {
   flex: 1;
 }
 .project-card .chips { margin-bottom: var(--spacing-md); }
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
 
 .project-link {
   font-size: var(--font-size-sm);

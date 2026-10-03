@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function detectPerformance() {
   var nav = navigator;
 
+  // Cheap signals first: a device already known to be constrained doesn't
+  // need a frame-rate sample to tell us what we already know.
   if (nav.hardwareConcurrency && nav.hardwareConcurrency <= 4) {
     document.body.classList.add("low-power");
     return;
@@ -24,8 +26,8 @@ function detectPerformance() {
 
   var samples = [];
   var last = performance.now();
-  var SAMPLE_COUNT = 10;
-  var SLOW_FRAME_MS = 33;
+  var SAMPLE_COUNT = 10; // enough frames to smooth out a single slow one, short enough to decide before the user notices
+  var SLOW_FRAME_MS = 33; // a frame budget of ~30fps or worse; 60fps needs ~16.6ms
 
   function measure(now) {
     samples.push(now - last);
@@ -43,6 +45,9 @@ function detectPerformance() {
     }
   }
 
+  // The very first rAF callback after page load tends to run late (layout,
+  // paint, etc. still settling), which would skew the first sample. Burn it
+  // as a warm-up and only start timing from the second callback.
   requestAnimationFrame(function (now) {
     last = now;
     requestAnimationFrame(measure);
@@ -72,21 +77,23 @@ function setupMobileNav() {
 }
 
 function setupTyper() {
-  var roles = ["Software Engineer", "ML Researcher", "Full-Stack Developer", "McNair Scholar"];
+  var roles = ["Software Engineer", "ML Researcher", "Full-Stack Developer", "Undergraduate Researcher"];
   var el = document.getElementById("typed");
   var articleEl = document.getElementById("article");
   if (!el) return;
 
+  // "ML" is spelled with a consonant but spoken as "em el", so it needs
+  // "an" even though the vowel-letter check below would say "a".
   var vowelSoundWords = ["ML"];
   var vowels = "aeiouAEIOU";
-  var i = 0;
-  var c = 0;
+  var roleIndex = 0;
+  var charIndex = 0;
   var deleting = false;
 
   function getArticle(word) {
     var firstToken = word.split(/[\s\-]/)[0];
-    for (var v = 0; v < vowelSoundWords.length; v++) {
-      if (firstToken === vowelSoundWords[v]) return "an";
+    for (var i = 0; i < vowelSoundWords.length; i++) {
+      if (firstToken === vowelSoundWords[i]) return "an";
     }
     return vowels.indexOf(word.charAt(0)) !== -1 ? "an" : "a";
   }
@@ -94,23 +101,23 @@ function setupTyper() {
   if (articleEl) articleEl.textContent = getArticle(roles[0]);
 
   function tick() {
-    var word = roles[i];
+    var word = roles[roleIndex];
 
     if (!deleting) {
-      c++;
-      el.textContent = word.substring(0, c);
-      if (c === word.length) {
+      charIndex++;
+      el.textContent = word.substring(0, charIndex);
+      if (charIndex === word.length) {
         setTimeout(function () { deleting = true; tick(); }, 2000);
         return;
       }
       setTimeout(tick, 80);
     } else {
-      c--;
-      el.textContent = word.substring(0, c);
-      if (c === 0) {
+      charIndex--;
+      el.textContent = word.substring(0, charIndex);
+      if (charIndex === 0) {
         deleting = false;
-        i = (i + 1) % roles.length;
-        if (articleEl) articleEl.textContent = getArticle(roles[i]);
+        roleIndex = (roleIndex + 1) % roles.length;
+        if (articleEl) articleEl.textContent = getArticle(roles[roleIndex]);
         setTimeout(tick, 400);
         return;
       }
@@ -124,6 +131,10 @@ function setupTyper() {
 function setupReveal() {
   var els = document.querySelectorAll(".animate-in");
 
+  // .animate-in starts at opacity:0 in CSS and only becomes visible once
+  // JS adds .animated. Without IntersectionObserver support there's no
+  // scroll-triggered reveal, so make everything visible up front rather
+  // than leaving the page permanently blank for that visitor.
   if (!("IntersectionObserver" in window)) {
     els.forEach(function (el) { el.classList.add("animated"); });
     return;
@@ -133,7 +144,7 @@ function setupReveal() {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add("animated");
-        obs.unobserve(entry.target);
+        obs.unobserve(entry.target); // reveal is one-way; no need to keep watching
       }
     });
   }, { threshold: 0.1 });
@@ -148,6 +159,9 @@ function setupTheme() {
   var icon = btn.querySelector("i");
   var saved = localStorage.getItem("theme");
 
+  // The "theme" key and "light-mode" class are also read by the inline
+  // flash-prevention script in index.html's <head>, before this file loads.
+  // Keep both in sync if either changes.
   if (saved === "light") {
     document.body.classList.add("light-mode");
     icon.className = "fas fa-sun";
@@ -186,9 +200,14 @@ function setupActiveNav() {
   if (!sections.length) return;
 
   function update() {
+    // A section counts as "active" once it's scrolled up to roughly the
+    // top third of the viewport, not just past the very top edge.
     var scrollY = window.scrollY + window.innerHeight / 3;
     var active = null;
 
+    // Walk from the bottom-most section up and take the first one whose
+    // start is already above the threshold -- that's the deepest section
+    // the user has scrolled into.
     for (var i = sections.length - 1; i >= 0; i--) {
       if (sections[i].el.offsetTop <= scrollY) {
         active = sections[i];

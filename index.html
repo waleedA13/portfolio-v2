@@ -5,11 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Waleed Alghaithi | Portfolio</title>
   <meta name="description" content="Waleed Alghaithi - CS @ University of California - San Diego. ML research, software engineering, full-stack development.">
+  <link rel="canonical" href="https://waleedA13.github.io/portfolio-v2/">
+
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Waleed Alghaithi">
+  <meta property="og:title" content="Waleed Alghaithi | Portfolio">
+  <meta property="og:description" content="Waleed Alghaithi - CS @ University of California - San Diego. ML research, software engineering, full-stack development.">
+  <meta property="og:url" content="https://waleedA13.github.io/portfolio-v2/">
+  <meta property="og:image" content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Waleed Alghaithi | Portfolio">
+  <meta name="twitter:description" content="Waleed Alghaithi - CS @ University of California - San Diego. ML research, software engineering, full-stack development.">
+  <meta name="twitter:image" content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Waleed Alghaithi",
+      "url": "https://waleedA13.github.io/portfolio-v2/",
+      "jobTitle": ["Software Engineer", "ML Researcher", "Full-Stack Developer", "Undergraduate Researcher"],
+      "sameAs": [
+        "https://github.com/waleedA13",
+        "https://www.linkedin.com/in/waleedalghaithi/"
+      ],
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of California San Diego"
+      }
+    }
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!--
+    Flash-prevention: applies the .light-mode class before first paint so
+    returning visitors who chose light mode don't see a flash of the default
+    dark theme. Mirrors the exact check in script.js's setupTheme() (same
+    localStorage key, same class) -- keep the two in sync by hand.
+  -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.body.classList.add('light-mode');
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <nav>
     <div class="nav-container">
@@ -32,7 +82,7 @@
     <div class="intro-content">
       <div class="intro-text">
         <div class="status">
-          <span class="pulse"></span> Currently working on McNair Research
+          <span class="pulse"></span> Currently doing research at UCSD
         </div>
         <h1 class="shimmer-hero">Waleed Alghaithi</h1>
         <div class="intro-role">
@@ -46,6 +96,7 @@
           <a class="button-outline" href="mailto:waleedalghaithi13@gmail.com">Say Hello</a>
           <a class="button-outline" href="assets/resume.html" target="_blank"><i class="fas fa-file-alt"></i> Resume</a>
         </div>
+        <img class="intro-badge" src="assets/img/aws-ai-practitioner-badge.png" alt="AWS Certified AI Practitioner badge">
       </div>
       <div class="intro-artwork">
         <div class="orb-primary"></div>
@@ -79,7 +130,7 @@
           <img src="assets/profile.jpg" alt="Waleed Alghaithi" class="avatar">
           <div class="bio-description">
             <p>
-              I study <span class="accent">Computer Science</span> at <span class="accent">University of California - San Diego</span>, where I earned a spot in the McNair Scholars Program to research vision-language model failures under faculty mentorship. Before UCSD, I spent a summer at <span class="accent">Lawrence Berkeley National Lab</span> shipping ML pipelines that classify precipitation from mmWave radar data.
+              I study <span class="accent">Computer Science</span> at <span class="accent">University of California - San Diego</span>, where I'm doing faculty-mentored research on vision-language model failures. Before UCSD, I spent a summer at <span class="accent">Lawrence Berkeley National Lab</span> shipping ML pipelines that classify precipitation from mmWave radar data.
             </p>
             <p>
               When I'm not dissecting model internals, I'm building end-to-end applications: agent-based travel planners, browser observability platforms, and anything that turns messy inputs into useful outputs.
@@ -90,8 +141,8 @@
 
       <div class="stats-row animate-in">
         <div class="stat-card">
-          <span class="stat-value">7+</span>
-          <span class="stat-caption">VLMs Evaluated</span>
+          <span class="stat-value">48</span>
+          <span class="stat-caption">MoE Layers Profiled</span>
         </div>
         <div class="stat-card">
           <span class="stat-value">90%+</span>
@@ -172,7 +223,7 @@
             <span class="chip chip-highlight">FastAPI</span>
             <span class="chip chip-highlight">HTML / CSS</span>
             <span class="chip">React / Node.js</span>
-            <span class="chip">SQL / SQLite</span>
+            <span class="chip">SQL / Supabase</span>
           </div>
         </div>
       </div>
@@ -210,12 +261,12 @@
           <div class="timeline-dot"></div>
           <div class="timeline-card">
             <div class="timeline-header">
-              <h3>Undergraduate Researcher, McNair Scholars</h3>
+              <h3>Undergraduate Researcher</h3>
               <span class="timeline-date">February 2026 - August 2026</span>
             </div>
             <div class="timeline-org">UC San Diego &middot; San Diego, CA</div>
             <ul class="timeline-bullets">
-              <li>Accepted into the McNair Scholars Program, a federal initiative supporting first-gen students through faculty-guided research.</li>
+              <li>Conducted faculty-guided research on vision-language models.</li>
               <li>Traced spatial reasoning failures in Qwen3-VL-30B by profiling MoE expert routing across 48 layers on the LEGO-Puzzles benchmark, then z-score ranking layers and clustering expert fingerprints with k-medoids.</li>
               <li>Ran a 40-experiment ablation study on RunPod A100s and validated with McNemar's test and a held-out set, finding errors are spread broadly across layers rather than concentrated in a few components.</li>
             </ul>
@@ -274,23 +325,29 @@
       </div>
 
       <div class="featured animate-in">
+        <div class="project-thumb"><i class="fas fa-brain" aria-hidden="true"></i><span>Preview coming soon</span></div>
         <div class="featured-tag"><i class="fas fa-star"></i> Featured Research</div>
         <h3 class="featured-heading">Uncovering the Limits of Spatial Reasoning in Vision-Language Models</h3>
         <p class="featured-summary">Traced why Qwen3-VL-30B mishandles spatial tasks by profiling MoE expert routing across 48 layers, then ran a 40-experiment RunPod ablation study lifting test accuracy from 23% to 26.5%. Validated with McNemar's test and a held-out set, finding the gain didn't generalize and errors are spread broadly across layers rather than concentrated in a few components.</p>
         <div class="chips"><span class="chip">Python</span><span class="chip">Qwen3-VL</span><span class="chip">RunPod</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">scikit-learn</span></div>
-        <a class="project-link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+          <a class="project-link" href="assets/Waleed_McNairResearchPaper.pdf" target="_blank"><i class="fas fa-file-alt"></i> Paper</a>
+        </div>
       </div>
 
       <div class="project-grid">
         <div class="project-card animate-in">
+          <div class="project-thumb"><i class="fas fa-bug" aria-hidden="true"></i><span>Preview coming soon</span></div>
           <div class="project-tag">Team Project</div>
           <h3 class="project-title">Watchtower: Observability Platform</h3>
-          <p class="project-summary">Co-built a lightweight monitoring tool that captures JS errors, latency, and user interactions through a custom browser SDK, serving data via a Node.js + SQLite backend to a live dashboard.</p>
-          <div class="chips"><span class="chip">JavaScript</span><span class="chip">Node.js</span><span class="chip">SQLite</span><span class="chip">Clerk</span><span class="chip">Jest</span></div>
+          <p class="project-summary">Co-built a lightweight monitoring tool that captures JS errors, latency, and user interactions through a custom browser SDK, serving data via a Node.js + Supabase/Postgres backend to a live dashboard.</p>
+          <div class="chips"><span class="chip">JavaScript</span><span class="chip">Node.js</span><span class="chip">Supabase</span><span class="chip">Clerk</span><span class="chip">Jest</span></div>
           <a class="project-link" href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank"><i class="fab fa-github"></i> Code</a>
         </div>
 
         <div class="project-card animate-in">
+          <div class="project-thumb"><i class="fas fa-route" aria-hidden="true"></i><span>Preview coming soon</span></div>
           <div class="project-tag"><i class="fas fa-trophy"></i> Hackathon</div>
           <h3 class="project-title">Multi-Agent Travel Coordinator</h3>
           <p class="project-summary">Orchestrated four autonomous agents with FastAPI and LangGraph to plan multi-leg trips from natural language, hitting 90%+ request accuracy with zero scheduling conflicts.</p>
@@ -299,11 +356,24 @@
         </div>
 
         <div class="project-card animate-in">
+          <div class="project-thumb"><i class="fas fa-cloud-rain" aria-hidden="true"></i><span>Preview coming soon</span></div>
           <div class="project-tag">Research</div>
           <h3 class="project-title">Precipitation Classifier on Embedded Radar</h3>
           <p class="project-summary">Automated mmWave binary decoding and trained SVM/K-means classifiers reaching 90%+ accuracy, then deployed on a Raspberry Pi for sub-second inference in the field.</p>
           <div class="chips"><span class="chip">Python</span><span class="chip">Linux</span><span class="chip">NumPy</span><span class="chip">Raspberry Pi</span></div>
           <a class="project-link" href="https://drive.google.com/file/d/1DSASDEsmYvp6f9jAXwpiorxnNO88CEZq/view?usp=sharing" target="_blank"><i class="fas fa-file-alt"></i> Report</a>
+        </div>
+
+        <div class="project-card animate-in">
+          <div class="project-thumb"><i class="fas fa-robot" aria-hidden="true"></i><span>Preview coming soon</span></div>
+          <div class="project-tag">Team Project</div>
+          <h3 class="project-title">Talk-to-Robot</h3>
+          <p class="project-summary">5-person UCSD CSE 190 team studying when a one-shot LLM grounder is reliable enough to drive a SAC+HER policy in MuJoCo's FetchPush-v4, comparing a regex baseline against Gemini prompting across instruction tiers from literal coordinates to functional intent. Fixed parsing bugs in the regex baseline, contributed one of three pre-registered human annotation sets for the hardest tier, and restructured the results pipeline.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Gemini</span><span class="chip">MuJoCo</span><span class="chip">Gymnasium</span><span class="chip">Stable-Baselines3</span></div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/YangLin14/Talk-to-Robot" target="_blank"><i class="fab fa-github"></i> Code</a>
+            <a class="project-link" href="assets/llm-spatial-grounding-paper.pdf" target="_blank"><i class="fas fa-file-alt"></i> Paper</a>
+          </div>
         </div>
       </div>
     </div>
@@ -333,6 +403,18 @@
   </footer>
 
   <button class="scroll-top" id="scroll-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+  <!--
+    Unlike a client-rendered SPA, this page's real content is already in the
+    HTML, not injected by JS. The only JS dependency is the scroll-reveal
+    effect (.animate-in starts at opacity:0 until script.js's
+    IntersectionObserver adds .animated), which would otherwise leave most
+    sections invisible with JS disabled. This forces them visible instead of
+    duplicating the page's content into a separate fallback block.
+  -->
+  <noscript>
+    <style>.animate-in { opacity: 1 !important; transform: none !important; }</style>
+  </noscript>
 
   <script src="script.js"></script>
 </body>
