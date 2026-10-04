@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Waleed Alghaithi | Portfolio</title>
-  <meta name="description" content="Waleed Alghaithi - CS @ University of California - San Diego. ML research, software engineering, full-stack development.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Waleed Alghaithi</title>
+  <meta name="description" content="I'm Waleed, a CS student at UC San Diego. I do research on how large models behave (and misbehave), and I build things with other people.">
   <link rel="canonical" href="https://waleedA13.github.io/portfolio-v2/">
 
-  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#faf8f3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Waleed Alghaithi">
-  <meta property="og:title" content="Waleed Alghaithi | Portfolio">
-  <meta property="og:description" content="Waleed Alghaithi - CS @ University of California - San Diego. ML research, software engineering, full-stack development.">
+  <meta property="og:title" content="Waleed Alghaithi">
+  <meta property="og:description" content="I'm Waleed, a CS student at UC San Diego. I do research on how large models behave (and misbehave), and I build things with other people.">
   <meta property="og:url" content="https://waleedA13.github.io/portfolio-v2/">
   <meta property="og:image" content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Waleed Alghaithi | Portfolio">
-  <meta name="twitter:description" content="Waleed Alghaithi - CS @ University of California - San Diego. ML research, software engineering, full-stack development.">
+  <meta name="twitter:title" content="Waleed Alghaithi">
+  <meta name="twitter:description" content="I'm Waleed, a CS student at UC San Diego. I do research on how large models behave (and misbehave), and I build things with other people.">
   <meta name="twitter:image" content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg">
 
   <script type="application/ld+json">
@@ -40,399 +40,300 @@
     }
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!--
-    Flash-prevention: applies the .light-mode class before first paint so
-    returning visitors who chose light mode don't see a flash of the default
-    dark theme. Mirrors the exact check in script.js's setupTheme() (same
-    localStorage key, same class) -- keep the two in sync by hand.
+    Theme is decided here, before first paint, so there's no flash:
+    a saved choice wins, otherwise follow the OS. script.js only toggles
+    the class and saves the choice afterwards.
   -->
   <script>
     (function () {
       try {
-        if (localStorage.getItem('theme') === 'light') {
-          document.body.classList.add('light-mode');
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.body.classList.add('dark-mode');
         }
       } catch (e) {}
     })();
   </script>
 
-  <nav>
+  <a class="skip-link" href="#top">Skip to content</a>
+
+  <nav aria-label="Main">
     <div class="nav-container">
-      <button class="nav-toggle" aria-label="Toggle navigation menu">
-        <span></span><span></span><span></span>
+      <a class="nav-name" href="#top">Waleed <span>Alghaithi</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span>
       </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
+        <li><a href="#experience">Work</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="https://github.com/waleedA13" target="_blank"><i class="fab fa-github"></i></a></li>
-        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-        <li><button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode"><i class="fas fa-moon"></i></button></li>
+        <li><a href="assets/resume.html" target="_blank">Resume</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </li>
       </ul>
     </div>
   </nav>
 
-  <section class="intro">
-    <div class="intro-content">
-      <div class="intro-text">
-        <div class="status">
-          <span class="pulse"></span> Currently doing research at UCSD
+  <header class="intro" id="top">
+    <div class="intro-text">
+      <p class="eyebrow">Hi, I'm Waleed.</p>
+      <h1>I like figuring out why models <em>get things wrong.</em></h1>
+      <p class="intro-desc">
+        I'm a CS student at UC San Diego. Right now I'm working with a faculty advisor on whether you can predict which experts a Mixture-of-Experts model will use <i>before</i> it uses them. From January to August I tried to work out why a 30-billion-parameter vision-language model scores 23% on a benchmark of LEGO puzzles.
+      </p>
+      <p class="intro-desc">
+        The rest of the time I build things with other people, for hackathons and for class.
+      </p>
+      <div class="intro-actions">
+        <a class="button-primary" href="mailto:waleedalghaithi13@gmail.com">Email me</a>
+        <a class="text-link" href="#projects">or read about what I've built <span aria-hidden="true">&darr;</span></a>
+      </div>
+    </div>
+    <figure class="intro-photo">
+      <img src="assets/profile.jpg" alt="Waleed Alghaithi">
+      <figcaption>San Diego, 2026.</figcaption>
+    </figure>
+  </header>
+
+  <main>
+    <section class="panel" id="about">
+      <h2 class="panel-label">About</h2>
+      <div class="panel-body">
+        <div class="prose">
+          <p class="lead">
+            I started at City College of San Francisco and tutored physics and CS there for more than two years while I finished two associate's degrees.
+          </p>
+          <p>
+            In the summer of 2023 I was at <strong>Lawrence Berkeley National Lab</strong>, building a precipitation classifier for radar data that ran on a Raspberry Pi. Then I transferred to <strong>UC San Diego</strong>, joined the McNair Scholars Program, and started doing research on how large models work inside.
+          </p>
+          <p>
+            I still tutor. This past summer I ran discussion sections for CSE 6R, UCSD's intro Python course.
+          </p>
         </div>
-        <h1 class="shimmer-hero">Waleed Alghaithi</h1>
-        <div class="intro-role">
-          I'm <span id="article">a</span> <span class="typed" id="typed"></span><span class="caret"></span>
-        </div>
-        <p class="intro-desc">
-          Undergraduate researcher probing how AI models perceive spatial relationships. Passionate about turning complex problems into clean, working systems.
+
+        <dl class="facts">
+          <div>
+            <dt>Now</dt>
+            <dd>B.S. Computer Science, UC San Diego. 3.71 GPA, graduating June 2027.</dd>
+          </div>
+          <div>
+            <dt>Before</dt>
+            <dd>A.S. Computer Science and A.S. Science &amp; Math, City College of San Francisco. 4.00 GPA, May 2025.</dd>
+          </div>
+          <div>
+            <dt>Coursework</dt>
+            <dd>Algorithms, Software Engineering, ML, AI: Search &amp; Reasoning, Deep RL, Systems Programming</dd>
+          </div>
+          <div class="facts-badge">
+            <dt>Certified</dt>
+            <dd>
+              <img src="assets/img/aws-ai-practitioner-badge.png" alt="">
+              AWS Certified AI Practitioner
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="panel" id="skills">
+      <h2 class="panel-label">Toolbox</h2>
+      <div class="panel-body">
+        <p class="prose lead">
+          <strong>Python</strong> is my main language and <strong>Java</strong> is my second.
         </p>
-        <div class="intro-actions">
-          <a class="button-primary" href="#projects">See My Work <i class="fas fa-arrow-right"></i></a>
-          <a class="button-outline" href="mailto:waleedalghaithi13@gmail.com">Say Hello</a>
-          <a class="button-outline" href="assets/resume.html" target="_blank"><i class="fas fa-file-alt"></i> Resume</a>
-        </div>
-        <img class="intro-badge" src="assets/img/aws-ai-practitioner-badge.png" alt="AWS Certified AI Practitioner badge">
-      </div>
-      <div class="intro-artwork">
-        <div class="orb-primary"></div>
-        <div class="orb-primary orb-secondary"></div>
-        <div class="code-window">
-          <div class="code-controls">
-            <span class="control-close"></span>
-            <span class="control-minimize"></span>
-            <span class="control-maximize"></span>
+        <div class="toolbox">
+          <div>
+            <h3>Languages</h3>
+            <p>Python, Java, JavaScript / TypeScript, C / C++</p>
           </div>
-          <div class="code-content">
-            <div><span class="syntax-keyword">def</span> <span class="syntax-function">investigate</span>():</div>
-            <div>&nbsp;&nbsp;<span class="syntax-variable">models</span> = <span class="syntax-string">["Qwen3-VL", "GPT-4o"]</span></div>
-            <div>&nbsp;&nbsp;<span class="syntax-variable">question</span> = <span class="syntax-string">"why do they fail?"</span></div>
-            <div>&nbsp;&nbsp;<span class="syntax-keyword">return</span> <span class="syntax-string">find_answer(models, question)</span></div>
+          <div>
+            <h3>ML &amp; data</h3>
+            <p>PyTorch, LangGraph / LiteLLM, SVM / K-Means, NumPy / Pandas, scikit-learn, linear algebra</p>
+          </div>
+          <div>
+            <h3>Web &amp; databases</h3>
+            <p>FastAPI, React / Node.js, HTML / CSS, SQL / Supabase</p>
+          </div>
+          <div>
+            <h3>Tools</h3>
+            <p>Git / GitHub, Docker / Linux, Jest / Playwright, Grafana / Jira</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="panel panel-shaded" id="about">
-    <div class="panel-inner">
-      <div class="panel-header animate-in">
-        <h2 class="panel-title shimmer-title">About Me</h2>
-        <hr class="panel-divider">
+    <section class="panel" id="experience">
+      <h2 class="panel-label">Work</h2>
+      <div class="panel-body">
+        <ol class="jobs">
+          <li class="job">
+            <div class="job-when">Aug 2026 &ndash; now</div>
+            <div class="job-what">
+              <h3>Undergraduate Researcher <span class="job-where">UC San Diego</span></h3>
+              <p>
+                A Mixture-of-Experts model sends each token to a few "experts," and you don't know which ones until the router picks them. If those weights aren't loaded yet, the GPU stalls. I'm testing whether I can predict those choices early enough to prefetch the weights. A research collaborator, our faculty advisor, and I have the experiment pipeline running on Mixtral 8x7B. Getting there meant loading the model and checking that its architecture and tokenizer match what we expect.
+              </p>
+              <p class="job-tools">Python · PyTorch · Mixtral</p>
+            </div>
+          </li>
+
+          <li class="job">
+            <div class="job-when">Aug &ndash; Sep 2026</div>
+            <div class="job-what">
+              <h3>Course Tutor, CSE 6R <span class="job-where">UC San Diego</span></h3>
+              <p>
+                I led weekly discussion sections for UCSD's intro Python course during Summer Session 2 and wrote the materials for each one. I also held office hours and covered for course staff when they needed it. Most of my students were writing their first programs, so I spent a lot of that time sitting next to people while they debugged.
+              </p>
+              <p class="job-tools">Python · Teaching</p>
+            </div>
+          </li>
+
+          <li class="job">
+            <div class="job-when">Jan &ndash; Aug 2026</div>
+            <div class="job-what">
+              <h3>Undergraduate Researcher, McNair Scholars Program <span class="job-where">UC San Diego</span></h3>
+              <p>
+                I worked with a faculty mentor on why Qwen3-VL-30B struggles with spatial reasoning. Short version: the errors come from all over the model. The long version is <a class="text-link" href="#project-spatial">down in projects</a>.
+              </p>
+              <p class="job-tools">Python · Qwen3-VL · RunPod · NumPy · scikit-learn</p>
+            </div>
+          </li>
+
+          <li class="job">
+            <div class="job-when">Jan 2023 &ndash; May 2025</div>
+            <div class="job-what">
+              <h3>Tutor &amp; Teaching Assistant <span class="job-where">City College of San Francisco</span></h3>
+              <p>
+                I tutored 20+ students a week in physics and CS: data structures, algorithms, and OOP in Java and Python. I made reference materials we could reuse across semesters and checked with instructors so I taught what they taught. The students I worked with raised their average exam scores by about 15%, and 90% of my regulars stuck with it.
+              </p>
+              <p class="job-tools">Physics · Java · Python</p>
+            </div>
+          </li>
+
+          <li class="job">
+            <div class="job-when">Jun &ndash; Aug 2023</div>
+            <div class="job-what">
+              <h3>Machine Learning Research Intern <span class="job-where">Lawrence Berkeley National Lab</span></h3>
+              <p>
+                I spent the summer turning raw radar data into a precipitation classifier that runs on a Raspberry Pi. <a class="text-link" href="#project-radar">More on that below</a>.
+              </p>
+              <p class="job-tools">Python · SVM · K-Means · Raspberry Pi · Linux</p>
+            </div>
+          </li>
+        </ol>
       </div>
+    </section>
 
-      <div class="bio-container animate-in">
-        <div class="bio">
-          <img src="assets/profile.jpg" alt="Waleed Alghaithi" class="avatar">
-          <div class="bio-description">
-            <p>
-              I study <span class="accent">Computer Science</span> at <span class="accent">University of California - San Diego</span>, where I'm currently doing faculty-mentored research on predicting expert activations in Mixture-of-Experts models, after a prior stint through the McNair Scholars Program studying vision-language model failures. Before UCSD, I spent a summer at <span class="accent">Lawrence Berkeley National Lab</span> shipping ML pipelines that classify precipitation from mmWave radar data.
+    <section class="panel" id="projects">
+      <h2 class="panel-label">Projects</h2>
+      <div class="panel-body">
+        <p class="prose lead">A few things I've worked on, and how they turned out.</p>
+
+        <article class="story story-featured" id="project-spatial">
+          <p class="story-kicker">Research · McNair Scholars · 2026</p>
+          <h3 class="story-title">Tracing a 30B vision model's LEGO puzzle failures</h3>
+          <div class="story-parts">
+            <div>
+              <h4>The problem</h4>
+              <p>Qwen3-VL-30B gets about 23% on LEGO-Puzzles, a benchmark of spatial reasoning tasks. It's a mixture-of-experts model, so I wanted to find out if a few specific experts or layers caused the failures.</p>
+            </div>
+            <div>
+              <h4>What I did</h4>
+              <p>I profiled which experts the router picks across all 48 layers, ranked the layers by z-score, and clustered the expert "fingerprints" with k-medoids. Then I ran a 40-experiment ablation study on rented A100s through RunPod.</p>
+            </div>
+            <div>
+              <h4>What I learned</h4>
+              <p>My best ablation took test accuracy from 23% to 26.5%. I checked it with McNemar's test and a held-out set, and the gain didn't hold up. The errors come from all over the model, so there's no small set of layers to fix. I wrote it up as a negative result.</p>
+            </div>
+          </div>
+          <p class="story-tools">Python · Qwen3-VL · RunPod · NumPy · Pandas · scikit-learn</p>
+          <p class="story-links">
+            <a class="text-link" href="assets/Waleed_McNairResearchPaper.pdf" target="_blank">Read the paper &rarr;</a>
+            <a class="text-link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank">Code on GitHub &rarr;</a>
+          </p>
+        </article>
+
+        <div class="story-grid">
+          <article class="story">
+            <p class="story-kicker">Team of 5 · CSE 190</p>
+            <h3 class="story-title">Talk-to-Robot</h3>
+            <p><strong>The question:</strong> you tell a simulated robot arm what to do in plain English. When is a one-shot LLM reliable enough to turn that into a goal for a trained SAC+HER pushing policy in MuJoCo's FetchPush-v4? We compared a regex baseline against Gemini prompting, with instructions ranging from literal coordinates up to functional intent.</p>
+            <p><strong>My part:</strong> I fixed parsing bugs in the regex baseline and restructured the results pipeline. I also wrote one of the three pre-registered human annotation sets for the hardest tier.</p>
+            <p class="story-tools">Python · Gemini · MuJoCo · Gymnasium · Stable-Baselines3</p>
+            <p class="story-links">
+              <a class="text-link" href="assets/llm-spatial-grounding-paper.pdf" target="_blank">Paper &rarr;</a>
+              <a class="text-link" href="https://github.com/YangLin14/Talk-to-Robot" target="_blank">Code &rarr;</a>
             </p>
-            <p>
-              When I'm not dissecting model internals, I'm building end-to-end applications: agent-based travel planners, browser observability platforms, and anything that turns messy inputs into useful outputs.
+          </article>
+
+          <article class="story">
+            <p class="story-kicker">Hackathon win</p>
+            <h3 class="story-title">Multi-Agent Travel Coordinator</h3>
+            <p><strong>The problem:</strong> plan a trip with several legs and the hard part is keeping the schedule consistent.</p>
+            <p><strong>What I built:</strong> you describe the trip in plain English, and four agents (built with FastAPI and LangGraph) split up the planning between them. It got 90%+ of requests right with zero scheduling conflicts.</p>
+            <p class="story-tools">Python · FastAPI · LangGraph · Docker · React</p>
+            <p class="story-links">
+              <a class="text-link" href="https://devpost.com/software/travel-agyntc" target="_blank">Devpost &rarr;</a>
             </p>
-          </div>
+          </article>
+
+          <article class="story">
+            <p class="story-kicker">Team project · CSE 110</p>
+            <h3 class="story-title">Watchtower</h3>
+            <p><strong>The idea:</strong> a lightweight way to see what's going wrong in a web app while people are using it.</p>
+            <p><strong>What we built:</strong> a browser SDK that captures JS errors, latency, and user interactions, sends them to a Node.js + Supabase/Postgres backend, and shows it all on a live dashboard.</p>
+            <p class="story-tools">JavaScript · Node.js · Supabase · Clerk · Jest</p>
+            <p class="story-links">
+              <a class="text-link" href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank">Code &rarr;</a>
+            </p>
+          </article>
+
+          <article class="story" id="project-radar">
+            <p class="story-kicker">Berkeley Lab · Summer 2023</p>
+            <h3 class="story-title">Precipitation classifier on a Raspberry Pi</h3>
+            <p><strong>The problem:</strong> a mmWave radar spits out raw binary files. I needed to classify the precipitation on a device small enough to leave out in the field.</p>
+            <p><strong>What I did:</strong> I wrote a decoder that turns the binaries into clean CSVs using JSON header configs, then trained SVM and K-means classifiers that hit 90%+ accuracy across conditions. I deployed it on a Raspberry Pi, where it classifies a reading in under a second.</p>
+            <p class="story-tools">Python · Linux · NumPy · Raspberry Pi</p>
+            <p class="story-links">
+              <a class="text-link" href="https://drive.google.com/file/d/1DSASDEsmYvp6f9jAXwpiorxnNO88CEZq/view?usp=sharing" target="_blank">Report &rarr;</a>
+            </p>
+          </article>
         </div>
       </div>
+    </section>
 
-      <div class="stats-row animate-in">
-        <div class="stat-card">
-          <span class="stat-value">48</span>
-          <span class="stat-caption">MoE Layers Profiled</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">90%+</span>
-          <span class="stat-caption">Model Accuracy</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">4</span>
-          <span class="stat-caption">Shipped Projects</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">1</span>
-          <span class="stat-caption">Hackathon Win</span>
-        </div>
+    <section class="panel" id="activity">
+      <h2 class="panel-label">GitHub</h2>
+      <div class="panel-body">
+        <p class="prose">Contributions over the past year.</p>
+        <img src="https://ghchart.rshah.org/1e4d8c/waleedA13" alt="waleedA13's GitHub contribution chart" class="contribution-chart chart-light" loading="lazy">
+        <img src="https://ghchart.rshah.org/6d28d9/waleedA13" alt="waleedA13's GitHub contribution chart" class="contribution-chart chart-dark" loading="lazy">
       </div>
-
-      <div class="edu-grid animate-in">
-        <div class="edu-card">
-          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
-          <div class="edu-details">
-            <strong>University of California - San Diego</strong>
-            <div class="edu-subtitle">B.S. Computer Science &middot; 3.71 GPA &middot; Expected Jun 2027</div>
-            <div class="edu-courses">Algorithms, Software Engineering, ML, AI: Search & Reasoning, Deep RL, Systems Programming</div>
-          </div>
-        </div>
-        <div class="edu-card">
-          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
-          <div class="edu-details">
-            <strong>City College of San Francisco</strong>
-            <div class="edu-subtitle">A.S. Computer Science &middot; A.S. Science and Math &middot; 4.00 GPA &middot; May 2025</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel" id="skills">
-    <div class="panel-inner">
-      <div class="panel-header animate-in">
-        <h2 class="panel-title shimmer-title">Skills</h2>
-        <hr class="panel-divider">
-      </div>
-
-      <div class="skills-cloud">
-        <div class="skill-card animate-in">
-          <div class="skill-badge"><i class="fas fa-code"></i></div>
-          <h3 class="skill-title">Languages</h3>
-          <div class="chips">
-            <span class="chip chip-highlight">Python</span>
-            <span class="chip chip-highlight">Java</span>
-            <span class="chip">JavaScript / TypeScript</span>
-            <span class="chip">C / C++</span>
-          </div>
-        </div>
-        <div class="skill-card animate-in">
-          <div class="skill-badge"><i class="fas fa-brain"></i></div>
-          <h3 class="skill-title">AI & Data</h3>
-          <div class="chips">
-            <span class="chip chip-highlight">LangGraph / LiteLLM</span>
-            <span class="chip chip-highlight">SVM / K-Means</span>
-            <span class="chip">NumPy / Pandas</span>
-            <span class="chip">Linear Algebra</span>
-          </div>
-        </div>
-        <div class="skill-card animate-in">
-          <div class="skill-badge"><i class="fas fa-wrench"></i></div>
-          <h3 class="skill-title">Tools & Infra</h3>
-          <div class="chips">
-            <span class="chip chip-highlight">Git / GitHub</span>
-            <span class="chip">Docker / Linux</span>
-            <span class="chip">Jest / Playwright</span>
-            <span class="chip">Grafana / Jira</span>
-          </div>
-        </div>
-        <div class="skill-card animate-in">
-          <div class="skill-badge"><i class="fas fa-globe"></i></div>
-          <h3 class="skill-title">Web & Databases</h3>
-          <div class="chips">
-            <span class="chip chip-highlight">FastAPI</span>
-            <span class="chip chip-highlight">HTML / CSS</span>
-            <span class="chip">React / Node.js</span>
-            <span class="chip">SQL / Supabase</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel panel-shaded" id="experience">
-    <div class="panel-inner">
-      <div class="panel-header animate-in">
-        <h2 class="panel-title shimmer-title">Experience</h2>
-        <hr class="panel-divider">
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-entry animate-in">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <h3>Undergraduate Researcher</h3>
-              <span class="timeline-date">August 2026 - Present</span>
-            </div>
-            <div class="timeline-org">UC San Diego &middot; San Diego, CA</div>
-            <ul class="timeline-bullets">
-              <li>Studying whether expert activations in sparse Mixture-of-Experts language models can be predicted ahead of time to enable speculative weight prefetching and reduce GPU pipeline stalls.</li>
-              <li>Set up the experiment pipeline on Mixtral 8x7B (model loading, architecture verification, tokenizer validation) alongside a research collaborator and faculty advisor.</li>
-            </ul>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">Mixtral</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-entry animate-in">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <h3>Course Tutor, CSE 6R</h3>
-              <span class="timeline-date">August 2026 - September 2026</span>
-            </div>
-            <div class="timeline-org">UC San Diego &middot; San Diego, CA</div>
-            <ul class="timeline-bullets">
-              <li>Led weekly discussion sections for CSE 6R (Introduction to Programming and Problem Solving: Python) during UCSD's Summer Session 2.</li>
-              <li>Held office hours to help students debug programs and build foundational Python skills, including variables, control flow, functions, and data structures.</li>
-              <li>Prepared discussion materials weekly and substituted for course staff as needed, helping first-time programmers build confidence and strengthen their coding skills.</li>
-            </ul>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">CS Tutoring</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-entry animate-in">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <h3>Undergraduate Researcher, McNair Scholars Program</h3>
-              <span class="timeline-date">January 2026 - August 2026</span>
-            </div>
-            <div class="timeline-org">UC San Diego &middot; San Diego, CA</div>
-            <ul class="timeline-bullets">
-              <li>Conducted faculty-guided research on vision-language models.</li>
-              <li>Traced spatial reasoning failures in Qwen3-VL-30B by profiling MoE expert routing across 48 layers on the LEGO-Puzzles benchmark, then z-score ranking layers and clustering expert fingerprints with k-medoids.</li>
-              <li>Ran a 40-experiment ablation study on RunPod A100s and validated with McNemar's test and a held-out set, finding errors are spread broadly across layers rather than concentrated in a few components.</li>
-            </ul>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">Qwen3-VL</span><span class="chip">RunPod</span><span class="chip">NumPy</span><span class="chip">scikit-learn</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-entry animate-in">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <h3>Tutor and Teaching Assistant</h3>
-              <span class="timeline-date">January 2023 - May 2025</span>
-            </div>
-            <div class="timeline-org">City College of San Francisco &middot; San Francisco, CA</div>
-            <ul class="timeline-bullets">
-              <li>Guided 20+ students per week through Physics and CS coursework spanning Data Structures, Algorithms, and OOP in Java and Python.</li>
-              <li>Created reusable reference materials and coordinated with instructors on curriculum alignment.</li>
-              <li>Lifted average exam scores by 15% while sustaining 90% retention among returning students.</li>
-            </ul>
-            <div class="chips">
-              <span class="chip">Physics</span><span class="chip">CS Tutoring</span><span class="chip">Java</span><span class="chip">Python</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-entry animate-in">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <h3>Machine Learning Research Intern</h3>
-              <span class="timeline-date">June 2023 - August 2023</span>
-            </div>
-            <div class="timeline-org">Lawrence Berkeley National Laboratory &middot; Berkeley, CA</div>
-            <ul class="timeline-bullets">
-              <li>Decoded raw mmWave radar binaries into structured CSV datasets using JSON-based header configs.</li>
-              <li>Trained and evaluated SVM and K-means classifiers for precipitation types, clearing 90%+ accuracy across conditions.</li>
-              <li>Shipped the pipeline to a Raspberry Pi (Linux) with sub-second inference for remote environmental monitoring.</li>
-            </ul>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">SVM</span><span class="chip">K-Means</span><span class="chip">Raspberry Pi</span><span class="chip">Linux</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel" id="projects">
-    <div class="panel-inner">
-      <div class="panel-header animate-in">
-        <h2 class="panel-title shimmer-title">Projects</h2>
-        <hr class="panel-divider">
-      </div>
-
-      <div class="featured animate-in">
-        <div class="project-thumb"><i class="fas fa-brain" aria-hidden="true"></i><span>Preview coming soon</span></div>
-        <div class="featured-tag"><i class="fas fa-star"></i> Featured Research</div>
-        <h3 class="featured-heading">Uncovering the Limits of Spatial Reasoning in Vision-Language Models</h3>
-        <p class="featured-summary">Traced why Qwen3-VL-30B mishandles spatial tasks by profiling MoE expert routing across 48 layers, then ran a 40-experiment RunPod ablation study lifting test accuracy from 23% to 26.5%. Validated with McNemar's test and a held-out set, finding the gain didn't generalize and errors are spread broadly across layers rather than concentrated in a few components.</p>
-        <div class="chips"><span class="chip">Python</span><span class="chip">Qwen3-VL</span><span class="chip">RunPod</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">scikit-learn</span></div>
-        <div class="project-links">
-          <a class="project-link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
-          <a class="project-link" href="assets/Waleed_McNairResearchPaper.pdf" target="_blank"><i class="fas fa-file-alt"></i> Paper</a>
-        </div>
-      </div>
-
-      <div class="project-grid">
-        <div class="project-card animate-in">
-          <div class="project-thumb"><i class="fas fa-bug" aria-hidden="true"></i><span>Preview coming soon</span></div>
-          <div class="project-tag">Team Project</div>
-          <h3 class="project-title">Watchtower: Observability Platform</h3>
-          <p class="project-summary">Co-built a lightweight monitoring tool that captures JS errors, latency, and user interactions through a custom browser SDK, serving data via a Node.js + Supabase/Postgres backend to a live dashboard.</p>
-          <div class="chips"><span class="chip">JavaScript</span><span class="chip">Node.js</span><span class="chip">Supabase</span><span class="chip">Clerk</span><span class="chip">Jest</span></div>
-          <a class="project-link" href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank"><i class="fab fa-github"></i> Code</a>
-        </div>
-
-        <div class="project-card animate-in">
-          <div class="project-thumb"><i class="fas fa-route" aria-hidden="true"></i><span>Preview coming soon</span></div>
-          <div class="project-tag"><i class="fas fa-trophy"></i> Hackathon</div>
-          <h3 class="project-title">Multi-Agent Travel Coordinator</h3>
-          <p class="project-summary">Orchestrated four autonomous agents with FastAPI and LangGraph to plan multi-leg trips from natural language, hitting 90%+ request accuracy with zero scheduling conflicts.</p>
-          <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">LangGraph</span><span class="chip">Docker</span><span class="chip">React</span></div>
-          <a class="project-link" href="https://devpost.com/software/travel-agyntc" target="_blank"><i class="fas fa-external-link-alt"></i> Devpost</a>
-        </div>
-
-        <div class="project-card animate-in">
-          <div class="project-thumb"><i class="fas fa-cloud-rain" aria-hidden="true"></i><span>Preview coming soon</span></div>
-          <div class="project-tag">Research</div>
-          <h3 class="project-title">Precipitation Classifier on Embedded Radar</h3>
-          <p class="project-summary">Automated mmWave binary decoding and trained SVM/K-means classifiers reaching 90%+ accuracy, then deployed on a Raspberry Pi for sub-second inference in the field.</p>
-          <div class="chips"><span class="chip">Python</span><span class="chip">Linux</span><span class="chip">NumPy</span><span class="chip">Raspberry Pi</span></div>
-          <a class="project-link" href="https://drive.google.com/file/d/1DSASDEsmYvp6f9jAXwpiorxnNO88CEZq/view?usp=sharing" target="_blank"><i class="fas fa-file-alt"></i> Report</a>
-        </div>
-
-        <div class="project-card animate-in">
-          <div class="project-thumb"><i class="fas fa-robot" aria-hidden="true"></i><span>Preview coming soon</span></div>
-          <div class="project-tag">Team Project</div>
-          <h3 class="project-title">Talk-to-Robot</h3>
-          <p class="project-summary">5-person UCSD CSE 190 team studying when a one-shot LLM grounder is reliable enough to drive a SAC+HER policy in MuJoCo's FetchPush-v4, comparing a regex baseline against Gemini prompting across instruction tiers from literal coordinates to functional intent. Fixed parsing bugs in the regex baseline, contributed one of three pre-registered human annotation sets for the hardest tier, and restructured the results pipeline.</p>
-          <div class="chips"><span class="chip">Python</span><span class="chip">Gemini</span><span class="chip">MuJoCo</span><span class="chip">Gymnasium</span><span class="chip">Stable-Baselines3</span></div>
-          <div class="project-links">
-            <a class="project-link" href="https://github.com/YangLin14/Talk-to-Robot" target="_blank"><i class="fab fa-github"></i> Code</a>
-            <a class="project-link" href="assets/llm-spatial-grounding-paper.pdf" target="_blank"><i class="fas fa-file-alt"></i> Paper</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel panel-shaded" id="activity">
-    <div class="panel-inner">
-      <div class="panel-header animate-in">
-        <h2 class="panel-title shimmer-title">Activity</h2>
-        <hr class="panel-divider">
-      </div>
-      <div class="contribution-section animate-in">
-        <img src="https://ghchart.rshah.org/6366f1/waleedA13" alt="waleedA13's GitHub contribution chart" class="contribution-chart">
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     <div class="footer-content">
-      <div class="footer-links">
-        <a href="mailto:waleedalghaithi13@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-        <a href="https://github.com/waleedA13" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        <a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-      </div>
+      <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
+        <li><a href="assets/resume.html" target="_blank">Resume</a></li>
+      </ul>
       <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
     </div>
   </footer>
-
-  <button class="scroll-top" id="scroll-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
-
-  <!--
-    Unlike a client-rendered SPA, this page's real content is already in the
-    HTML, not injected by JS. The only JS dependency is the scroll-reveal
-    effect (.animate-in starts at opacity:0 until script.js's
-    IntersectionObserver adds .animated), which would otherwise leave most
-    sections invisible with JS disabled. This forces them visible instead of
-    duplicating the page's content into a separate fallback block.
-  -->
-  <noscript>
-    <style>.animate-in { opacity: 1 !important; transform: none !important; }</style>
-  </noscript>
 
   <script src="script.js"></script>
 </body>
