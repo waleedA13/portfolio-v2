@@ -7,8 +7,7 @@
   <meta name="description" content="I'm Waleed, a CS student at UC San Diego. I do research on how large models behave (and misbehave), and I build things with other people.">
   <link rel="canonical" href="https://waleedA13.github.io/portfolio-v2/">
 
-  <meta name="theme-color" content="#faf8f3" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#161513">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Waleed Alghaithi">
@@ -42,23 +41,27 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+  <!-- Fonts load without blocking the first paint; text shows in the fallback font until they arrive -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap"></noscript>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1a17'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23faf8f3' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
 </head>
 <body>
   <!--
     Theme is decided here, before first paint, so there's no flash:
-    a saved choice wins, otherwise follow the OS. script.js only toggles
-    the class and saves the choice afterwards.
+    dark by default, light only if the visitor picked it with the toggle.
+    script.js only toggles the class and saves the choice afterwards.
   -->
   <script>
     (function () {
       try {
-        var saved = localStorage.getItem('theme');
-        if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.getItem('theme') !== 'light') {
           document.body.classList.add('dark-mode');
         }
-      } catch (e) {}
+      } catch (e) {
+        document.body.classList.add('dark-mode');
+      }
     })();
   </script>
 
@@ -101,7 +104,7 @@
       </div>
     </div>
     <figure class="intro-photo">
-      <img src="assets/profile.jpg" alt="Waleed Alghaithi">
+      <img src="assets/profile.webp" alt="Waleed Alghaithi" width="419" height="419" decoding="async">
       <figcaption>San Diego, 2026.</figcaption>
     </figure>
   </header>
@@ -138,7 +141,7 @@
           <div class="facts-badge">
             <dt>Certified</dt>
             <dd>
-              <img src="assets/img/aws-ai-practitioner-badge.png" alt="">
+              <img src="assets/img/aws-ai-practitioner-badge.webp" alt="" width="144" height="144" loading="lazy" decoding="async">
               AWS Certified AI Practitioner
             </dd>
           </div>
@@ -317,8 +320,8 @@
       <h2 class="panel-label">GitHub</h2>
       <div class="panel-body">
         <p class="prose">Contributions over the past year.</p>
-        <img src="https://ghchart.rshah.org/1e4d8c/waleedA13" alt="waleedA13's GitHub contribution chart" class="contribution-chart chart-light" loading="lazy">
-        <img src="https://ghchart.rshah.org/6d28d9/waleedA13" alt="waleedA13's GitHub contribution chart" class="contribution-chart chart-dark" loading="lazy">
+        <img src="https://ghchart.rshah.org/1e4d8c/waleedA13" alt="waleedA13's GitHub contribution chart" class="contribution-chart chart-light" width="663" height="104" loading="lazy">
+        <img src="https://ghchart.rshah.org/6d28d9/waleedA13" alt="waleedA13's GitHub contribution chart" class="contribution-chart chart-dark" width="663" height="104" loading="lazy">
       </div>
     </section>
   </main>

@@ -9,7 +9,8 @@
   (blue complements the warm cream), glowing purple in dark mode.
   Serif for the voice (headings, lead lines), plain sans for reading,
   mono only for small labels and dates.
-  Light is the default; body.dark-mode swaps the same tokens.
+  Dark is the default (index.html adds body.dark-mode before first paint);
+  :root holds the light tokens and body.dark-mode swaps them.
 */
 :root {
   --paper: #faf8f3;
@@ -78,7 +79,7 @@ body {
   overflow-x: hidden;
 }
 
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 ul, ol { list-style: none; }
 button { font: inherit; color: inherit; }
@@ -312,7 +313,6 @@ body.dark-mode .icon-sun { display: block; }
   height: auto;
   aspect-ratio: 1;
   object-fit: cover;
-  object-position: 51.5% 52.5%;
   filter: saturate(0.9);
 }
 .intro-photo figcaption {

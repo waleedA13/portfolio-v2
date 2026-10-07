@@ -62,25 +62,29 @@ function setupActiveNav() {
     if (section) sections.push({ el: section, link: link });
   });
 
-  if (!sections.length) return;
+  if (!sections.length || !("IntersectionObserver" in window)) return;
 
-  function update() {
-    // A section counts as "active" once it's scrolled up to roughly the
-    // top third of the viewport, not just past the very top edge.
-    var scrollY = window.scrollY + window.innerHeight / 3;
-    var active = null;
+  var activeIndex = -1;
 
-    for (var i = sections.length - 1; i >= 0; i--) {
-      if (sections[i].el.offsetTop <= scrollY) {
-        active = sections[i];
-        break;
-      }
-    }
-
-    navLinks.forEach(function (l) { l.classList.remove("nav-active"); });
-    if (active) active.link.classList.add("nav-active");
+  function setActive(i) {
+    activeIndex = i;
+    sections.forEach(function (s, j) { s.link.classList.toggle("nav-active", j === i); });
   }
 
-  window.addEventListener("scroll", update, { passive: true });
-  update();
+  // Watch a thin band about a third of the way down the viewport (same
+  // "active" point as before). The observer reports crossings without
+  // reading layout on every scroll event, which kept the main thread busy.
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var i = sections.findIndex(function (s) { return s.el === entry.target; });
+      if (entry.isIntersecting) {
+        setActive(i);
+      } else if (i === activeIndex && entry.boundingClientRect.top > entry.rootBounds.top) {
+        // Scrolled back up past this section's top: the previous one is active again.
+        setActive(i - 1);
+      }
+    });
+  }, { rootMargin: "-33% 0px -66% 0px" });
+
+  sections.forEach(function (s) { observer.observe(s.el); });
 }
