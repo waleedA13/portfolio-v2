@@ -302,6 +302,17 @@
   <section>
     <h2>Projects</h2>
     <div class="entry-header">
+      <span><a href="https://github.com/waleedA13/tiny-infer">Tiny Infer: Transformer Inference Engine in C</a> |</span>
+      <span class="entry-tools">C, Make, GitHub Actions, AddressSanitizer, UBSan</span>
+      <span class="entry-details-dates">Oct 2026 - Present</span>
+    </div>
+    <ul class="compact-list">
+      <li>Building a transformer inference engine from scratch in plain C, with no PyTorch or BLAS, to run a 15M parameter story-writing model on a laptop CPU.</li>
+      <li>Wrote an mmap checkpoint loader, the tokenizer, greedy and temperature sampling, and the core math kernels (matmul, softmax, RMSNorm), each with its own self-test.</li>
+      <li>Set up a GitHub Actions pipeline that builds and tests on Linux and macOS, reruns the tests under address and undefined behavior sanitizers, and publishes release binaries when a version tag is pushed.</li>
+    </ul>
+
+    <div class="entry-header">
       <span><a href="https://github.com/waleedA13/McNairProgramResearch">Uncovering the Limits of Spatial Reasoning in Vision-Language Models</a> |</span>
       <span class="entry-tools">Python, Qwen3-VL, RunPod, NumPy, Pandas, scikit-learn</span>
       <span class="entry-details-dates">Feb 2026 - Aug 2026</span>

@@ -269,6 +269,17 @@
 
         <div class="story-grid">
           <article class="story">
+            <p class="story-kicker">Side project · 2026</p>
+            <h3 class="story-title">Tiny Infer</h3>
+            <p><strong>The idea:</strong> I wanted to see what actually happens when a model writes text, so I'm building a transformer inference engine in plain C. No PyTorch, no BLAS. It runs a 15M parameter model that writes short stories on a laptop CPU.</p>
+            <p><strong>What's done:</strong> the model loader (using mmap), the tokenizer, sampling, and the core math kernels, each with its own self-test. CI builds and tests it on Linux and macOS, runs the tests again with sanitizers, and ships binaries when I tag a release.</p>
+            <p class="story-tools">C · Make · GitHub Actions</p>
+            <p class="story-links">
+              <a class="text-link" href="https://github.com/waleedA13/tiny-infer" target="_blank">Code &rarr;</a>
+            </p>
+          </article>
+
+          <article class="story">
             <p class="story-kicker">Team of 5 · CSE 190</p>
             <h3 class="story-title">Talk-to-Robot</h3>
             <p><strong>The question:</strong> you tell a simulated robot arm what to do in plain English. When is a one-shot LLM reliable enough to turn that into a goal for a trained SAC+HER pushing policy in MuJoCo's FetchPush-v4? We compared a regex baseline against Gemini prompting, with instructions ranging from literal coordinates up to functional intent.</p>
