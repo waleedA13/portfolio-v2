@@ -1,6 +1,6 @@
 # Waleed Alghaithi - Portfolio v2
 
-Personal portfolio website with kinetic typography, animated skill bars, dark/light mode, and automatic low-power device fallbacks.
+My personal site: research, work, and projects, with a printable resume.
 
 ## Live Site
 
@@ -8,25 +8,26 @@ Personal portfolio website with kinetic typography, animated skill bars, dark/li
 
 ## Features
 
-- Kinetic typography with purple-to-white color sweep on headings
-- Typing effect that cycles through roles with correct a/an grammar
-- Animated skill bars triggered on scroll via IntersectionObserver
-- Dark/light mode toggle persisted in localStorage
-- GitHub contribution heatmap
-- "Currently working on" live status badge
-- Printable resume page (opens in new tab)
-- Three rendering tiers: full effects, reduced motion (OS setting), low-power (auto-detected)
+- Dark mode by default, with a light/dark toggle saved in localStorage and applied before first paint (no flash)
+- Sticky nav that highlights the current section, plus a keyboard-friendly mobile menu
+- Write-ups for research, hackathon, class, and side projects
+- GitHub contribution chart that matches the current theme
+- Printable resume page (opens in a new tab)
+- Non-blocking font loading and reduced-motion support
 
 ## Structure
 
 ```
 portfolio-v2/
 ├── index.html          # Content and semantic markup
-├── style.css           # Design tokens, layout, animations, and fallbacks
-├── script.js           # Navigation, typing effect, scroll reveal, theme toggle, perf detection
+├── style.css           # Design tokens, layout, themes, and motion fallbacks
+├── script.js           # Nav scroll state, mobile menu, theme toggle, active section
 ├── assets/
-│   ├── profile.jpg     # Profile photo
-│   └── resume.html     # Standalone printable resume
+│   ├── profile.webp / profile.jpg      # Profile photo
+│   ├── resume.html                     # Standalone printable resume
+│   ├── Waleed_McNairResearchPaper.pdf  # McNair research paper
+│   ├── llm-spatial-grounding-paper.pdf # Talk-to-Robot paper
+│   └── img/                            # Badges
 └── README.md
 ```
 
