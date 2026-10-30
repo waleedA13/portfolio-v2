@@ -302,6 +302,17 @@
   <section>
     <h2>Projects</h2>
     <div class="entry-header">
+      <span><a href="https://devpost.com/software/enrollguard">Coverage Keeper: 2nd Place, Solix AI Hackathon 2026</a> |</span>
+      <span class="entry-tools">TypeScript, Next.js, React, Claude API, zod, Vitest, Playwright, GitHub Actions, Vercel</span>
+      <span class="entry-details-dates">Oct 2026</span>
+    </div>
+    <ul class="compact-list">
+      <li>Won runner-up as a team of 3 with a deployed web app that reads a photographed Medicaid renewal letter and returns a plain-language summary, the deadline with days remaining, a document checklist, and the number to call.</li>
+      <li>Used Claude with zod-validated structured output and kept Oregon exemption rules in a sourced data file so the model never decides eligibility; a safety filter and adversarial tests produced zero eligibility verdicts.</li>
+      <li>Evaluated on public .gov sample notices (4/4 printed deadlines read correctly, 5/5 no-deadline letters correctly flagged), with CI running unit, safety, and Playwright accessibility tests before each Vercel deploy.</li>
+    </ul>
+
+    <div class="entry-header">
       <span><a href="https://github.com/waleedA13/tiny-infer">Tiny Infer: Transformer Inference Engine in C</a> |</span>
       <span class="entry-tools">C, Make, GitHub Actions, AddressSanitizer, UBSan</span>
       <span class="entry-details-dates">Oct 2026 - Present</span>
