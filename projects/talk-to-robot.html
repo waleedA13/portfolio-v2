@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <title>Talk-to-Robot · Waleed Alghaithi</title>
+  <meta content="A CSE 190 study of LLM spatial grounding for a MuJoCo robot arm: a five-tier instruction hierarchy, regex vs. Gemini grounders, and a per-tier failure analysis." name="description"/>
+  <link href="https://waleedA13.github.io/portfolio-v2/projects/talk-to-robot.html" rel="canonical"/>
+  <meta content="article" property="og:type"/>
+  <meta content="Waleed Alghaithi" property="og:site_name"/>
+  <meta content="Talk-to-Robot" property="og:title"/>
+  <meta content="A CSE 190 study of LLM spatial grounding for a MuJoCo robot arm: a five-tier instruction hierarchy, regex vs. Gemini grounders, and a per-tier failure analysis." property="og:description"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/projects/talk-to-robot.html" property="og:url"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta name="theme-color" content="#161513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap"></noscript>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1a17'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23faf8f3' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') !== 'light') document.body.classList.add('dark-mode');
+      } catch (e) {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav aria-label="Main">
+    <div class="nav-container">
+      <a class="nav-name" href="../index.html">Waleed <span>Alghaithi</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Work</a></li>
+        <li><a class="nav-active" aria-current="true" href="../index.html#projects">Projects</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article class="cs wrap-narrow">
+      <header class="cs-head">
+        <a class="back" href="../index.html#projects">&larr; All projects</a>
+        <p class="work-meta">CSE 190 team of 5, spring 2026</p>
+        <h1 class="cs-title">Talk-to-Robot</h1>
+        <p class="cs-lede">You tell a simulated robot arm where to push a block, in plain English, and Gemini turns that into a target. Five of us measured how often that step goes wrong, and which mistakes the robot can recover from.</p>
+      </header>
+      <dl class="kv cs-facts">
+        <div><dt>Result</dt><dd>LLM grounding hit 100% on coordinates and named regions, 40 to 65% on offsets (a regex scored 100%), and 0 to 5% on objects at a 5 cm bar.</dd></div>
+        <div><dt>What I did</dt><dd>Fixed two eval-harness bugs that affected the coordinate and offset scores, wrote one of three annotation sets for the intent tier, ran its zero-shot eval, and reorganized the results folder with a STRUCTURE.md guide.</dd></div>
+        <div><dt>Team</dt><dd>Team of 5</dd></div>
+        <div><dt>Stack</dt><dd>Python, Gemini, MuJoCo, Gymnasium, Stable-Baselines3 (SAC + HER)</dd></div>
+        <div><dt>Links</dt><dd><a class="link" href="../assets/llm-spatial-grounding-paper.pdf" target="_blank">Paper (PDF)</a> <a class="link" href="https://github.com/YangLin14/Talk-to-Robot" target="_blank">Code</a></dd></div>
+      </dl>
+      <section class="cs-section" id="">
+        <h2>The setup</h2>
+        <p>The task is FetchPush-v4 in MuJoCo: a 7-joint Fetch arm pushes a block to a target on a table. A language model (<code>gemini-3.1-flash-lite</code>, temperature 0) reads the instruction and returns a target coordinate as JSON. A SAC + HER policy pushes the block there.</p>
+<p>We froze the policy after training, so any change in end-to-end success has to come from the language step.</p>
+      </section>
+      <section class="cs-section" id="">
+        <h2>Five kinds of instruction</h2>
+        <p>We wrote 100 instructions, 20 per tier, ordered by the kind of reasoning they need:</p>
+<div class="table-wrap"><table><thead><tr><th>Tier</th><th>Example</th><th>What it tests</th></tr></thead><tbody>
+<tr><td>T0</td><td>“push to (1.30, 0.85)”</td><td>Reading numbers</td></tr>
+<tr><td>T1</td><td>“upper-left corner”</td><td>Named regions</td></tr>
+<tr><td>T2</td><td>“push it 5 cm to the right”</td><td>Offsets from the block's current spot</td></tr>
+<tr><td>T3</td><td>“push it next to the marker”</td><td>Finding a reference object</td></tr>
+<tr><td>T4</td><td>“get it out of the way”</td><td>Intent with no location</td></tr>
+</tbody></table></div>
+<p>T4 has no single right answer, so three of us each picked a target for every T4 instruction, and the average became ground truth. We locked those picks in before running any model, so the model's answers couldn't sway them.</p>
+      </section>
+      <section class="cs-section" id="">
+        <h2>Results</h2>
+        <p>We compared Gemini (zero-shot, few-shot, chain-of-thought) against a regex baseline that only handles T0 to T2.</p>
+<div class="table-wrap"><table><thead><tr><th>Tier</th><th class="num">Regex grounder</th><th class="num">LLM grounder</th><th class="num">LLM end-to-end</th></tr></thead><tbody>
+<tr><td>T0 coordinates</td><td class="num">100%</td><td class="num">100%</td><td class="num">98.3%</td></tr>
+<tr><td>T1 regions</td><td class="num">100%</td><td class="num">100%</td><td class="num">93.3%</td></tr>
+<tr class="hl"><td>T2 offsets</td><td class="num">100%</td><td class="num">40–65%</td><td class="num">60–77%</td></tr>
+<tr><td>T3 objects, 5 cm</td><td class="num">0%</td><td class="num">0–5%</td><td class="num">n/a</td></tr>
+<tr><td>T3 objects, 8 cm*</td><td class="num">0%</td><td class="num">100%</td><td class="num">72–78%</td></tr>
+<tr><td>T4 intent</td><td class="num">n/a</td><td class="num">45–55%</td><td class="num">45–55%</td></tr>
+</tbody></table></div>
+<p class="table-note">Ranges span the three prompting styles. *At the 5 cm bar we used for T0 to T2, T3 grounding scored 0 to 5% because of a steady 6 cm offset (see the T3 note below), so we also report T3 at 8 cm, where it hits the object every time.</p>
+<p>T2 end-to-end can beat T2 grounding because an off-table target still makes the robot push the block to the table edge, which is often within tolerance of the true target.</p>
+<p>Accuracy drops as instructions get more abstract, which we expected. We didn't expect each tier to fail in its own way, or that the kind of failure would decide whether the robot could recover.</p>
+<ul>
+<li><strong>T2 is where the robot can't recover.</strong> The LLM does worse than a regex at adding 5 cm to a number. Zero-shot and few-shot aim the right way but push targets off the edge of the table. Chain-of-thought keeps targets on the table but sometimes flips the direction, which no controller can fix.</li>
+<li><strong>T3 is a steady bias.</strong> The model picks the right object every time but lands about 6 cm from it, almost the same offset on every instruction. "Next to" doesn't say how far.</li>
+<li><strong>T4 isn't a grounding problem.</strong> The gap between the model and our annotators (about 0.2 m) matches how much the annotators disagreed with each other.</li>
+</ul>
+<p>A second experiment retrained the controller on the grounder's outputs. The policy reached every goal it was given (100% policy success in every tier), and the T3 bias tightened, but it did nothing for T2's off-table goals.</p>
+      </section>
+      <section class="cs-section" id="">
+        <h2>My part</h2>
+        <ul>
+<li><strong>Two harness bugs.</strong> The instruction file stored a fixed block position, but every sim reset spawns the block somewhere random, so T2 targets were measured against the wrong spot. I made the harness reset the sim first, read the block's live position, and rebuild the T2 target with the same offset. I also made the regex baseline read T0 coordinates written as [x, y] or x=…, y=…, not just (x, y).</li>
+<li><strong>T4 annotations.</strong> I wrote one of the three pre-registered annotation sets, applied all three to the instruction file, and ran the zero-shot T4 evaluation.</li>
+<li><strong>Results and docs.</strong> I reorganized the results folder by experiment, wrote <code>STRUCTURE.md</code> so someone new can find the entry points, and edited the proposal and milestone report.</li>
+</ul>
+<p>Everything here is in simulation with 20 instructions per tier, so we treat gaps under about 10 points as suggestive, not proven.</p>
+      </section>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="More projects">
+      <a class="pg prev" href="lego-spatial-reasoning.html"><span class="pg-dir">← Previous</span><span class="pg-title">Tracing a vision model's LEGO failures</span><span class="pg-note">Test 23.0% to 26.5% (p = 0.25), holdout 29.0% to 27.0%</span></a><a class="pg next" href="watchtower.html"><span class="pg-dir">Next →</span><span class="pg-title">Watchtower</span><span class="pg-note">Backend deployed on Render</span></a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+      </ul>
+      <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

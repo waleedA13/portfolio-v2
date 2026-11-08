@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <title>Precipitation classifier on a Raspberry Pi · Waleed Alghaithi</title>
+  <meta content="A Lawrence Berkeley National Lab internship project: decoding mmWave radar data and classifying precipitation with SVM and K-means on a Raspberry Pi." name="description"/>
+  <link href="https://waleedA13.github.io/portfolio-v2/projects/radar-classifier.html" rel="canonical"/>
+  <meta content="article" property="og:type"/>
+  <meta content="Waleed Alghaithi" property="og:site_name"/>
+  <meta content="Precipitation classifier on a Raspberry Pi" property="og:title"/>
+  <meta content="A Lawrence Berkeley National Lab internship project: decoding mmWave radar data and classifying precipitation with SVM and K-means on a Raspberry Pi." property="og:description"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/projects/radar-classifier.html" property="og:url"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta name="theme-color" content="#161513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap"></noscript>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1a17'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23faf8f3' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') !== 'light') document.body.classList.add('dark-mode');
+      } catch (e) {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav aria-label="Main">
+    <div class="nav-container">
+      <a class="nav-name" href="../index.html">Waleed <span>Alghaithi</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Work</a></li>
+        <li><a class="nav-active" aria-current="true" href="../index.html#projects">Projects</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article class="cs wrap-narrow">
+      <header class="cs-head">
+        <a class="back" href="../index.html#projects">&larr; All projects</a>
+        <p class="work-meta">Berkeley Lab ML research internship, summer 2023</p>
+        <h1 class="cs-title">Precipitation classifier on a Raspberry Pi</h1>
+        <p class="cs-lede">We turned raw mmWave radar files into precipitation labels on a Raspberry Pi, so a remote sensor could classify weather without a bigger computer. It was my first research project. I was still at City College of San Francisco.</p>
+      </header>
+      <dl class="kv cs-facts">
+        <div><dt>Result</dt><dd>The pipeline classified a reading in under a second on the Pi.</dd></div>
+        <div><dt>Role</dt><dd>Machine learning research intern</dd></div>
+        <div><dt>Where</dt><dd>Lawrence Berkeley National Laboratory, Jun to Aug 2023</dd></div>
+        <div><dt>Stack</dt><dd>Python, NumPy, Pandas, Linux, Raspberry Pi, Bitbucket</dd></div>
+        <div><dt>Links</dt><dd><a class="link" href="https://drive.google.com/file/d/1DSASDEsmYvp6f9jAXwpiorxnNO88CEZq/view?usp=sharing" target="_blank">Full report</a></dd></div>
+      </dl>
+      <section class="cs-section" id="">
+        <h2>The goal</h2>
+        <p>Weather and snowpack sensing in remote places needs hardware that runs on little power with nobody around to watch it. The project used a small mmWave radar, which writes raw binary files.</p>
+      </section>
+      <section class="cs-section" id="">
+        <h2>From binaries to data</h2>
+        <p>The radar's files aren't readable on their own. The pipeline decoded each file's header using JSON configuration files that describe the format, then wrote clean, structured CSVs. To make sure the decoding was right, we checked the output against Infineon's own radar visualizations.</p>
+      </section>
+      <section class="cs-section" id="">
+        <h2>The models</h2>
+        <p>We trained SVM and K-means models to classify snowpack and precipitation. We picked them because they're small enough to run on a Pi.</p>
+      </section>
+      <section class="cs-section" id="">
+        <h2>Code and report</h2>
+        <p>The code lived in the lab's private Bitbucket, so the report is the public record. It has the setup, data, and results in more detail.</p>
+      </section>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="More projects">
+      <a class="pg prev" href="travel-coordinator.html"><span class="pg-dir">← Previous</span><span class="pg-title">Multi-Agent Travel Coordinator</span><span class="pg-note">Winner, Multi-Agent Systems Challenge</span></a><a class="pg next" href="../index.html#projects"><span class="pg-dir">Back →</span><span class="pg-title">All projects</span></a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+      </ul>
+      <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

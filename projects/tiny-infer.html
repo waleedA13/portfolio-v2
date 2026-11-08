@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <title>Tiny Infer · Waleed Alghaithi</title>
+  <meta content="Tiny Infer is a transformer inference engine written from scratch in C: forward pass, KV cache, pthreads matmul, int8 quantization, a benchmark mode, and sanitizer-tested CI." name="description"/>
+  <link href="https://waleedA13.github.io/portfolio-v2/projects/tiny-infer.html" rel="canonical"/>
+  <meta content="article" property="og:type"/>
+  <meta content="Waleed Alghaithi" property="og:site_name"/>
+  <meta content="Tiny Infer" property="og:title"/>
+  <meta content="Tiny Infer is a transformer inference engine written from scratch in C: forward pass, KV cache, pthreads matmul, int8 quantization, a benchmark mode, and sanitizer-tested CI." property="og:description"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/projects/tiny-infer.html" property="og:url"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta name="theme-color" content="#161513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap"></noscript>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1a17'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23faf8f3' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') !== 'light') document.body.classList.add('dark-mode');
+      } catch (e) {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav aria-label="Main">
+    <div class="nav-container">
+      <a class="nav-name" href="../index.html">Waleed <span>Alghaithi</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Work</a></li>
+        <li><a class="nav-active" aria-current="true" href="../index.html#projects">Projects</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article class="cs wrap-narrow">
+      <header class="cs-head">
+        <a class="back" href="../index.html#projects">&larr; All projects</a>
+        <p class="work-meta">Solo side project, Oct 2026 to now</p>
+        <h1 class="cs-title">Tiny Infer</h1>
+        <p class="cs-lede">A transformer inference engine in plain C, built to run a 15M-parameter TinyStories-format model on a CPU, one token at a time, with no PyTorch and no BLAS.</p>
+      </header>
+      <dl class="kv cs-facts">
+        <div><dt>Result</dt><dd>121 tokens/s on 1 thread, 188 on 2, with about 91% of the time in matmul. Measured on a 2-vCPU cloud VM with synthetic weights. No numbers on real weights yet.</dd></div>
+        <div><dt>What I did</dt><dd>Solo. I wrote all of it: the forward pass, BPE encoder, pthreads matmul, int8 path, benchmark mode, self-tests, and CI. File formats follow llama2.c.</dd></div>
+        <div><dt>Team</dt><dd>Solo</dd></div>
+        <div><dt>Stack</dt><dd>C, pthreads, Make, GitHub Actions, AddressSanitizer, UBSan</dd></div>
+        <div><dt>Links</dt><dd><a class="link" href="https://github.com/waleedA13/tiny-infer" target="_blank">Code</a></dd></div>
+      </dl>
+      <nav class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li><a href="#why-build-it">Why build it</a></li><li><a href="#one-token-start-to-finish">One token, start to finish</a></li><li><a href="#where-the-time-goes">Where the time goes</a></li><li><a href="#making-matmul-faster">Making matmul faster</a></li><li><a href="#testing-and-ci">Testing and CI</a></li><li><a href="#next">Next</a></li></ul></nav>
+      <section class="cs-section" id="why-build-it">
+        <h2>Why build it</h2>
+        <p>I use models all day in research, but PyTorch hides the part I wanted to understand: the work the CPU does to produce the next word. In C, I write every matmul and manage every buffer and thread myself.</p>
+<p>It's also a test bed for an idea from my research. A Mixture-of-Experts model only uses a few experts per token. If you can guess which ones come next, you can load their weights early and keep the CPU busy. The last item on the roadmap is a toy MoE layer to try that.</p>
+      </section>
+      <section class="cs-section" id="one-token-start-to-finish">
+        <h2>One token, start to finish</h2>
+        <ol>
+<li>Look up the token's embedding.</li>
+<li>For each layer: RMSNorm, then three matmuls for the query, key, and value vectors.</li>
+<li>Rotate the query and key by the token's position (RoPE), and write the key and value into the KV cache so later tokens don't recompute them.</li>
+<li>Score the query against every cached key, softmax the scores, and mix the cached values.</li>
+<li>Project back, add the residual, then RMSNorm and the SwiGLU feed-forward, and add the residual again.</li>
+<li>After the last layer, one more matmul turns the hidden state into a score for every word in the vocabulary, and the sampler picks one (greedy, or with temperature).</li>
+</ol>
+<p>I <code>mmap</code> the model file, so startup is close to instant and the OS pages weights in as they're used. Prompts go through a BPE encoder I wrote against the llama2.c tokenizer format.</p>
+      </section>
+      <section class="cs-section" id="where-the-time-goes">
+        <h2>Where the time goes</h2>
+        <p><code>make bench</code> builds a separate <code>-O3 -march=native -ffast-math</code> binary (so I can't time a debug build by accident), generates 200 tokens with greedy sampling, throws away a warm-up run, and reports the median of 5. The tokenizer and printing stay off the clock. It splits each token's time into matmul, attention, sampling, and everything else.</p>
+<p>The first measurement ran at 666 tokens per second with 96.5% of the time inside <code>matmul()</code>, but that skeleton only had the embedding and the output layer, so it mostly confirmed the timers work.</p>
+<p>Both runs used a 2-vCPU cloud VM (Intel Xeon, 2.8 GHz) and synthetic weights shaped like stories15M. The weight values don't affect speed, but these aren't laptop numbers or the real model. Results with the full forward pass:</p>
+<div class="table-wrap"><table><thead><tr><th>Threads</th><th class="num">Tokens/s (median of 5)</th><th class="num">Time in matmul</th></tr></thead><tbody>
+<tr><td>1</td><td class="num">121</td><td class="num">94%</td></tr>
+<tr><td>2</td><td class="num">188</td><td class="num">91%</td></tr>
+</tbody></table></div>
+<p class="table-note">fp32, 200 tokens greedy from BOS. Shared VMs are noisy: the 2-thread min and max in one run were 173 and 204.</p>
+<p>Matmul still takes most of the time with attention in, so SIMD matmul is next.</p>
+      </section>
+      <section class="cs-section" id="making-matmul-faster">
+        <h2>Making matmul faster</h2>
+        <h3>Threads</h3>
+<p>A pthreads pool splits the output rows of each matmul across cores. Rows are independent, so threads never write to the same memory. <code>-j</code> sets the thread count. By default it uses every core.</p>
+<h3>int8 weights</h3>
+<p><code>--int8</code> stores every weight as an 8-bit integer in groups of 32, with one float scale per group (<code>scale = max|w| / 127</code>). Activations get the same treatment just before each matmul, so the inner loop multiplies int8 by int8 and adds up in int32. That's about a quarter of the memory traffic of fp32. <code>--compare</code> runs both versions on the same prompt and prints the numeric error, the speed of each, and both stories side by side, so I can see when quantization changes the output.</p>
+      </section>
+      <section class="cs-section" id="testing-and-ci">
+        <h2>Testing and CI</h2>
+        <p>Every kernel (matmul, softmax, RMSNorm, the thread pool, int8) has its own self-test, run by <code>make test</code>. <code>make debug</code> rebuilds with the address and undefined-behavior sanitizers on.</p>
+<p>Two real bugs so far. The loader checks that the weights end exactly where the file does, and that check showed I was skipping twice too many floats for llama2.c's unused legacy RoPE tables, so real checkpoints would have been rejected. And the macOS build broke because macOS hides the constant I use to count cores (<code>_SC_NPROCESSORS_ONLN</code>) when only <code>_POSIX_C_SOURCE</code> is set. Defining <code>_DARWIN_C_SOURCE</code> fixed it.</p>
+<p>One GitHub Actions workflow chains four jobs: <code>build-and-test → sanitizers → package → release</code>. Pushes and pull requests run the first two on Linux and macOS. A version tag runs all four jobs and attaches Linux and macOS binaries to a GitHub release, though I haven't tagged one yet.</p>
+      </section>
+      <section class="cs-section" id="next">
+        <h2>Next</h2>
+        <ul>
+<li>Run the benchmark on a laptop with the real stories15M weights for each version: naive, threaded, SIMD, int8.</li>
+<li>Hand-written NEON and AVX2 matmul kernels.</li>
+<li>A toy MoE layer with expert prefetching.</li>
+</ul>
+<p>The checkpoint and tokenizer formats follow <a class="link" href="https://github.com/karpathy/llama2.c" target="_blank">llama2.c</a>, which I used as a reference for file layout.</p>
+      </section>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="More projects">
+      <a class="pg prev" href="coverage-keeper.html"><span class="pg-dir">← Previous</span><span class="pg-title">Coverage Keeper</span><span class="pg-note">4 of 4 printed deadlines, 5 of 5 no-deadline letters</span></a><a class="pg next" href="lego-spatial-reasoning.html"><span class="pg-dir">Next →</span><span class="pg-title">Tracing a vision model's LEGO failures</span><span class="pg-note">Test 23.0% to 26.5% (p = 0.25), holdout 29.0% to 27.0%</span></a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+      </ul>
+      <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

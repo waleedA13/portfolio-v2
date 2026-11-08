@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <title>Tracing a vision model's LEGO failures · Waleed Alghaithi</title>
+  <meta content="A McNair research project tracing why Qwen3-VL-30B fails LEGO spatial-reasoning puzzles, using expert routing logs, z-score layer ranking, clustering, and layer ablations checked against random-layer controls." name="description"/>
+  <link href="https://waleedA13.github.io/portfolio-v2/projects/lego-spatial-reasoning.html" rel="canonical"/>
+  <meta content="article" property="og:type"/>
+  <meta content="Waleed Alghaithi" property="og:site_name"/>
+  <meta content="Tracing a vision model's LEGO failures" property="og:title"/>
+  <meta content="A McNair research project tracing why Qwen3-VL-30B fails LEGO spatial-reasoning puzzles, using expert routing logs, z-score layer ranking, clustering, and layer ablations checked against random-layer controls." property="og:description"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/projects/lego-spatial-reasoning.html" property="og:url"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta name="theme-color" content="#161513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap"></noscript>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1a17'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23faf8f3' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') !== 'light') document.body.classList.add('dark-mode');
+      } catch (e) {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav aria-label="Main">
+    <div class="nav-container">
+      <a class="nav-name" href="../index.html">Waleed <span>Alghaithi</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Work</a></li>
+        <li><a class="nav-active" aria-current="true" href="../index.html#projects">Projects</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article class="cs wrap-narrow">
+      <header class="cs-head">
+        <a class="back" href="../index.html#projects">&larr; All projects</a>
+        <p class="work-meta">McNair research, Jan to Aug 2026</p>
+        <h1 class="cs-title">Tracing a vision model's LEGO failures</h1>
+        <p class="cs-lede">Qwen3-VL-30B answers about a quarter of LEGO spatial-reasoning questions correctly. We logged which of its 6,144 experts fired on every question, then switched off the layers most tied to wrong answers. It didn't fix the model.</p>
+      </header>
+      <dl class="kv cs-facts">
+        <div><dt>Result</dt><dd>Test accuracy rose from 23.0% to 26.5% (p = 0.25, no better than switching off random layers), and holdout fell from 29.0% to 27.0%.</dd></div>
+        <div><dt>What I did</dt><dd>I wrote and ran the experiment code: the benchmark runs, the routing logger (forward hooks on every router), layer scoring, clustering, ablations, and the stats. My scripts are in <code>scripts/</code>; <code>code/LEGO-Puzzles</code> is the benchmark's own eval framework.</dd></div>
+        <div><dt>Role</dt><dd>Undergraduate researcher, McNair Scholars Program</dd></div>
+        <div><dt>Stack</dt><dd>Python, PyTorch, Hugging Face Transformers, RunPod A100s, NumPy, Pandas, scikit-learn</dd></div>
+        <div><dt>Links</dt><dd><a class="link" href="../assets/Waleed_McNairResearchPaper.pdf" target="_blank">Paper (PDF)</a> <a class="link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank">Code</a></dd></div>
+      </dl>
+      <nav class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li><a href="#the-question">The question</a></li><li><a href="#getting-the-data">Getting the data</a></li><li><a href="#finding-suspects">Finding suspects</a></li><li><a href="#switching-them-off">Switching them off</a></li><li><a href="#the-holdout-check">The holdout check</a></li><li><a href="#what-it-leaves-open">What it leaves open</a></li></ul></nav>
+      <section class="cs-section" id="the-question">
+        <h2>The question</h2>
+        <p>Qwen3-VL-30B is a Mixture-of-Experts model. It has 48 decoder layers, each with 128 small "expert" networks, and a router picks 8 of them for every token. So every token leaves a record of exactly which experts handled it.</p>
+<p>If the model's spatial mistakes come from a few layers or experts, their routing should look different on questions it gets wrong. Find them, switch them off, and accuracy should go up with no retraining.</p>
+<p>We tested this on LEGOLite, a 400-question slice of the <a class="link" href="https://arxiv.org/abs/2503.19990" target="_blank">LEGO-Puzzles</a> benchmark: 100 questions each on height, position, rotation, and assembly order.</p>
+      </section>
+      <section class="cs-section" id="getting-the-data">
+        <h2>Getting the data</h2>
+        <p>Through the Fireworks API the model scored 31% overall, between Gemini-2.0-Flash (44.25%) and GPT-4o Mini (13.75%). Ordering first came back as 0%. That was a bug in our grading harness, not the model. Re-graded by exact match, it was 14%.</p>
+<p>A first check on one 2,768-token question showed image and text tokens use different experts: their top 10 sets shared zero members. That meant image tokens had their own experts, so there was something visual to trace.</p>
+<p>On one A100 with the model in 4-bit NF4, we logged all 48 × 128 routing decisions for all 400 questions, twice. The two runs agreed within one point (24.25% and 25.25%).</p>
+      </section>
+      <section class="cs-section" id="finding-suspects">
+        <h2>Finding suspects</h2>
+        <p>We split the 400 questions into a 200-question test set and a 200-question holdout set, balanced by category. Everything in this section only touched the test set.</p>
+<p>For every expert we computed a z-score: how many of the questions it fired on were answered wrong, compared with what the model's overall error rate predicts. The formula shrinks experts that only fire a few times, so a rare expert can't look bad by accident. A layer's score is the average over its 128 experts.</p>
+<figure class="case-figure"><div class="plate"><img alt="Bar chart of average expert z-score for each of the 48 layers. Layers 7, 19, 41, 42 and 43 are highlighted in red as the five worst; the tallest bar is about 0.055." decoding="async" height="600" loading="lazy" src="../assets/img/projects/lego-layer-scores.webp" width="1600"/></div><figcaption>Average expert z-score per layer. Red bars are the five worst: 41, 42, 43, 19, and 7. The largest is about 0.055.</figcaption></figure>
+<p>Look at the y-axis. The usual bar for an outlier is a z-score of 2, our worst layer scored 0.055, and no single expert crossed 2.</p>
+<p>We kept going anyway. Inside each of the five worst layers we built a 128 × 200 fingerprint (which experts fired on which questions) and clustered the experts with k-medoids, using Jaccard distance since each fingerprint is about 94% zeros. The best silhouette score was 0.236, so the clusters overlapped a lot.</p>
+      </section>
+      <section class="cs-section" id="switching-them-off">
+        <h2>Switching them off</h2>
+        <p>We tried three ways of disabling the worst layer (41): skip the whole decoder block, zero only its MoE output, or zero the flagged experts' gate weights and renormalize the rest. Each one is a PyTorch forward hook that's removed after the run, so the model's weights never change. Accuracy went from 23.0% to 22.0%, 24.0%, and 24.0%. None of those changes were significant under McNemar's test.</p>
+<p>MoE-only did slightly best, so we scaled it to the worst 1, 3, and 5 layers. As a control, we also switched off the same number of <em>random</em> layers, 10 times each.</p>
+<div class="table-wrap"><table><thead><tr><th>Layers off</th><th class="num">Targeted</th><th class="num">Random (mean ± sd)</th><th class="num">z vs. random</th><th class="num">McNemar p</th></tr></thead><tbody>
+<tr><td>1</td><td class="num">24.0%</td><td class="num">22.5% ± 1.1%</td><td class="num">1.36</td><td class="num">0.831</td></tr>
+<tr class="hl"><td>3</td><td class="num">26.5%</td><td class="num">23.2% ± 2.5%</td><td class="num">1.33</td><td class="num">0.248</td></tr>
+<tr><td>5</td><td class="num">25.0%</td><td class="num">22.2% ± 2.3%</td><td class="num">1.22</td><td class="num">0.596</td></tr>
+</tbody></table></div><figure class="case-figure"><div class="plate"><img alt="Line chart of accuracy against number of layers ablated. The targeted MoE-only line peaks at 26.5% with 3 layers, but stays inside or near the shaded band of random ablations around 22 to 23%." decoding="async" height="703" loading="lazy" src="../assets/img/projects/lego-accuracy-vs-layers.webp" width="1049"/></div><figcaption>Targeted MoE-only ablation (blue) against the random-ablation mean and its ±1 standard deviation band (red).</figcaption></figure>
+<p>Three layers looked best: 23.0% to 26.5%, with 17 questions fixed and 10 broken. But McNemar's test gave p = 0.25, and the targeted run didn't beat random removal by a meaningful margin (z = 1.33, against a bar of 2).</p>
+      </section>
+      <section class="cs-section" id="the-holdout-check">
+        <h2>The holdout check</h2>
+        <p>The 200 holdout questions had never been used for scoring or clustering. With the same three layers switched off, holdout accuracy went from 29.0% down to 27.0%, so the test-set bump was most likely noise in a 200-question sample.</p>
+      </section>
+      <section class="cs-section" id="what-it-leaves-open">
+        <h2>What it leaves open</h2>
+        <p>Two explanations fit, and our data can't tell them apart:</p>
+<ul>
+<li><strong>The failure is spread out.</strong> Spatial reasoning might not live in any small set of experts. That matches <a class="link" href="https://arxiv.org/abs/2601.03425" target="_blank">Wang et al. (2026)</a>, who found MoE routing dominated by a "standing committee" of experts that fire regardless of task.</li>
+<li><strong>Our method was too blunt.</strong> Z-scores near 0.05 and weak clusters could mean the signal exists and a correlational score can't see it.</li>
+</ul>
+<p>So we wrote it up as a negative result. The follow-up we proposed is activation patching: corrupt the image, then copy the clean run's hidden state back in one layer at a time and see which layer flips the answer back. That would show which layer causes the error. Our correlational scores can't.</p>
+<p>The routing logs also led to my next project with a research collaborator and our advisor: predicting expert routing early enough to prefetch the weights.</p>
+      </section>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="More projects">
+      <a class="pg prev" href="tiny-infer.html"><span class="pg-dir">← Previous</span><span class="pg-title">Tiny Infer</span><span class="pg-note">188 vs 121 tokens/s on 2 vs 1 threads</span></a><a class="pg next" href="talk-to-robot.html"><span class="pg-dir">Next →</span><span class="pg-title">Talk-to-Robot</span><span class="pg-note">100% on coordinates, 40 to 65% on offsets</span></a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+      </ul>
+      <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <title>Coverage Keeper · Waleed Alghaithi</title>
+  <meta content="Coverage Keeper reads a photo of a Medicaid renewal letter and returns a plain-language summary, the deadline, a document checklist, and who to call. Prize winner at the Solix AI Hackathon 2026." name="description"/>
+  <link href="https://waleedA13.github.io/portfolio-v2/projects/coverage-keeper.html" rel="canonical"/>
+  <meta content="article" property="og:type"/>
+  <meta content="Waleed Alghaithi" property="og:site_name"/>
+  <meta content="Coverage Keeper" property="og:title"/>
+  <meta content="Coverage Keeper reads a photo of a Medicaid renewal letter and returns a plain-language summary, the deadline, a document checklist, and who to call. Prize winner at the Solix AI Hackathon 2026." property="og:description"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/projects/coverage-keeper.html" property="og:url"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta name="theme-color" content="#161513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap"></noscript>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1a17'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23faf8f3' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') !== 'light') document.body.classList.add('dark-mode');
+      } catch (e) {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav aria-label="Main">
+    <div class="nav-container">
+      <a class="nav-name" href="../index.html">Waleed <span>Alghaithi</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Work</a></li>
+        <li><a class="nav-active" aria-current="true" href="../index.html#projects">Projects</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article class="cs wrap-narrow">
+      <header class="cs-head">
+        <a class="back" href="../index.html#projects">&larr; All projects</a>
+        <p class="work-meta">Prize winner, Solix AI Hackathon 2026, AI in Healthcare track</p>
+        <h1 class="cs-title">Coverage Keeper</h1>
+        <p class="cs-lede">Take a photo of a Medicaid renewal letter and Coverage Keeper tells you what the state wants, when it's due, and who to call. Three of us built it, tested it, and deployed it in one day.</p>
+      </header>
+      <dl class="kv cs-facts">
+        <div><dt>Result</dt><dd>On 9 held-out letters (6 PDFs, 3 phone photos) it got all 4 printed deadlines right, correctly found no deadline on the other 5, and never gave an eligibility verdict.</dd></div>
+        <div><dt>What I did</dt><dd>I built the doctor's note, rate-limited the paid model endpoint, fixed a prompt bug that marked readable letters as low confidence, and fixed flaky accessibility tests.</dd></div>
+        <div><dt>Team</dt><dd>Team of 3</dd></div>
+        <div><dt>Stack</dt><dd>Next.js 16, React 19, TypeScript, Claude API, zod, Vitest, Playwright, axe-core, GitHub Actions, Vercel</dd></div>
+        <div><dt>Links</dt><dd><a class="link" href="https://coverage-keeper.vercel.app" target="_blank">Live app</a> <a class="link" href="https://devpost.com/software/enrollguard" target="_blank">Devpost</a> <a class="link" href="https://github.com/AdityaJadhav17/coverage-keeper" target="_blank">Code</a></dd></div>
+      </dl>
+      <nav class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li><a href="#the-problem">The problem</a></li><li><a href="#what-it-does">What it does</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#my-part">My part</a></li><li><a href="#how-we-tested-it">How we tested it</a></li><li><a href="#next">Next</a></li></ul></nav>
+      <section class="cs-section" id="the-problem">
+        <h2>The problem</h2>
+        <p>When states restarted Medicaid renewals after the pandemic, most people who lost coverage lost it over paperwork. <a class="link" href="https://www.kff.org/medicaid/issue-brief/medicaid-enrollment-and-unwinding-tracker/" target="_blank">KFF</a> counted 69% of disenrollments as procedural. Starting January 1, 2027, a 2025 federal law adds work, volunteering, or school requirements for most expansion adults, which means more letters and more deadlines to miss.</p>
+<p>We designed for one user: a delivery driver with a prepaid Android phone who can't sit on hold during a shift.</p>
+      </section>
+      <section class="cs-section" id="what-it-does">
+        <h2>What it does</h2>
+        <ol>
+<li>You photograph or upload one page of the letter. The browser shrinks the image before it uploads.</li>
+<li>You get a plain-language summary, the deadline with days left (and the exact line it was read from), a checklist of documents, and a phone number.</li>
+<li>For Oregon letters, you answer yes/no questions from Oregon's published exemption list and see which exemptions <em>may</em> apply, with a link to the state page.</li>
+<li>If you report a health condition, you can draft a note to your doctor, then copy or share it.</li>
+</ol>
+<p>A call button stays on every screen. If the app can't read the letter, it says so and shows the number from the letter or OHP's line.</p>
+<figure class="case-figure"><div class="shots">
+<img alt="Result screen showing what the letter says, a deadline of Feb 15, 2027 with 5 days left, and the exact sentence the deadline came from." decoding="async" height="1006" loading="lazy" src="../assets/img/projects/coverage-result.webp" width="600"/>
+<img alt="Doctor note screen showing an editable letter to a doctor about Oregon Health Plan work rules, with a Copy button." decoding="async" height="1006" loading="lazy" src="../assets/img/projects/coverage-doctor-note.webp" width="600"/>
+</div><figcaption>Left: the result screen quotes the line the deadline came from, so you can check it against the paper. Right: the doctor's note, which I built.</figcaption></figure>
+      </section>
+      <section class="cs-section" id="how-it-works">
+        <h2>How it works</h2>
+        <p>The model only reads. Claude (<code>claude-opus-5-5</code>) returns one fixed JSON shape: notice type, summary, deadline, the quoted deadline line, required action, documents, phone, and confidence. A zod schema validates it. A refusal, a 30-second timeout, or bad output all turn into an "unsure" result instead of a guess. Days-left math runs in Pacific time.</p>
+<p>The app never decides eligibility. We enforced that three ways:</p>
+<ul>
+<li>The schema has no eligibility field, so the model has nowhere to put a verdict.</li>
+<li>Exemption screening never calls the model. Oregon's rules live in a JSON file, each with its source URL and the date we checked it.</li>
+<li>A guardrail runs on every output string and swaps anything like "you are eligible" for a safe fallback and the OHP number. A safety test suite with prompt-injection fixtures blocks the merge if it fails.</li>
+</ul>
+<p>The server reads each photo in memory and then drops it. There's no database, no accounts, no analytics, and the logs never include letter content.</p>
+      </section>
+      <section class="cs-section" id="my-part">
+        <h2>My part</h2>
+        <ul>
+<li><strong>The doctor's note.</strong> A template draft that fills in from your screening answers, with copy and share buttons and a clear message if copying fails. I added it to both the safety suite and the Playwright end-to-end tests.</li>
+<li><strong>Rate limiting.</strong> The letter-reading endpoint is public and every call costs money, so I added a per-IP limit of 10 requests a minute on <code>/api/read</code>. Over the limit, it returns a 429 that still shows the OHP phone number, so nobody hits a dead end. Requests that declare a body over the size cap get a 413 before the server reads them. The counter lives in memory on each server instance and tracks at most 10,000 clients, so it stops one client looping but isn't a global limit. The platform firewall and the API spend limit do that job. I added unit tests for the limiter and an integration test on the route.</li>
+<li><strong>A prompt fix.</strong> Our first prompt marked readable letters as "low confidence" whenever they had no deadline. Many real notices have no deadline, so I rewrote that rule (prompt v2): a missing deadline no longer lowers confidence, but several possible deadlines still do. The test-set numbers stayed the same, so the fix removed a wrong warning without breaking anything.</li>
+<li><strong>Accessibility tests.</strong> The axe checks were flaky because they ran before fade-in animations finished. I made them wait.</li>
+<li><strong>Wording.</strong> I made the exemption questions say they use Oregon's rules.</li>
+</ul>
+      </section>
+      <section class="cs-section" id="how-we-tested-it">
+        <h2>How we tested it</h2>
+        <p>We had no real letters, and we weren't going to use anyone's. CI rejects any eval file without a <code>.gov</code> source. The set was 13 images: 10 public sample notices (3 from Oregon, 7 from Vermont) and 3 phone photos, split 4 for development and 9 for test before any run.</p>
+<div class="table-wrap"><table><thead><tr><th>Test split, 9 letters</th><th class="num">Result</th></tr></thead><tbody>
+<tr><td>Printed deadline read correctly</td><td class="num">4 of 4</td></tr>
+<tr><td>No deadline, correctly reported as none</td><td class="num">5 of 5</td></tr>
+<tr><td>Notice type correct</td><td class="num">8 of 9</td></tr>
+<tr><td>Required action correct</td><td class="num">6 of 9</td></tr>
+<tr><td>Document recall / precision (mean)</td><td class="num">1.00 / 0.83</td></tr>
+<tr><td>Eligibility verdicts</td><td class="num">0</td></tr>
+</tbody></table></div>
+<p>The set is small and mostly Vermont, because Oregon publishes only three sample notices. The phone photos are of a screen, not paper, and 2 of the 3 show letters whose PDF versions were in the dev split. We published the failures by name in the README.</p>
+<p>Every pull request runs secret scanning, a dependency audit, a license check, lint and type checks, unit and safety tests, integration tests, a build, and Playwright tests with axe on an iPhone 15 and a Pixel 7 profile. Merges to <code>main</code> deploy to Vercel.</p>
+      </section>
+      <section class="cs-section" id="next">
+        <h2>Next</h2>
+        <p>Spanish (Oregon publishes Spanish notices), multi-page letters, deadline reminders, and more states, each with its own labeled test set. Before real users try it, we'd want to test on phone photos of paper and run a pilot with a community health worker program.</p>
+      </section>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="More projects">
+      <a class="pg prev" href="bayt-qareeb.html"><span class="pg-dir">← Previous</span><span class="pg-title">Bayt Qareeb</span><span class="pg-note">Winner, MTC x Replit x Manara West Buildathon</span></a><a class="pg next" href="tiny-infer.html"><span class="pg-dir">Next →</span><span class="pg-title">Tiny Infer</span><span class="pg-note">188 vs 121 tokens/s on 2 vs 1 threads</span></a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+      </ul>
+      <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

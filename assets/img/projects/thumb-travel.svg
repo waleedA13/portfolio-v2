@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4b5563"/></marker>
+  </defs>
+  <rect width="960" height="600" fill="#fff"/>
+  <g fill="#eef4fd" stroke="#3b78d8" stroke-width="2">
+    <rect x="300" y="40" width="360" height="130" rx="12"/>
+    <rect x="40" y="410" width="260" height="140" rx="12"/>
+    <rect x="350" y="410" width="260" height="140" rx="12"/>
+    <rect x="660" y="410" width="260" height="140" rx="12"/>
+  </g>
+  <rect x="20" y="270" width="920" height="54" fill="#dbe7f8"/>
+  <g stroke="#4b5563" stroke-width="2" fill="none" marker-start="url(#a)" marker-end="url(#a)">
+    <line x1="480" y1="180" x2="480" y2="262"/>
+    <path d="M170 400 V 332"/>
+    <path d="M480 400 V 332"/>
+    <path d="M790 400 V 332"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <g font-size="25" font-weight="700" fill="#1f2937">
+      <text x="480" y="84">Supervisor</text>
+      <text x="170" y="452">Flight Agent</text>
+      <text x="480" y="452">Hotel Agent</text>
+      <text x="790" y="452">Activity Agent</text>
+    </g>
+    <g font-size="18" fill="#4b5563">
+      <text x="480" y="148">checks check-in against arrival</text>
+      <text x="480" y="303" font-size="20" fill="#1f2937">Transport: NATS</text>
+      <text x="170" y="522">Google Flights</text>
+      <text x="480" y="522">Google Hotels</text>
+      <text x="790" y="522">Google Local</text>
+    </g>
+    <g font-family="'Courier New', monospace" font-size="18" fill="#2563eb">
+      <text x="480" y="118">LangGraph &#183; FastAPI</text>
+      <text x="170" y="490">via SerpAPI</text>
+      <text x="480" y="490">via SerpAPI</text>
+      <text x="790" y="490">via SerpAPI</text>
+      <text x="508" y="228" text-anchor="start">A2A</text>
+      <text x="198" y="372" text-anchor="start">A2A</text>
+      <text x="508" y="372" text-anchor="start">A2A</text>
+      <text x="818" y="372" text-anchor="start">A2A</text>
+    </g>
+  </g>
+</svg>

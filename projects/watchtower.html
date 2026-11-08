@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <title>Watchtower · Waleed Alghaithi</title>
+  <meta content="Watchtower is an error and performance monitor built by a CSE 110 team: a browser SDK, a Node.js and Supabase backend, and a dashboard behind Clerk sign-in." name="description"/>
+  <link href="https://waleedA13.github.io/portfolio-v2/projects/watchtower.html" rel="canonical"/>
+  <meta content="article" property="og:type"/>
+  <meta content="Waleed Alghaithi" property="og:site_name"/>
+  <meta content="Watchtower" property="og:title"/>
+  <meta content="Watchtower is an error and performance monitor built by a CSE 110 team: a browser SDK, a Node.js and Supabase backend, and a dashboard behind Clerk sign-in." property="og:description"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/projects/watchtower.html" property="og:url"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta name="theme-color" content="#161513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap"></noscript>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1a17'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23faf8f3' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') !== 'light') document.body.classList.add('dark-mode');
+      } catch (e) {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav aria-label="Main">
+    <div class="nav-container">
+      <a class="nav-name" href="../index.html">Waleed <span>Alghaithi</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Work</a></li>
+        <li><a class="nav-active" aria-current="true" href="../index.html#projects">Projects</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article class="cs wrap-narrow">
+      <header class="cs-head">
+        <a class="back" href="../index.html#projects">&larr; All projects</a>
+        <p class="work-meta">CSE 110 team project, Apr to Jun 2026</p>
+        <h1 class="cs-title">Watchtower</h1>
+        <p class="cs-lede">Our team built a small error and performance monitor: drop a script into a web app and its errors, slow routes, and clicks show up on a dashboard.</p>
+      </header>
+      <dl class="kv cs-facts">
+        <div><dt>Result</dt><dd>Backend deployed on Render, with a test app on GitHub Pages sending it events.</dd></div>
+        <div><dt>What I did</dt><dd>I wrote the shared event schema and API contract and the first version of Gmail error alerts (tested locally, never shipped). I also brought Clerk sign-in into the final prototype, wired up the timezone selector, fixed the profile and lint errors, and rewrote the README setup guide.</dd></div>
+        <div><dt>Team</dt><dd>CSE 110 group 9</dd></div>
+        <div><dt>Stack</dt><dd>JavaScript, Node.js, Supabase (Postgres), Clerk, Gmail API, Jest, Playwright, Render</dd></div>
+        <div><dt>Links</dt><dd><a class="link" href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank">Code</a> <a class="link" href="https://cse110-sp26-group09.github.io/Watchtower-test-app/" target="_blank">Test app</a></dd></div>
+      </dl>
+      <section class="cs-section" id="">
+        <h2>What it does</h2>
+        <p>A dependency-free browser SDK captures JavaScript errors, clicks and custom events, route changes, and page-load timing, then sends them in batches to a Node.js backend on Render. The backend stores events in Supabase (Postgres) and serves a dashboard behind Clerk sign-in, where each user only sees their own apps' data. Errors and metrics are tagged with a deploy version, so you can tell which release made things worse.</p>
+<figure class="case-figure"><div class="plate"><img alt="Hand-drawn style architecture diagram: a monitored browser app with an embedded SDK posts events to a Node.js server on Render, which stores them in Supabase tables and verifies dashboard users with Clerk." decoding="async" height="900" loading="lazy" src="../assets/img/projects/watchtower-architecture.webp" width="1600"/></div><figcaption>System architecture, drawn by our team. The SDK posts batches to the Node.js server; the dashboard signs in through Clerk.</figcaption></figure>
+      </section>
+      <section class="cs-section" id="">
+        <h2>One contract for every prototype</h2>
+        <p>Early on, the team split into groups building competing prototypes. They could only be compared fairly if they sent and accepted the same events, so I wrote the shared event schema and API contract (v1) that every prototype followed. The goal was that either team's backend could serve either team's frontend with no changes.</p>
+<p>Every event has the same envelope: three required fields (<code>type</code>, <code>timestamp</code>, <code>data</code>), optional context the SDK fills in (<code>sessionId</code>, <code>userId</code>, <code>deployVersion</code>, <code>appName</code>, <code>url</code>, <code>route</code>), and a <code>receivedAt</code> the server adds on ingest. Later I audited the SDK and server against the spec field by field. Everything was captured, with two small labeling gaps in feedback and logout events, which I documented.</p>
+<p>The contract also set how the API behaves. <code>POST /api/events</code> takes a batch and accepts what it can: events that fail the envelope check are dropped and counted in a <code>rejected</code> field, and the valid ones are still stored. Only a body that isn't JSON gets a 400. Reads go through <code>GET /api/events</code> (filter by type, deploy version, and limit) and <code>/api/stats</code>. v1 also specced a server-sent events stream, but the final prototype's dashboard polls for stats every 3 seconds instead.</p>
+      </section>
+      <section class="cs-section" id="">
+        <h2>Sign-in and alerts</h2>
+        <h3>Sign-in</h3>
+<p>I researched Clerk for sign-in, and Resend versus the Gmail API for alert emails. A teammate wrote our first Clerk integration. When we picked the final prototype, I brought Clerk sign-in into it: I repointed the sign-in redirect and config, moved the dashboard auth guard over, and added the signed-in user label and a Logout button. Later I fixed the profile page. It showed a hardcoded name, and now it shows the signed-in user's name and initials, scoped to their user ID.</p>
+<h3>Error-spike emails</h3>
+<p>I built the first version of email alerts with the Gmail API (OAuth2 through Nodemailer). When an incoming batch has at least <code>ERROR_ALERT_THRESHOLD</code> errors (default 5), the server emails the route, the deploy version, and the first error message. Anyone who can trigger an error in a monitored app controls that message, so I escaped the HTML before it goes into the email.</p>
+<p>The threshold counts errors per batch, not per minute, so it's a rough spike signal. We tested alerts only locally. In September 2026 a teammate's security review removed the mailer from <code>main</code>, because a public route for registering alert recipients made a Nodemailer advisory reachable.</p>
+      </section>
+      <section class="cs-section" id="">
+        <h2>Smaller fixes</h2>
+        <ul>
+<li>Wired the dashboard's timezone selector through to event timestamps and the backend, with unit tests for the event store.</li>
+<li>Fixed lint failures that were blocking CI.</li>
+<li>Rewrote the README's project structure and setup guide for the final prototype.</li>
+</ul>
+      </section>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="More projects">
+      <a class="pg prev" href="talk-to-robot.html"><span class="pg-dir">← Previous</span><span class="pg-title">Talk-to-Robot</span><span class="pg-note">100% on coordinates, 40 to 65% on offsets</span></a><a class="pg next" href="travel-coordinator.html"><span class="pg-dir">Next →</span><span class="pg-title">Multi-Agent Travel Coordinator</span><span class="pg-note">Winner, Multi-Agent Systems Challenge</span></a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+      </ul>
+      <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <title>Multi-Agent Travel Coordinator · Waleed Alghaithi</title>
+  <meta content="A multi-agent travel planner built with LangGraph, Cisco AGNTCY, and NATS. Winner of the Multi-Agent Systems Challenge at SanD Hacks 2026." name="description"/>
+  <link href="https://waleedA13.github.io/portfolio-v2/projects/travel-coordinator.html" rel="canonical"/>
+  <meta content="article" property="og:type"/>
+  <meta content="Waleed Alghaithi" property="og:site_name"/>
+  <meta content="Multi-Agent Travel Coordinator" property="og:title"/>
+  <meta content="A multi-agent travel planner built with LangGraph, Cisco AGNTCY, and NATS. Winner of the Multi-Agent Systems Challenge at SanD Hacks 2026." property="og:description"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/projects/travel-coordinator.html" property="og:url"/>
+  <meta content="https://waleedA13.github.io/portfolio-v2/assets/profile.jpg" property="og:image"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta name="theme-color" content="#161513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap"></noscript>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1a17'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23faf8f3' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') !== 'light') document.body.classList.add('dark-mode');
+      } catch (e) {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav aria-label="Main">
+    <div class="nav-container">
+      <a class="nav-name" href="../index.html">Waleed <span>Alghaithi</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Work</a></li>
+        <li><a class="nav-active" aria-current="true" href="../index.html#projects">Projects</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article class="cs wrap-narrow">
+      <header class="cs-head">
+        <a class="back" href="../index.html#projects">&larr; All projects</a>
+        <p class="work-meta">Winner, Multi-Agent Systems Challenge, SanD Hacks 2026</p>
+        <h1 class="cs-title">Multi-Agent Travel Coordinator</h1>
+        <p class="cs-lede">Describe a trip in plain English and get back flights, hotels, and activities that fit together in time. Three of us built it over a weekend at SanD Hacks.</p>
+      </header>
+      <dl class="kv cs-facts">
+        <div><dt>Result</dt><dd>Winner, Multi-Agent Systems Challenge. The weekend build ran a LangGraph supervisor and three search agents over NATS, all in Docker Compose.</dd></div>
+        <div><dt>What I did</dt><dd>I set up the starting codebase from Cisco's CoffeeAGNTCY reference app and configured its environment, then did the initial testing as the team turned it into the travel agents.</dd></div>
+        <div><dt>Team</dt><dd>Team of 3</dd></div>
+        <div><dt>When</dt><dd>Jan 31 to Feb 2, 2026</dd></div>
+        <div><dt>Stack</dt><dd>Python, FastAPI, LangGraph, LiteLLM, Cisco AGNTCY (A2A), NATS, SerpAPI, Docker, React 19, TypeScript</dd></div>
+        <div><dt>Links</dt><dd><a class="link" href="https://devpost.com/software/travel-agyntc" target="_blank">Devpost</a> <a class="link" href="https://github.com/AdityaJadhav17/sandhacks-2026-project" target="_blank">Code</a><br/>The repo has kept growing since the hackathon. The weekend's version is the history from Jan 31 to Feb 2, 2026.</dd></div>
+      </dl>
+      <section class="cs-section" id="">
+        <h2>The problem</h2>
+        <p>Planning a trip with more than one leg means checking flights on one site and hotels on another, then making sure your check-in lines up with when you land. Getting that wrong costs money.</p>
+      </section>
+      <section class="cs-section" id="">
+        <h2>How a request moves</h2>
+        <ol>
+<li>The React UI sends your request to a FastAPI <strong>supervisor</strong>.</li>
+<li>The supervisor runs a LangGraph workflow: classify what you're asking for, pull out the details (cities, dates, budget), search, then check the results and return.</li>
+<li>For the search step, it sends messages over Cisco AGNTCY's agent-to-agent (A2A) protocol, carried by NATS, to three separate agents: <strong>flights</strong> (Google Flights), <strong>hotels</strong> (Google Hotels), and <strong>activities</strong> (Google Local), all through SerpAPI.</li>
+<li>Each agent runs its own small LangGraph and returns JSON.</li>
+<li>The supervisor drops hotels rated under 3.7 overall or under 4.0 for location. It adds a 2-hour buffer (configurable) to the flight's arrival time and keeps only hotels whose check-in has opened by the time you get there, then picks the cheapest flight plus hotel total. The UI turns that plan into cards.</li>
+</ol>
+<p>Each search agent is its own service with its own A2A card. The whole stack (UI, supervisor, three agents, NATS, and an optional ClickHouse and Grafana setup) runs with Docker Compose.</p>
+<p>When something is missing, like a check-in date, the supervisor asks for it instead of guessing. If it finds flights and hotels but no pair fits the timing rule, it says so and suggests an earlier departure or a later check-in.</p>
+      </section>
+      <section class="cs-section" id="my-part">
+        <h2>My part</h2>
+        <p>I set up the project's starting point. Rather than write the agent plumbing from scratch, I brought in Cisco's open-source CoffeeAGNTCY reference app, which already had A2A agent servers, a LangGraph supervisor, NATS and SLIM transport, a React UI, Docker Compose, and a Grafana and OpenTelemetry setup. I configured its environment (model and API keys) so the stack ran for the team, and we reworked its coffee-trading agents into the flight, hotel, and activity agents.</p>
+        <p>I also did the initial testing. As the pieces came together, I ran early trip requests through the supervisor and the three search agents to check that each one answered over A2A and that the plan it returned held together.</p>
+      </section>
+      <section class="cs-section" id="">
+        <h2>Next</h2>
+        <p>We'd let you set your own filters, like nonstop-only or a higher hotel rating, and add booking links so you can buy from the same page.</p>
+      </section>
+    </article>
+
+    <nav class="pager wrap-narrow" aria-label="More projects">
+      <a class="pg prev" href="watchtower.html"><span class="pg-dir">← Previous</span><span class="pg-title">Watchtower</span><span class="pg-note">Backend deployed on Render</span></a><a class="pg next" href="radar-classifier.html"><span class="pg-dir">Next →</span><span class="pg-title">Precipitation classifier on a Raspberry Pi</span><span class="pg-note">Under a second per reading on the Pi</span></a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
+        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+      </ul>
+      <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

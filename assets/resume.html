@@ -219,11 +219,11 @@
   <section>
     <h2>Skills</h2>
     <ul class="compact-list">
-      <li><strong>Programming Languages:</strong> Python, C, C++, Java, JavaScript, TypeScript</li>
+      <li><strong>Programming Languages:</strong> Python, C, C++, Java, JavaScript, TypeScript, SQL</li>
       <li><strong>Software Engineering:</strong> OOP, data structures & algorithms, software design, debugging, unit testing, Jest, Playwright</li>
-      <li><strong>AI & Data Foundations:</strong> Linear algebra, calculus, probability, NumPy, Pandas, LangGraph, LiteLLM</li>
+      <li><strong>AI & Machine Learning:</strong> PyTorch, Hugging Face Transformers, bitsandbytes 4-bit quantization, LLM APIs (Claude, Gemini), LangGraph, LiteLLM, NumPy, Pandas, scikit-learn</li>
       <li><strong>Developer Tools:</strong> Git, GitHub, BitBucket, Jira, Linux/Unix, VS Code, Cursor, JetBrains IDEs, command-line tools, Docker, Grafana</li>
-      <li><strong>Web & Databases:</strong> HTML, CSS, React, Node.js, FastAPI, SQL/MySQL, Supabase, RESTful APIs</li>
+      <li><strong>Web & Databases:</strong> HTML, CSS, React, Next.js, Node.js, FastAPI, PostgreSQL, MySQL, Supabase, RESTful APIs</li>
     </ul>
   </section>
 
@@ -294,7 +294,7 @@
     </div>
     <ul class="compact-list">
       <li>Processed raw mmWave radar binaries into structured CSV datasets by decoding headers against JSON configs and validating outputs against Infineon radar visualizations.</li>
-      <li>Built and evaluated SVM and K-means models for snowpack and precipitation classification, achieving 90%+ accuracy across multiple weather conditions.</li>
+      <li>Built SVM and K-means models for snowpack and precipitation classification, chosen to be small enough to run on embedded hardware.</li>
       <li>Optimized and deployed the full pipeline on Raspberry Pi (Linux), achieving sub-second inference for low-power remote environmental sensing.</li>
     </ul>
   </section>
@@ -302,12 +302,23 @@
   <section>
     <h2>Projects</h2>
     <div class="entry-header">
-      <span><a href="https://devpost.com/software/enrollguard">Coverage Keeper: 2nd Place, Solix AI Hackathon 2026</a> |</span>
+      <span><a href="https://devpost.com/software/bayt-qareeb">Bayt Qareeb: Winner, MTC x Replit x Manara West Buildathon (Track 1)</a> |</span>
+      <span class="entry-tools">Next.js, TypeScript, React, Tailwind, Mapbox GL, Prisma, GitHub Actions, Vercel</span>
+      <span class="entry-details-dates">Nov 2026</span>
+    </div>
+    <ul class="compact-list">
+      <li>Won on a team of 3 with a map-first room and roommate finder for Muslim college students, open only to verified .edu students and deployed on Vercel with 80 seed listings across 7 California campuses.</li>
+      <li>Set up the first working MVP (Next.js map UI, Prisma schema and seed, listings API, first .edu signup check, CI), then built the Mapbox map UI: zoom-based price pins, a floating search bar with filter pills, a price range slider, place search with geocoding, and photo tours.</li>
+      <li>Hardened CI with least-privilege permissions, SHA-pinned actions, npm audit, a secret scan, CodeQL, and Dependabot, and fixed the Vercel build with a seed-listing fallback when no database is configured.</li>
+    </ul>
+
+    <div class="entry-header">
+      <span><a href="https://devpost.com/software/enrollguard">Coverage Keeper: Prize Winner, Solix AI Hackathon 2026</a> |</span>
       <span class="entry-tools">TypeScript, Next.js, React, Claude API, zod, Vitest, Playwright, GitHub Actions, Vercel</span>
       <span class="entry-details-dates">Oct 2026</span>
     </div>
     <ul class="compact-list">
-      <li>Won runner-up on a team of 3 with a deployed web app that reads a photographed Medicaid renewal letter and returns a plain-language summary, the deadline with days remaining, a document checklist, and the number to call; it read 4/4 printed deadlines correctly on public .gov sample notices.</li>
+      <li>Won a prize on a team of 3 with a deployed web app that reads a photographed Medicaid renewal letter and returns a plain-language summary, the deadline with days remaining, a document checklist, and the number to call; it read 4/4 printed deadlines correctly on public .gov sample notices.</li>
       <li>Built the doctor's note feature (template draft plus copy and share from screening results) and covered it in the safety and Playwright end-to-end suites.</li>
       <li>Added rate limiting and early oversized-body rejection to the letter-reading API, fixed a prompt bug that flagged readable letters as low confidence, and fixed flaky axe accessibility checks.</li>
     </ul>
@@ -318,9 +329,9 @@
       <span class="entry-details-dates">Oct 2026 - Present</span>
     </div>
     <ul class="compact-list">
-      <li>Building a transformer inference engine from scratch in plain C, with no PyTorch or BLAS, to run a 15M parameter story-writing model on a laptop CPU.</li>
+      <li>Building a transformer inference engine from scratch in plain C, with no PyTorch or BLAS, to run a 15M-parameter TinyStories-format model on a CPU, one token at a time.</li>
       <li>Implemented the full forward pass (attention with RoPE and a KV cache, SwiGLU, RMSNorm, BPE prompt encoding) on top of an mmap checkpoint loader and greedy/temperature sampling, with a self-test for each kernel.</li>
-      <li>Split matmul across cores with a pthreads pool, added group-wise int8 weight quantization with an int8 matmul path, and built a benchmark mode that reports per-operation timing.</li>
+      <li>Split matmul across cores with a pthreads pool, added group-wise int8 weight quantization with an int8 matmul path, and built a benchmark mode that reports per-operation timing: 121 tokens/s on 1 thread and 188 on 2 (2-vCPU VM, synthetic weights), with about 91% of time in matmul.</li>
       <li>Set up a GitHub Actions pipeline that builds and tests on Linux and macOS, reruns the tests under address and undefined behavior sanitizers, and publishes release binaries when a version tag is pushed.</li>
     </ul>
 
@@ -336,6 +347,17 @@
     </ul>
 
     <div class="entry-header">
+      <span><a href="https://github.com/YangLin14/Talk-to-Robot">Talk-to-Robot: LLM Spatial Grounding for Robot Control</a> |</span>
+      <span class="entry-tools">Python, Gemini, MuJoCo, Gymnasium, Stable-Baselines3</span>
+      <span class="entry-details-dates">Spring 2026</span>
+    </div>
+    <ul class="compact-list">
+      <li>Measured on a team of 5 when a one-shot LLM (Gemini) is reliable enough to turn plain-English instructions into goals for a SAC+HER pushing policy in MuJoCo's FetchPush-v4, across 5 instruction tiers against a regex baseline.</li>
+      <li>Found Gemini hit 100% on coordinates and named regions but only 40-65% on relative offsets like "5 cm to the right," where the regex scored 100%.</li>
+      <li>Fixed two evaluation-harness bugs (regex parsing on the simplest tier and a stale cube position for offsets), wrote one of three pre-registered annotation sets for the intent tier, and ran its zero-shot evaluation.</li>
+    </ul>
+
+    <div class="entry-header">
       <span><a href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project">Watchtower: Observability Platform</a> |</span>
       <span class="entry-tools">JavaScript, Node.js, Supabase, Clerk, Gmail API, Jest, Playwright, GitHub Actions</span>
       <span class="entry-details-dates">Apr 2026 - Jun 2026</span>
@@ -343,19 +365,19 @@
     <ul class="compact-list">
       <li>Contributed to a lightweight Sentry-like observability platform that captures JS errors, performance metrics, and user interactions through a browser SDK and displays them on a real-time dashboard.</li>
       <li>Designed the shared event schema and API contract used across all prototypes, standardizing how events are captured, stored in Supabase/Postgres, and served via a Node.js backend.</li>
-      <li>Built Gmail API email alerts for error spikes with HTML escaping to prevent XSS, after evaluating Clerk, Resend, and Gmail API; integrated Clerk authentication and scoped profile data to the signed-in user.</li>
+      <li>Evaluated Clerk, Resend, and Gmail API, brought Clerk sign-in into the final prototype, and scoped profile data to the signed-in user; built and locally tested Gmail API error-spike alerts with HTML escaping to prevent XSS.</li>
       <li>Wired the dashboard's timezone selector through to event timestamps and backend queries.</li>
     </ul>
 
     <div class="entry-header">
-      <span><a href="https://devpost.com/software/travel-agyntc">Multi-Agent Travel Coordinator: 1st Place, Multi-Agent Systems, SanD Hacks 2026</a> |</span>
-      <span class="entry-tools">Python, FastAPI, LangGraph, Cisco AGNTCY, NATS, SerpAPI, Docker, React</span>
+      <span><a href="https://devpost.com/software/travel-agyntc">Multi-Agent Travel Coordinator: Winner, Multi-Agent Systems, SanD Hacks 2026</a> |</span>
+      <span class="entry-tools">Python, FastAPI, LangGraph, LiteLLM, Cisco AGNTCY, NATS, SerpAPI, Docker, React</span>
       <span class="entry-details-dates">Feb 2026</span>
     </div>
     <ul class="compact-list">
-      <li>Won the Multi-Agent Systems Challenge on a team of 3 with a travel planner that turns a plain-English request into a multi-leg itinerary, hitting 90%+ accuracy with zero scheduling conflicts.</li>
-      <li>A LangGraph supervisor coordinates flight, hotel, and activity agents over Cisco AGNTCY's A2A protocol and NATS, pulling real-time data from SerpAPI, while a timing-rule engine keeps legs in order across time zones.</li>
-      <li>Runs in Docker with a React 19 and Tailwind CSS frontend and a REST/streaming FastAPI backend.</li>
+      <li>Won the Multi-Agent Systems Challenge on a team of 3 with a travel planner where a LangGraph supervisor coordinates flight, hotel, and activity agents over Cisco AGNTCY's A2A protocol and NATS, pulls live data from SerpAPI, and checks that hotel check-ins line up with flight arrivals.</li>
+      <li>Set up the starting codebase from Cisco's CoffeeAGNTCY reference app (A2A agent servers, LangGraph supervisor, NATS transport, React UI, Docker Compose, Grafana and OpenTelemetry) and configured its environment so the stack ran for the team.</li>
+      <li>Did the initial end-to-end testing as the team reworked the reference agents into the flight, hotel, and activity agents.</li>
     </ul>
 
     <div class="entry-header">
@@ -364,8 +386,8 @@
       <span class="entry-details-dates">Jun 2023 - Aug 2023</span>
     </div>
     <ul class="compact-list">
-      <li>Built an mmWave radar pipeline that automated raw binary processing, cutting preprocessing time by 60%.</li>
-      <li>Trained SVM and K-means models for precipitation classification, achieving 90%+ accuracy.</li>
+      <li>Built an mmWave radar pipeline that decodes raw binary files into clean CSVs using JSON header configs.</li>
+      <li>Trained SVM and K-means models for precipitation classification, small enough to run on the device.</li>
       <li>Deployed on Raspberry Pi with sub-second inference for low-power remote sensing.</li>
     </ul>
   </section>

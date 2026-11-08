@@ -92,12 +92,6 @@
     <div class="intro-text">
       <p class="eyebrow">Hi, I'm Waleed.</p>
       <h1>I like figuring out why models <em>get things wrong.</em></h1>
-      <p class="intro-desc">
-        I'm a CS student at UC San Diego. Right now a research collaborator, our faculty advisor, and I are testing whether you can predict which experts a Mixture-of-Experts model will use <i>before</i> it uses them. From January to August my faculty mentor and I tried to work out why a 30-billion-parameter vision-language model scores 23% on a benchmark of LEGO puzzles.
-      </p>
-      <p class="intro-desc">
-        The rest of the time I build things with other people, for hackathons and for class.
-      </p>
       <div class="intro-actions">
         <a class="button-primary" href="mailto:waleedalghaithi13@gmail.com">Email me</a>
         <a class="text-link" href="#projects">or read about what I've built <span aria-hidden="true">&darr;</span></a>
@@ -149,25 +143,22 @@
     <section class="panel" id="skills">
       <h2 class="panel-label">Toolbox</h2>
       <div class="panel-body">
-        <p class="prose lead">
-          <strong>Python</strong> is my main language and <strong>Java</strong> is my second.
-        </p>
         <div class="toolbox">
           <div>
             <h3>Languages</h3>
-            <p>Python, Java, JavaScript / TypeScript, C / C++</p>
+            <p>Python, C / C++, Java, JavaScript / TypeScript, SQL</p>
           </div>
           <div>
-            <h3>ML &amp; data</h3>
-            <p>PyTorch, LangGraph / LiteLLM, SVM / K-Means, NumPy / Pandas, scikit-learn, linear algebra</p>
+            <h3>AI &amp; ML</h3>
+            <p>PyTorch, Hugging Face Transformers, bitsandbytes 4-bit quantization, LLM APIs (Claude, Gemini), LangGraph / LiteLLM, LLM evals, NumPy / Pandas, scikit-learn</p>
           </div>
           <div>
             <h3>Web &amp; databases</h3>
-            <p>FastAPI, React / Node.js, HTML / CSS, SQL / Supabase</p>
+            <p>Next.js / React, Node.js, FastAPI, PostgreSQL / Supabase</p>
           </div>
           <div>
-            <h3>Tools</h3>
-            <p>Git / GitHub, Docker / Linux, Jest / Playwright, Grafana / Jira</p>
+            <h3>Systems &amp; tools</h3>
+            <p>pthreads, Git / GitHub Actions, Docker / Linux, Jest / Playwright, Grafana</p>
           </div>
         </div>
       </div>
@@ -204,7 +195,7 @@
             <div class="job-what">
               <h3>Undergraduate Researcher, McNair Scholars Program <span class="job-where">UC San Diego</span></h3>
               <p>
-                My faculty mentor and I looked at why Qwen3-VL-30B struggles with spatial reasoning. Short version: the errors come from all over the model. The long version is <a class="text-link" href="#project-spatial">down in projects</a>.
+                My faculty mentor and I looked at why Qwen3-VL-30B struggles with spatial reasoning. Short version: the errors come from all over the model. The long version is <a class="text-link" href="projects/lego-spatial-reasoning.html">in the write-up</a>.
               </p>
               <p class="job-tools">Python · Qwen3-VL · RunPod · NumPy · scikit-learn</p>
             </div>
@@ -226,7 +217,7 @@
             <div class="job-what">
               <h3>Machine Learning Research Intern <span class="job-where">Lawrence Berkeley National Lab</span></h3>
               <p>
-                I spent the summer turning raw radar data into a precipitation classifier that runs on a Raspberry Pi. <a class="text-link" href="#project-radar">More on that below</a>.
+                I spent the summer turning raw radar data into a precipitation classifier that runs on a Raspberry Pi. <a class="text-link" href="projects/radar-classifier.html">Read the write-up</a>.
               </p>
               <p class="job-tools">Python · SVM · K-Means · Raspberry Pi · Linux</p>
             </div>
@@ -240,101 +231,151 @@
       <div class="panel-body">
         <p class="prose lead">A few things I've worked on, and how they turned out.</p>
 
-        <article class="story story-featured" id="project-spatial">
-          <p class="story-kicker">Research · McNair Scholars · 2026</p>
-          <h3 class="story-title">Tracing a 30B vision model's LEGO puzzle failures</h3>
-          <div class="story-parts">
-            <div>
-              <h4>The problem</h4>
-              <p>Qwen3-VL-30B gets about 23% on LEGO-Puzzles, a benchmark of spatial reasoning tasks. It's a mixture-of-experts model, so we wanted to find out if a few specific experts or layers caused the failures.</p>
-            </div>
-            <div>
-              <h4>What we did</h4>
-              <p>We profiled which experts the router picks across all 48 layers, ranked the layers by z-score, and clustered the expert "fingerprints" with k-medoids. Then we ran a 40-experiment ablation study on rented A100s through RunPod.</p>
-            </div>
-            <div>
-              <h4>What we learned</h4>
-              <p>The best ablation took test accuracy from 23% to 26.5%. We checked it with McNemar's test and a held-out set, and the gain didn't hold up. The errors come from all over the model, so there's no small set of layers to fix. We wrote it up as a negative result.</p>
-            </div>
+        <div class="project-list">
+        <article class="project" id="project-spatial">
+          <a class="project-shot" href="projects/lego-spatial-reasoning.html" tabindex="-1" aria-hidden="true">
+            <img src="assets/img/projects/thumb-lego.webp" alt="" width="960" height="600" decoding="async">
+          </a>
+          <div class="project-body">
+            <h3 class="project-title"><a href="projects/lego-spatial-reasoning.html">Tracing a 30B vision model's LEGO puzzle failures</a></h3>
+            <p class="project-desc">Why Qwen3-VL-30B gets LEGO spatial puzzles wrong, traced through which of its experts fire on each question.</p>
+            <p class="project-context">McNair Scholars research · UC San Diego · 2026</p>
+            <p class="project-highlight">Logged routing for all <em>6,144</em> experts. The best fix (<em>23.0% → 26.5%</em>) didn't hold up on the holdout set, so we published a negative result</p>
+            <ul class="project-tags" aria-label="Tools"><li>Python</li><li>PyTorch</li><li>Qwen3-VL</li><li>RunPod</li><li>NumPy</li><li class="tag-more"><span aria-hidden="true">+2</span><span class="sr-only">Pandas, scikit-learn</span></li></ul>
+            <p class="project-links">
+              <a href="assets/Waleed_McNairResearchPaper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M3.25 1.75h6l3.5 3.5v9H3.25zM9 1.75v3.75h3.75M5.5 8.5h5M5.5 11h5"/></svg>Paper</a>
+              <a href="https://github.com/waleedA13/McNairProgramResearch" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code</a>
+            </p>
+            <a class="project-more" href="projects/lego-spatial-reasoning.html">Read the details <span aria-hidden="true">&rarr;</span></a>
           </div>
-          <p class="story-tools">Python · Qwen3-VL · RunPod · NumPy · Pandas · scikit-learn</p>
-          <p class="story-links">
-            <a class="text-link" href="assets/Waleed_McNairResearchPaper.pdf" target="_blank">Read the paper &rarr;</a>
-            <a class="text-link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank">Code on GitHub &rarr;</a>
-          </p>
         </article>
 
-        <div class="story-grid">
-          <article class="story" id="project-coverage">
-            <p class="story-kicker">2nd place · Solix AI Hackathon 2026</p>
-            <h3 class="story-title">Coverage Keeper</h3>
-            <p><strong>The problem:</strong> most people who lose Medicaid lose it over paperwork, not because they stopped qualifying. A renewal letter is easy to misread and its deadline is easy to miss.</p>
-            <p><strong>What we built:</strong> we shipped a web app where you photograph the letter and get back what it asks for, when it's due, and who to call. Claude reads the letter, but the Oregon exemption rules live in a sourced data file, so the model never decides eligibility. On public sample notices, it read printed deadlines with 100% accuracy.</p>
-            <p><strong>My part:</strong> I built the doctor's note feature, which drafts a note for people who report a health condition and lets them copy or share it. I also added rate limiting to the letter-reading endpoint, fixed a prompt bug that marked readable letters as low confidence, got the accessibility tests passing, and wrote our Devpost submission.</p>
-            <p class="story-tools">TypeScript · Next.js · Claude · zod · Playwright · Vercel</p>
-            <p class="story-links">
-              <a class="text-link" href="https://coverage-keeper.vercel.app" target="_blank">Live app &rarr;</a>
-              <a class="text-link" href="https://devpost.com/software/enrollguard" target="_blank">Devpost &rarr;</a>
-              <a class="text-link" href="https://github.com/AdityaJadhav17/coverage-keeper" target="_blank">Code &rarr;</a>
+        <article class="project" id="project-bayt">
+          <a class="project-shot" href="projects/bayt-qareeb.html" tabindex="-1" aria-hidden="true">
+            <img src="assets/img/projects/thumb-bayt-qareeb.webp" alt="" width="800" height="500" decoding="async" loading="lazy">
+          </a>
+          <div class="project-body">
+            <h3 class="project-title"><a href="projects/bayt-qareeb.html">Bayt Qareeb</a></h3>
+            <p class="project-desc">A map-first room and roommate finder for Muslim college students, open only to verified .edu students.</p>
+            <p class="project-context">MTC x Replit x Manara West Buildathon · Nov 2026</p>
+            <p class="project-highlight">Won <em>Track 1</em> with a live app three of us built in one day: <em>80</em> listings across <em>7</em> California campuses</p>
+            <ul class="project-tags" aria-label="Tools"><li>Next.js</li><li>TypeScript</li><li>Mapbox GL</li><li>Tailwind</li><li>Prisma</li><li class="tag-more"><span aria-hidden="true">+3</span><span class="sr-only">Supabase, Clerk, Claude</span></li></ul>
+            <p class="project-links">
+              <a href="https://github.com/waleedA13/Bayt-Qareeb" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code</a>
+              <a href="https://manara-west.vercel.app" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9 2.75h4.25V7M13 3 7.5 8.5M11.25 9.5v3.75h-8.5v-8.5H6.5"/></svg>Live</a>
+              <a href="https://youtu.be/dgyNZPzzhyE" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="0.75" y="3" width="14.5" height="10" rx="2.5" fill="currentColor"/><path d="M6.5 5.75v4.5L10.25 8z" style="fill: var(--paper)"/></svg>Demo</a>
+              <a href="https://devpost.com/software/bayt-qareeb" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9 2.75h4.25V7M13 3 7.5 8.5M11.25 9.5v3.75h-8.5v-8.5H6.5"/></svg>Devpost</a>
             </p>
-          </article>
+            <a class="project-more" href="projects/bayt-qareeb.html">Read the details <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
 
-          <article class="story">
-            <p class="story-kicker">Side project · 2026</p>
-            <h3 class="story-title">Tiny Infer</h3>
-            <p><strong>The idea:</strong> I wanted to see what actually happens when a model writes text, so I'm building a transformer inference engine in plain C. No PyTorch, no BLAS. It runs a 15M parameter model that writes short stories on a laptop CPU.</p>
-            <p><strong>What's done:</strong> the full forward pass (attention with RoPE and a KV cache, SwiGLU, BPE prompt encoding), a pthreads pool that splits matmul across cores, an int8 weight path, and a benchmark mode that times each kind of operation. CI builds and tests it on Linux and macOS, runs the tests again with sanitizers, and ships binaries when I tag a release. Next up is SIMD matmul, then a toy MoE layer to try out expert prefetching from my research.</p>
-            <p class="story-tools">C · pthreads · Make · GitHub Actions</p>
-            <p class="story-links">
-              <a class="text-link" href="https://github.com/waleedA13/tiny-infer" target="_blank">Code &rarr;</a>
+        <article class="project" id="project-coverage">
+          <a class="project-shot" href="projects/coverage-keeper.html" tabindex="-1" aria-hidden="true">
+            <img src="assets/img/projects/thumb-coverage.webp" alt="" width="960" height="600" decoding="async" loading="lazy">
+          </a>
+          <div class="project-body">
+            <h3 class="project-title"><a href="projects/coverage-keeper.html">Coverage Keeper</a></h3>
+            <p class="project-desc">A web app that reads a Medicaid renewal letter and tells you what it asks for, when it's due, and who to call.</p>
+            <p class="project-context">Solix AI Hackathon 2026</p>
+            <p class="project-highlight">Prize winner. On <em>9</em> held-out letters it got all <em>4</em> printed deadlines right and correctly found none on the other <em>5</em></p>
+            <ul class="project-tags" aria-label="Tools"><li>TypeScript</li><li>Next.js</li><li>Claude</li><li>zod</li><li>Playwright</li><li class="tag-more"><span aria-hidden="true">+1</span><span class="sr-only">Vercel</span></li></ul>
+            <p class="project-links">
+              <a href="https://github.com/AdityaJadhav17/coverage-keeper" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code</a>
+              <a href="https://coverage-keeper.vercel.app" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9 2.75h4.25V7M13 3 7.5 8.5M11.25 9.5v3.75h-8.5v-8.5H6.5"/></svg>Live</a>
+              <a href="https://devpost.com/software/enrollguard" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9 2.75h4.25V7M13 3 7.5 8.5M11.25 9.5v3.75h-8.5v-8.5H6.5"/></svg>Devpost</a>
             </p>
-          </article>
+            <a class="project-more" href="projects/coverage-keeper.html">Read the details <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
 
-          <article class="story">
-            <p class="story-kicker">Team of 5 · CSE 190</p>
-            <h3 class="story-title">Talk-to-Robot</h3>
-            <p><strong>The question:</strong> you tell a simulated robot arm what to do in plain English. When is a one-shot LLM reliable enough to turn that into a goal for a trained SAC+HER pushing policy in MuJoCo's FetchPush-v4? We compared a regex baseline against Gemini prompting, with instructions ranging from literal coordinates up to functional intent.</p>
-            <p><strong>My part:</strong> I fixed two bugs in the evaluation harness: one in how the regex baseline parsed the simplest tier, and one in where it read the cube's live position. I wrote one of the three pre-registered annotation sets for the hardest tier (functional intent), applied the annotations, and added the zero-shot results for that tier. I also reorganized the results folder and wrote the guide to how the repo is laid out.</p>
-            <p class="story-tools">Python · Gemini · MuJoCo · Gymnasium · Stable-Baselines3</p>
-            <p class="story-links">
-              <a class="text-link" href="assets/llm-spatial-grounding-paper.pdf" target="_blank">Paper &rarr;</a>
-              <a class="text-link" href="https://github.com/YangLin14/Talk-to-Robot" target="_blank">Code &rarr;</a>
+        <article class="project" id="project-tiny">
+          <a class="project-shot" href="projects/tiny-infer.html" tabindex="-1" aria-hidden="true">
+            <img src="assets/img/projects/thumb-tiny-infer.svg" alt="" width="960" height="600" decoding="async" loading="lazy">
+          </a>
+          <div class="project-body">
+            <h3 class="project-title"><a href="projects/tiny-infer.html">Tiny Infer</a></h3>
+            <p class="project-desc">A transformer inference engine in plain C that runs a small language model on a CPU, with no PyTorch and no BLAS.</p>
+            <p class="project-context">Solo side project · 2026</p>
+            <p class="project-highlight"><em>188</em> tokens/s on 2 threads, up from <em>121</em> on 1, with matmul split across cores by a pthreads pool</p>
+            <ul class="project-tags" aria-label="Tools"><li>C</li><li>pthreads</li><li>Make</li><li>GitHub Actions</li></ul>
+            <p class="project-links">
+              <a href="https://github.com/waleedA13/tiny-infer" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code</a>
             </p>
-          </article>
+            <a class="project-more" href="projects/tiny-infer.html">Read the details <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
 
-          <article class="story">
-            <p class="story-kicker">1st place, Multi-Agent Systems · SanD Hacks 2026</p>
-            <h3 class="story-title">Multi-Agent Travel Coordinator</h3>
-            <p><strong>The problem:</strong> plan a trip with several legs and the hard part is keeping the schedule consistent.</p>
-            <p><strong>What we built:</strong> three of us built a planner where you describe the trip in plain English. A LangGraph supervisor sends the request to flight, hotel, and activity agents that talk over Cisco AGNTCY's agent-to-agent protocol and pull live data from SerpAPI. A timing-rule engine keeps every leg in order, even across time zones. It got 90%+ of requests right with zero scheduling conflicts.</p>
-            <p class="story-tools">Python · FastAPI · LangGraph · AGNTCY · NATS · Docker · React</p>
-            <p class="story-links">
-              <a class="text-link" href="https://devpost.com/software/travel-agyntc" target="_blank">Devpost &rarr;</a>
+        <article class="project" id="project-robot">
+          <a class="project-shot" href="projects/talk-to-robot.html" tabindex="-1" aria-hidden="true">
+            <img src="assets/img/projects/thumb-talk-to-robot.webp" alt="" width="960" height="600" decoding="async" loading="lazy">
+          </a>
+          <div class="project-body">
+            <h3 class="project-title"><a href="projects/talk-to-robot.html">Talk-to-Robot</a></h3>
+            <p class="project-desc">You tell a simulated robot arm where to push a block in plain English. We measured how often the LLM step gets it wrong.</p>
+            <p class="project-context">UC San Diego course project (CSE 190) · Team of 5</p>
+            <p class="project-highlight">Gemini hit <em>100%</em> on coordinates but only <em>40–65%</em> on offsets like "5 cm to the right," where a regex scored 100%</p>
+            <ul class="project-tags" aria-label="Tools"><li>Python</li><li>Gemini</li><li>MuJoCo</li><li>Gymnasium</li><li>Stable-Baselines3</li></ul>
+            <p class="project-links">
+              <a href="https://github.com/YangLin14/Talk-to-Robot" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code</a>
+              <a href="assets/llm-spatial-grounding-paper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M3.25 1.75h6l3.5 3.5v9H3.25zM9 1.75v3.75h3.75M5.5 8.5h5M5.5 11h5"/></svg>Paper</a>
             </p>
-          </article>
+            <a class="project-more" href="projects/talk-to-robot.html">Read the details <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
 
-          <article class="story">
-            <p class="story-kicker">Team project · CSE 110</p>
-            <h3 class="story-title">Watchtower</h3>
-            <p><strong>The idea:</strong> a lightweight way to see what's going wrong in a web app while people are using it.</p>
-            <p><strong>What we built:</strong> a browser SDK that captures JS errors, latency, and user interactions, sends them to a Node.js + Supabase/Postgres backend, and shows it all on a live dashboard.</p>
-            <p><strong>My part:</strong> I wrote the shared event schema and API contract that every prototype used. I researched auth and email options, set up Clerk sign-in, and built email alerts through the Gmail API that fire when errors spike, with the email HTML escaped so it can't be used for XSS. I also wired the timezone selector through to the timestamps and backend, and made the profile show the signed-in user instead of hardcoded values.</p>
-            <p class="story-tools">JavaScript · Node.js · Supabase · Clerk · Gmail API · Jest</p>
-            <p class="story-links">
-              <a class="text-link" href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank">Code &rarr;</a>
+        <article class="project" id="project-travel">
+          <a class="project-shot" href="projects/travel-coordinator.html" tabindex="-1" aria-hidden="true">
+            <img src="assets/img/projects/thumb-travel.svg" alt="" width="960" height="600" decoding="async" loading="lazy">
+          </a>
+          <div class="project-body">
+            <h3 class="project-title"><a href="projects/travel-coordinator.html">Multi-Agent Travel Coordinator</a></h3>
+            <p class="project-desc">A travel planner where separate AI agents for flights, hotels and activities work together on one plan.</p>
+            <p class="project-context">SanD Hacks 2026 · Team of 3</p>
+            <p class="project-highlight">Won the <em>Multi-Agent Systems</em> challenge with a supervisor and <em>3</em> search agents talking over Cisco AGNTCY</p>
+            <ul class="project-tags" aria-label="Tools"><li>Python</li><li>FastAPI</li><li>LangGraph</li><li>AGNTCY</li><li>NATS</li><li class="tag-more"><span aria-hidden="true">+2</span><span class="sr-only">Docker, React</span></li></ul>
+            <p class="project-links">
+              <a href="https://github.com/AdityaJadhav17/sandhacks-2026-project" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code</a>
+              <a href="https://devpost.com/software/travel-agyntc" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9 2.75h4.25V7M13 3 7.5 8.5M11.25 9.5v3.75h-8.5v-8.5H6.5"/></svg>Devpost</a>
             </p>
-          </article>
+            <a class="project-more" href="projects/travel-coordinator.html">Read the details <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
 
-          <article class="story" id="project-radar">
-            <p class="story-kicker">Berkeley Lab · Summer 2023</p>
-            <h3 class="story-title">Precipitation classifier on a Raspberry Pi</h3>
-            <p><strong>The problem:</strong> a mmWave radar spits out raw binary files. I needed to classify the precipitation on a device small enough to leave out in the field.</p>
-            <p><strong>What I did:</strong> I wrote a decoder that turns the binaries into clean CSVs using JSON header configs, then trained SVM and K-means classifiers that hit 90%+ accuracy across conditions. I deployed it on a Raspberry Pi, where it classifies a reading in under a second.</p>
-            <p class="story-tools">Python · Linux · NumPy · Raspberry Pi</p>
-            <p class="story-links">
-              <a class="text-link" href="https://drive.google.com/file/d/1DSASDEsmYvp6f9jAXwpiorxnNO88CEZq/view?usp=sharing" target="_blank">Report &rarr;</a>
+        <article class="project" id="project-watchtower">
+          <a class="project-shot" href="projects/watchtower.html" tabindex="-1" aria-hidden="true">
+            <img src="assets/img/projects/thumb-watchtower.webp" alt="" width="960" height="600" decoding="async" loading="lazy">
+          </a>
+          <div class="project-body">
+            <h3 class="project-title"><a href="projects/watchtower.html">Watchtower</a></h3>
+            <p class="project-desc">A lightweight tool that shows web teams the errors, slowdowns and user activity on their live site.</p>
+            <p class="project-context">UC San Diego course project (CSE 110)</p>
+            <p class="project-highlight">Wrote the event schema and API contract that <em>every prototype</em> used, then brought Clerk sign-in into the final one</p>
+            <ul class="project-tags" aria-label="Tools"><li>JavaScript</li><li>Node.js</li><li>Supabase</li><li>Clerk</li><li>Jest</li><li class="tag-more"><span aria-hidden="true">+1</span><span class="sr-only">Gmail API</span></li></ul>
+            <p class="project-links">
+              <a href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code</a>
+              <a href="https://cse110-sp26-group09.github.io/Watchtower-test-app/" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9 2.75h4.25V7M13 3 7.5 8.5M11.25 9.5v3.75h-8.5v-8.5H6.5"/></svg>Test app</a>
             </p>
-          </article>
+            <a class="project-more" href="projects/watchtower.html">Read the details <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="project" id="project-radar">
+          <a class="project-shot" href="projects/radar-classifier.html" tabindex="-1" aria-hidden="true">
+            <img src="assets/img/projects/thumb-radar.svg" alt="" width="960" height="600" decoding="async" loading="lazy">
+          </a>
+          <div class="project-body">
+            <h3 class="project-title"><a href="projects/radar-classifier.html">Precipitation classifier on a Raspberry Pi</a></h3>
+            <p class="project-desc">Turns raw mmWave radar files into precipitation labels on a device small enough to leave out in the field.</p>
+            <p class="project-context">Lawrence Berkeley National Lab · Summer 2023</p>
+            <p class="project-highlight">Classifies a reading in <em>under a second</em> on the Pi, starting from the radar's raw binary files</p>
+            <ul class="project-tags" aria-label="Tools"><li>Python</li><li>NumPy</li><li>Pandas</li><li>Linux</li><li>Raspberry Pi</li></ul>
+            <p class="project-links">
+              <a href="https://drive.google.com/file/d/1DSASDEsmYvp6f9jAXwpiorxnNO88CEZq/view?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M3.25 1.75h6l3.5 3.5v9H3.25zM9 1.75v3.75h3.75M5.5 8.5h5M5.5 11h5"/></svg>Report</a>
+            </p>
+            <a class="project-more" href="projects/radar-classifier.html">Read the details <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
         </div>
       </div>
     </section>

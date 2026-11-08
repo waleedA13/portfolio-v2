@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600">
+  <rect width="960" height="600" fill="#fff"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="60" y="84" font-size="28" font-weight="700" fill="#1f2937">Tokens per second</text>
+    <text x="60" y="118" font-size="18" fill="#4b5563">median of 5 runs &#183; 200 tokens &#183; 2-vCPU VM &#183; synthetic weights</text>
+
+    <text x="60" y="222" font-size="20" font-weight="700" fill="#1f2937">1 thread</text>
+    <rect x="200" y="190" width="440" height="52" rx="8" fill="#eef4fd" stroke="#3b78d8" stroke-width="2"/>
+    <text x="660" y="226" font-size="26" font-weight="700" fill="#1f2937">121</text>
+
+    <text x="60" y="332" font-size="20" font-weight="700" fill="#1f2937">2 threads</text>
+    <rect x="200" y="300" width="684" height="52" rx="8" fill="#3b78d8"/>
+    <text x="864" y="336" font-size="26" font-weight="700" fill="#fff" text-anchor="end">188</text>
+
+    <line x1="60" y1="410" x2="900" y2="410" stroke="#e5e7eb" stroke-width="2"/>
+    <text x="60" y="462" font-size="20" fill="#4b5563">Time spent in matmul</text>
+    <text x="60" y="500" font-size="20" fill="#1f2937"><tspan font-weight="700">94%</tspan> on 1 thread &#183; <tspan font-weight="700">91%</tspan> on 2</text>
+  </g>
+  <g font-family="'Courier New', monospace" font-size="19" fill="#2563eb">
+    <text x="900" y="84" text-anchor="end">make bench</text>
+    <text x="60" y="548">plain C &#183; pthreads &#183; no PyTorch, no BLAS</text>
+  </g>
+</svg>
