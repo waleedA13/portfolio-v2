@@ -288,6 +288,25 @@ body.dark-mode .icon-sun { display: block; }
 }
 .button-primary:active { transform: translate(0, 0); box-shadow: 0 0 0 0 var(--accent); }
 
+/* LinkedIn button: outlined, sits next to "Email me" */
+.button-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.875rem;
+  padding: 0 1.125rem;
+  background: var(--paper-raised);
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: none;
+  border: 0.0625rem solid color-mix(in srgb, var(--ink) 28%, transparent);
+  border-radius: 0.625rem;
+  transition: border-color 200ms var(--ease), transform 200ms var(--ease);
+}
+.button-linkedin svg { width: 1.125rem; height: 1.125rem; fill: currentColor; flex: none; }
+.button-linkedin:hover { border-color: var(--ink); }
+.button-linkedin:active { transform: scale(0.98); }
+
 .intro-photo {
   justify-self: start;
   width: min(15rem, 70%);
@@ -816,4 +835,30 @@ body.dark-mode .case-figure .plate img { filter: brightness(0.9); }
   html { scroll-behavior: auto; }
   .job:first-child .job-when::before { animation: none; }
   .intro-photo { transform: none; }
+}
+
+/* Quick facts under the hero buttons */
+.quick-facts {
+  list-style: none;
+  margin: 2.25rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem 2rem;
+  max-width: 40rem;
+}
+.quick-facts li { display: grid; gap: 0.3rem; align-content: start; }
+.qf-num {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 3.4vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.qf-label { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.4; }
+@media (max-width: 30em) {
+  .quick-facts { grid-template-columns: 1fr; gap: 1rem; }
+  .quick-facts li { grid-template-columns: 4.25rem 1fr; align-items: center; gap: 0.75rem; }
 }
