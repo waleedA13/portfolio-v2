@@ -253,7 +253,8 @@
     </div>
     <ul class="compact-list">
       <li>Studying with a research collaborator and faculty advisor whether expert activations in sparse Mixture-of-Experts language models can be predicted ahead of time to enable speculative weight prefetching and reduce GPU pipeline stalls.</li>
-      <li>Set up our experiment pipeline on Mixtral 8x7B, including model loading, architecture verification, and tokenizer validation.</li>
+      <li>Built the seeded data collection loop and Parquet storage for Qwen1.5-MoE-A2.7B routing traces (one row per prompt, token, and layer), keeping full float32 expert probabilities for the predictor, with 25 unit tests.</li>
+      <li>Found with my collaborator that batch-to-batch noise alone still allows 99.5% expert recall with no prefetch buffer, and 99.98% with 2 extra experts.</li>
     </ul>
 
     <div class="entry-header">
@@ -318,8 +319,9 @@
       <span class="entry-details-dates">Oct 2026</span>
     </div>
     <ul class="compact-list">
-      <li>Built a web app that extracts the deadline, required documents, and contact number from a photographed Medicaid renewal letter, reading 4/4 printed deadlines correctly on held-out .gov sample notices.</li>
-      <li>Stopped the model from inventing eligibility answers with a schema that has no eligibility field, an output guardrail, and prompt-injection safety tests, giving 0 eligibility verdicts on 9 held-out letters.</li>
+      <li>Built a web app that extracts the deadline, required documents, and contact number from photographed Medicaid letters in English or Spanish, getting 24/24 deadlines right on held-out test letters from 5 states.</li>
+      <li>Stopped the model from inventing eligibility answers with a schema that has no eligibility field, an output guardrail, and prompt-injection safety tests; the guardrail fired 0 times across those 24 letters.</li>
+      <li>Researched launch law for federal and 5 states (14 topics each, primary sources only), producing a launch checklist, ranked questions for a lawyer, and 10 product-change issues.</li>
       <li>Built the doctor's note feature (template draft plus copy and share from screening results) and covered it in the safety and Playwright end-to-end suites.</li>
       <li>Added rate limiting and early oversized-body rejection to the letter-reading API, fixed a prompt bug that flagged readable letters as low confidence, and fixed flaky axe accessibility checks.</li>
     </ul>

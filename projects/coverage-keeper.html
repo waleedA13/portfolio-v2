@@ -61,11 +61,11 @@
         <a class="back" href="../index.html#projects">&larr; All projects</a>
         <p class="work-meta">Prize winner, Solix AI Hackathon 2026, AI in Healthcare track</p>
         <h1 class="cs-title">Coverage Keeper</h1>
-        <p class="cs-lede">Take a photo of a Medicaid renewal letter and Coverage Keeper tells you what the state wants, when it's due, and who to call. We built, tested, and deployed it in one day.</p>
+        <p class="cs-lede">Take a photo of a Medicaid renewal letter and Coverage Keeper tells you what the state wants, when it's due, and who to call. We built, tested, and deployed the first version in one day, then kept going: it now reads multi-page letters from 5 states, in English or Spanish.</p>
       </header>
       <dl class="kv cs-facts">
-        <div><dt>Result</dt><dd>Prize winner, AI in Healthcare track. On 9 held-out letters (6 PDFs, 3 phone photos) it read all 4 printed deadlines right, correctly found no deadline on the other 5, and gave 0 eligibility verdicts.</dd></div>
-        <div><dt>What I did</dt><dd>I built the doctor's note, rate-limited the paid model endpoint, fixed a prompt bug that marked readable letters as low confidence, and fixed flaky accessibility tests.</dd></div>
+        <div><dt>Result</dt><dd>Prize winner, AI in Healthcare track. On the latest eval (24 held-out test letters, mean of 3 runs) it got every deadline right, named the sending state every time, and the eligibility guardrail never fired.</dd></div>
+        <div><dt>What I did</dt><dd>I built the doctor's note, rate-limited the paid model endpoint, fixed a prompt bug that marked readable letters as low confidence, and fixed flaky accessibility tests. After the hackathon I wrote the legal research for a public launch: federal law plus all 5 states, and 10 follow-up issues.</dd></div>
         
         <div><dt>Stack</dt><dd>Next.js 16, React 19, TypeScript, Claude API, zod, Vitest, Playwright, axe-core, GitHub Actions, Vercel</dd></div>
         <div><dt>Links</dt><dd><a class="link" href="https://coverage-keeper.vercel.app" target="_blank" rel="noopener">Live app</a> <a class="link" href="https://devpost.com/software/enrollguard" target="_blank" rel="noopener">Devpost</a> <a class="link" href="https://github.com/AdityaJadhav17/coverage-keeper" target="_blank" rel="noopener">Code</a></dd></div>
@@ -79,9 +79,9 @@
       <section class="cs-section" id="what-it-does">
         <h2>What it does</h2>
         <ol>
-<li>You photograph or upload one page of the letter. The browser shrinks the image before it uploads.</li>
+<li>You photograph or upload the letter: up to 10 photos or one PDF. The browser shrinks photos before they upload.</li>
 <li>You get a plain-language summary, the deadline with days left (and the exact line it was read from), a checklist of documents, and a phone number.</li>
-<li>For Oregon letters, you answer yes/no questions from Oregon's published exemption list and see which exemptions <em>may</em> apply, with a link to the state page.</li>
+<li>For Washington, Oregon, California, Nevada, and Arizona letters, you answer yes/no questions from that state's published exemption list and see which exemptions <em>may</em> apply, with a link to the state page.</li>
 <li>If you report a health condition, you can draft a note to your doctor, then copy or share it.</li>
 </ol>
 <p>A call button stays on every screen. If the app can't read the letter, it says so and shows the number from the letter or OHP's line.</p>
@@ -104,6 +104,7 @@
       <section class="cs-section" id="my-part">
         <h2>My part</h2>
         <ul>
+<li><strong>Legal research for launch.</strong> After the hackathon I researched which laws could apply before a public launch: federal law plus Washington, Oregon, California, Nevada, and Arizona, 14 topics each (unauthorized practice of law, health-data privacy, breach notice, AI rules, government affiliation, immigration advice, accessibility, and more). Every claim cites a primary source with the date we retrieved it, and anything we could not confirm is marked. I merged the actions into a launch checklist and a ranked list of questions for a lawyer, and filed 10 issues for product changes (#44 to #53), such as an AI label on every result and a guardrail against immigration advice. It is research for a lawyer to review, not legal advice.</li>
 <li><strong>The doctor's note.</strong> A template draft that fills in from your screening answers, with copy and share buttons and a clear message if copying fails. I added it to both the safety suite and the Playwright end-to-end tests.</li>
 <li><strong>Rate limiting.</strong> The letter-reading endpoint is public and every call costs money, so I added a per-IP limit of 10 requests a minute on <code>/api/read</code>. Over the limit, it returns a 429 that still shows the OHP phone number, so nobody hits a dead end. Requests that declare a body over the size cap get a 413 before the server reads them. The counter lives in memory on each server instance and tracks at most 10,000 clients, so it stops one client looping but isn't a global limit. The platform firewall and the API spend limit do that job. I added unit tests for the limiter and an integration test on the route.</li>
 <li><strong>A prompt fix.</strong> Our first prompt marked readable letters as "low confidence" whenever they had no deadline. Many real notices have no deadline, so I rewrote that rule (prompt v2): a missing deadline no longer lowers confidence, but several possible deadlines still do. The test-set numbers stayed the same, so the fix removed a wrong warning without breaking anything.</li>
@@ -113,21 +114,20 @@
       </section>
       <section class="cs-section" id="how-we-tested-it">
         <h2>How we tested it</h2>
-        <p>We had no real letters, and we weren't going to use anyone's. CI rejects any eval file without a <code>.gov</code> source. The set was 13 images: 10 public sample notices (3 from Oregon, 7 from Vermont) and 3 phone photos, split 4 for development and 9 for test before any run.</p>
-<div class="table-wrap"><table><thead><tr><th>Test split, 9 letters</th><th class="num">Result</th></tr></thead><tbody>
-<tr><td>Printed deadline read correctly</td><td class="num">4 of 4</td></tr>
-<tr><td>No deadline, correctly reported as none</td><td class="num">5 of 5</td></tr>
-<tr><td>Notice type correct</td><td class="num">8 of 9</td></tr>
-<tr><td>Required action correct</td><td class="num">6 of 9</td></tr>
-<tr><td>Document recall / precision (mean)</td><td class="num">1.00 / 0.83</td></tr>
-<tr><td>Eligibility verdicts</td><td class="num">0</td></tr>
+        <p>We had no real letters, and we weren't going to use anyone's. CI rejects any eval file without a <code>.gov</code> source. At the hackathon the set was 13 images. It has since grown to 33 labeled letters: public sample notices from Oregon, Washington, California, Vermont, and Nevada, phone photos, full multi-page PDFs, and the agencies' own Spanish versions. 24 are held out for testing, including 4 Nevada letters that no prompt work saw.</p>
+<div class="table-wrap"><table><thead><tr><th>Test split, prompt v7, 24 letters (mean of 3 runs)</th><th class="num">Result</th></tr></thead><tbody>
+<tr><td>Deadline correct (printed or none)</td><td class="num">24 of 24</td></tr>
+<tr><td>Sending state identified</td><td class="num">24 of 24</td></tr>
+<tr><td>Notice type correct</td><td class="num">22 of 24</td></tr>
+<tr><td>Required action correct</td><td class="num">22 of 24</td></tr>
+<tr><td>Eligibility guardrail hits</td><td class="num">0</td></tr>
 </tbody></table></div>
-<p>The set is small and mostly Vermont, because Oregon publishes only three sample notices. The phone photos are of a screen, not paper, and 2 of the 3 show letters whose PDF versions were in the dev split. We published the failures by name in the README.</p>
+<p>The set is still small and mostly Vermont, because Oregon publishes only three sample notices and Arizona has published none. Document scores on full PDFs are lower (recall 0.76, precision 0.59). The phone photos show a screen, not paper. The README lists every failure by name.</p>
 <p>Every pull request runs secret scanning, a dependency audit, a license check, lint and type checks, unit and safety tests, integration tests, a build, and Playwright tests with axe on an iPhone 15 and a Pixel 7 profile. Merges to <code>main</code> deploy to Vercel.</p>
       </section>
       <section class="cs-section" id="next">
         <h2>Next</h2>
-        <p>Spanish (Oregon publishes Spanish notices), multi-page letters, deadline reminders, and more states, each with its own labeled test set. Before real users try it, we'd want to test on phone photos of paper and run a pilot with a community health worker program.</p>
+        <p>Before a public launch: a lawyer's review of the legal research, the 10 product changes it called for (an AI label on every result, a line saying we aren't part of the state, a guardrail against immigration advice, and more), a fluent review of the Spanish, tests on phone photos of paper, and a pilot with a community health worker program.</p>
       </section>
     </article>
 
