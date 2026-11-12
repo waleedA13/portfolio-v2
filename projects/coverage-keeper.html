@@ -44,7 +44,7 @@
         <li><a href="../index.html#about">About</a></li>
         <li><a href="../index.html#experience">Work</a></li>
         <li><a class="nav-active" aria-current="true" href="../index.html#projects">Projects</a></li>
-        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li><a href="../assets/resume.html" target="_blank" rel="noopener">Resume</a></li>
         <li>
           <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
             <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -61,19 +61,19 @@
         <a class="back" href="../index.html#projects">&larr; All projects</a>
         <p class="work-meta">Prize winner, Solix AI Hackathon 2026, AI in Healthcare track</p>
         <h1 class="cs-title">Coverage Keeper</h1>
-        <p class="cs-lede">Take a photo of a Medicaid renewal letter and Coverage Keeper tells you what the state wants, when it's due, and who to call. Three of us built it, tested it, and deployed it in one day.</p>
+        <p class="cs-lede">Take a photo of a Medicaid renewal letter and Coverage Keeper tells you what the state wants, when it's due, and who to call. We built, tested, and deployed it in one day.</p>
       </header>
       <dl class="kv cs-facts">
-        <div><dt>Result</dt><dd>On 9 held-out letters (6 PDFs, 3 phone photos) it got all 4 printed deadlines right, correctly found no deadline on the other 5, and never gave an eligibility verdict.</dd></div>
+        <div><dt>Result</dt><dd>Prize winner, AI in Healthcare track. On 9 held-out letters (6 PDFs, 3 phone photos) it read all 4 printed deadlines right, correctly found no deadline on the other 5, and gave 0 eligibility verdicts.</dd></div>
         <div><dt>What I did</dt><dd>I built the doctor's note, rate-limited the paid model endpoint, fixed a prompt bug that marked readable letters as low confidence, and fixed flaky accessibility tests.</dd></div>
-        <div><dt>Team</dt><dd>Team of 3</dd></div>
+        
         <div><dt>Stack</dt><dd>Next.js 16, React 19, TypeScript, Claude API, zod, Vitest, Playwright, axe-core, GitHub Actions, Vercel</dd></div>
-        <div><dt>Links</dt><dd><a class="link" href="https://coverage-keeper.vercel.app" target="_blank">Live app</a> <a class="link" href="https://devpost.com/software/enrollguard" target="_blank">Devpost</a> <a class="link" href="https://github.com/AdityaJadhav17/coverage-keeper" target="_blank">Code</a></dd></div>
+        <div><dt>Links</dt><dd><a class="link" href="https://coverage-keeper.vercel.app" target="_blank" rel="noopener">Live app</a> <a class="link" href="https://devpost.com/software/enrollguard" target="_blank" rel="noopener">Devpost</a> <a class="link" href="https://github.com/AdityaJadhav17/coverage-keeper" target="_blank" rel="noopener">Code</a></dd></div>
       </dl>
       <nav class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li><a href="#the-problem">The problem</a></li><li><a href="#what-it-does">What it does</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#my-part">My part</a></li><li><a href="#how-we-tested-it">How we tested it</a></li><li><a href="#next">Next</a></li></ul></nav>
       <section class="cs-section" id="the-problem">
         <h2>The problem</h2>
-        <p>When states restarted Medicaid renewals after the pandemic, most people who lost coverage lost it over paperwork. <a class="link" href="https://www.kff.org/medicaid/issue-brief/medicaid-enrollment-and-unwinding-tracker/" target="_blank">KFF</a> counted 69% of disenrollments as procedural. Starting January 1, 2027, a 2025 federal law adds work, volunteering, or school requirements for most expansion adults, which means more letters and more deadlines to miss.</p>
+        <p>When states restarted Medicaid renewals after the pandemic, most people who lost coverage lost it over paperwork. <a class="link" href="https://www.kff.org/medicaid/issue-brief/medicaid-enrollment-and-unwinding-tracker/" target="_blank" rel="noopener">KFF</a> counted 69% of disenrollments as procedural. Starting January 1, 2027, a 2025 federal law adds work, volunteering, or school requirements for most expansion adults, which means more letters and more deadlines to miss.</p>
 <p>We designed for one user: a delivery driver with a prepaid Android phone who can't sit on hold during a shift.</p>
       </section>
       <section class="cs-section" id="what-it-does">
@@ -93,7 +93,7 @@
       <section class="cs-section" id="how-it-works">
         <h2>How it works</h2>
         <p>The model only reads. Claude (<code>claude-opus-5-5</code>) returns one fixed JSON shape: notice type, summary, deadline, the quoted deadline line, required action, documents, phone, and confidence. A zod schema validates it. A refusal, a 30-second timeout, or bad output all turn into an "unsure" result instead of a guess. Days-left math runs in Pacific time.</p>
-<p>The app never decides eligibility. We enforced that three ways:</p>
+<p>A model that makes up an eligibility answer could tell someone they're covered when they aren't. So the app never decides eligibility, and we enforced that three ways:</p>
 <ul>
 <li>The schema has no eligibility field, so the model has nowhere to put a verdict.</li>
 <li>Exemption screening never calls the model. Oregon's rules live in a JSON file, each with its source URL and the date we checked it.</li>
@@ -132,7 +132,7 @@
     </article>
 
     <nav class="pager wrap-narrow" aria-label="More projects">
-      <a class="pg prev" href="bayt-qareeb.html"><span class="pg-dir">← Previous</span><span class="pg-title">Bayt Qareeb</span><span class="pg-note">Winner, MTC x Replit x Manara West Buildathon</span></a><a class="pg next" href="tiny-infer.html"><span class="pg-dir">Next →</span><span class="pg-title">Tiny Infer</span><span class="pg-note">188 vs 121 tokens/s on 2 vs 1 threads</span></a>
+      <a class="pg prev" href="bayt-qareeb.html"><span class="pg-dir">← Previous</span><span class="pg-title">Bayt Qareeb</span><span class="pg-note">Prize winner, MTC x Replit x Manara West Buildathon</span></a><a class="pg next" href="tiny-infer.html"><span class="pg-dir">Next →</span><span class="pg-title">Tiny Infer</span><span class="pg-note">188 vs 121 tokens/s on 2 vs 1 threads</span></a>
     </nav>
   </main>
 
@@ -140,9 +140,9 @@
     <div class="footer-content">
       <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
       <ul class="footer-links">
-        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
-        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li><a href="https://github.com/waleedA13" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="../assets/resume.html" target="_blank" rel="noopener">Resume</a></li>
       </ul>
       <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
     </div>

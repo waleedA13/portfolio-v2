@@ -44,7 +44,7 @@
         <li><a href="../index.html#about">About</a></li>
         <li><a href="../index.html#experience">Work</a></li>
         <li><a class="nav-active" aria-current="true" href="../index.html#projects">Projects</a></li>
-        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li><a href="../assets/resume.html" target="_blank" rel="noopener">Resume</a></li>
         <li>
           <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
             <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -68,14 +68,14 @@
         <div><dt>What I did</dt><dd>I wrote and ran the experiment code: the benchmark runs, the routing logger (forward hooks on every router), layer scoring, clustering, ablations, and the stats. My scripts are in <code>scripts/</code>; <code>code/LEGO-Puzzles</code> is the benchmark's own eval framework.</dd></div>
         <div><dt>Role</dt><dd>Undergraduate researcher, McNair Scholars Program</dd></div>
         <div><dt>Stack</dt><dd>Python, PyTorch, Hugging Face Transformers, RunPod A100s, NumPy, Pandas, scikit-learn</dd></div>
-        <div><dt>Links</dt><dd><a class="link" href="../assets/Waleed_McNairResearchPaper.pdf" target="_blank">Paper (PDF)</a> <a class="link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank">Code</a></dd></div>
+        <div><dt>Links</dt><dd><a class="link" href="../assets/Waleed_McNairResearchPaper.pdf" target="_blank" rel="noopener">Paper (PDF)</a> <a class="link" href="https://github.com/waleedA13/McNairProgramResearch" target="_blank" rel="noopener">Code</a></dd></div>
       </dl>
       <nav class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li><a href="#the-question">The question</a></li><li><a href="#getting-the-data">Getting the data</a></li><li><a href="#finding-suspects">Finding suspects</a></li><li><a href="#switching-them-off">Switching them off</a></li><li><a href="#the-holdout-check">The holdout check</a></li><li><a href="#what-it-leaves-open">What it leaves open</a></li></ul></nav>
       <section class="cs-section" id="the-question">
         <h2>The question</h2>
         <p>Qwen3-VL-30B is a Mixture-of-Experts model. It has 48 decoder layers, each with 128 small "expert" networks, and a router picks 8 of them for every token. So every token leaves a record of exactly which experts handled it.</p>
 <p>If the model's spatial mistakes come from a few layers or experts, their routing should look different on questions it gets wrong. Find them, switch them off, and accuracy should go up with no retraining.</p>
-<p>We tested this on LEGOLite, a 400-question slice of the <a class="link" href="https://arxiv.org/abs/2503.19990" target="_blank">LEGO-Puzzles</a> benchmark: 100 questions each on height, position, rotation, and assembly order.</p>
+<p>We tested this on LEGOLite, a 400-question slice of the <a class="link" href="https://arxiv.org/abs/2503.19990" target="_blank" rel="noopener">LEGO-Puzzles</a> benchmark: 100 questions each on height, position, rotation, and assembly order.</p>
       </section>
       <section class="cs-section" id="getting-the-data">
         <h2>Getting the data</h2>
@@ -110,7 +110,7 @@
         <h2>What it leaves open</h2>
         <p>Two explanations fit, and our data can't tell them apart:</p>
 <ul>
-<li><strong>The failure is spread out.</strong> Spatial reasoning might not live in any small set of experts. That matches <a class="link" href="https://arxiv.org/abs/2601.03425" target="_blank">Wang et al. (2026)</a>, who found MoE routing dominated by a "standing committee" of experts that fire regardless of task.</li>
+<li><strong>The failure is spread out.</strong> Spatial reasoning might not live in any small set of experts. That matches <a class="link" href="https://arxiv.org/abs/2601.03425" target="_blank" rel="noopener">Wang et al. (2026)</a>, who found MoE routing dominated by a "standing committee" of experts that fire regardless of task.</li>
 <li><strong>Our method was too blunt.</strong> Z-scores near 0.05 and weak clusters could mean the signal exists and a correlational score can't see it.</li>
 </ul>
 <p>So we wrote it up as a negative result. The follow-up we proposed is activation patching: corrupt the image, then copy the clean run's hidden state back in one layer at a time and see which layer flips the answer back. That would show which layer causes the error. Our correlational scores can't.</p>
@@ -127,9 +127,9 @@
     <div class="footer-content">
       <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
       <ul class="footer-links">
-        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
-        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li><a href="https://github.com/waleedA13" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="../assets/resume.html" target="_blank" rel="noopener">Resume</a></li>
       </ul>
       <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
     </div>

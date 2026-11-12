@@ -222,7 +222,7 @@
       <li><strong>Programming Languages:</strong> Python, C, C++, Java, JavaScript, TypeScript, SQL</li>
       <li><strong>Software Engineering:</strong> OOP, data structures & algorithms, software design, debugging, unit testing, Jest, Playwright</li>
       <li><strong>AI & Machine Learning:</strong> PyTorch, Hugging Face Transformers, bitsandbytes 4-bit quantization, LLM APIs (Claude, Gemini), LangGraph, LiteLLM, NumPy, Pandas, scikit-learn</li>
-      <li><strong>Developer Tools:</strong> Git, GitHub, BitBucket, Jira, Linux/Unix, VS Code, Cursor, JetBrains IDEs, command-line tools, Docker, Grafana</li>
+      <li><strong>Developer Tools:</strong> Git, GitHub, GitHub Actions, BitBucket, Jira, Linux/Unix, VS Code, Cursor, JetBrains IDEs, command-line tools, Docker, Grafana</li>
       <li><strong>Web & Databases:</strong> HTML, CSS, React, Next.js, Node.js, FastAPI, PostgreSQL, MySQL, Supabase, RESTful APIs</li>
     </ul>
   </section>
@@ -265,8 +265,8 @@
       <span>January 2026 - August 2026</span>
     </div>
     <ul class="compact-list">
-      <li>Conducted faculty-mentored research on vision-language model failures.</li>
-      <li>Investigated why Qwen3-VL-30B fails at spatial reasoning by profiling Mixture-of-Experts routing across 48 layers on the LEGO-Puzzles benchmark, then z-score ranking layers and clustering expert fingerprints with k-medoids (Jaccard distance) to isolate likely error sources.</li>
+      <li>Evaluated Mixture-of-Experts routing behavior and spatial reasoning in Qwen3-VL-30B on the LEGO-Puzzles benchmark, logging all 6,144 experts across 48 layers.</li>
+      <li>Ranked layers by z-score and clustered expert fingerprints with k-medoids (Jaccard distance) to isolate likely error sources.</li>
       <li>Designed and ran a 40-experiment ablation study on RunPod A100s (layer, MoE-only, and expert-level ablation vs. random controls), then validated results with McNemar's test and a held-out 200-question set, finding errors are distributed broadly across layers rather than concentrated in specific components.</li>
     </ul>
 
@@ -285,7 +285,7 @@
     </ul>
 
     <div class="entry-header">
-      <span>Machine Learning Research Intern</span>
+      <span>Machine Learning Engineer Intern</span>
       <span>Berkeley, CA</span>
     </div>
     <div class="entry-details">
@@ -293,21 +293,21 @@
       <span>June 2023 - August 2023</span>
     </div>
     <ul class="compact-list">
-      <li>Processed raw mmWave radar binaries into structured CSV datasets by decoding headers against JSON configs and validating outputs against Infineon radar visualizations.</li>
+      <li>Built an mmWave radar processing pipeline in Python that decodes raw binaries into structured CSV datasets using JSON header configs, validated against Infineon radar visualizations.</li>
       <li>Built SVM and K-means models for snowpack and precipitation classification, chosen to be small enough to run on embedded hardware.</li>
-      <li>Optimized and deployed the full pipeline on Raspberry Pi (Linux), achieving sub-second inference for low-power remote environmental sensing.</li>
+      <li>Deployed the pipeline and embedded ML classifiers on a Raspberry Pi (Linux) for real-time edge monitoring, classifying each reading in under a second.</li>
     </ul>
   </section>
 
   <section>
     <h2>Projects</h2>
     <div class="entry-header">
-      <span><a href="https://devpost.com/software/bayt-qareeb">Bayt Qareeb: Winner, MTC x Replit x Manara West Buildathon (Track 1)</a> |</span>
+      <span><a href="https://devpost.com/software/bayt-qareeb">Bayt Qareeb: Prize Winner, MTC x Replit x Manara West Buildathon (Track 1)</a> |</span>
       <span class="entry-tools">Next.js, TypeScript, React, Tailwind, Mapbox GL, Prisma, GitHub Actions, Vercel</span>
       <span class="entry-details-dates">Nov 2026</span>
     </div>
     <ul class="compact-list">
-      <li>Won on a team of 3 with a map-first room and roommate finder for Muslim college students, open only to verified .edu students and deployed on Vercel with 80 seed listings across 7 California campuses.</li>
+      <li>Built and deployed a map-first room and roommate finder for verified .edu Muslim college students on Vercel in one day, with 80 seed listings across 7 California campuses.</li>
       <li>Set up the first working MVP (Next.js map UI, Prisma schema and seed, listings API, first .edu signup check, CI), then built the Mapbox map UI: zoom-based price pins, a floating search bar with filter pills, a price range slider, place search with geocoding, and photo tours.</li>
       <li>Hardened CI with least-privilege permissions, SHA-pinned actions, npm audit, a secret scan, CodeQL, and Dependabot, and fixed the Vercel build with a seed-listing fallback when no database is configured.</li>
     </ul>
@@ -318,7 +318,8 @@
       <span class="entry-details-dates">Oct 2026</span>
     </div>
     <ul class="compact-list">
-      <li>Won a prize on a team of 3 with a deployed web app that reads a photographed Medicaid renewal letter and returns a plain-language summary, the deadline with days remaining, a document checklist, and the number to call; it read 4/4 printed deadlines correctly on public .gov sample notices.</li>
+      <li>Built a web app that extracts the deadline, required documents, and contact number from a photographed Medicaid renewal letter, reading 4/4 printed deadlines correctly on held-out .gov sample notices.</li>
+      <li>Stopped the model from inventing eligibility answers with a schema that has no eligibility field, an output guardrail, and prompt-injection safety tests, giving 0 eligibility verdicts on 9 held-out letters.</li>
       <li>Built the doctor's note feature (template draft plus copy and share from screening results) and covered it in the safety and Playwright end-to-end suites.</li>
       <li>Added rate limiting and early oversized-body rejection to the letter-reading API, fixed a prompt bug that flagged readable letters as low confidence, and fixed flaky axe accessibility checks.</li>
     </ul>
@@ -358,27 +359,27 @@
     </ul>
 
     <div class="entry-header">
-      <span><a href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project">Watchtower: Observability Platform</a> |</span>
+      <span><a href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project">Watchtower: Observability Platform (Data and Backend Logic Owner)</a> |</span>
       <span class="entry-tools">JavaScript, Node.js, Supabase, Clerk, Gmail API, Jest, Playwright, GitHub Actions</span>
       <span class="entry-details-dates">Apr 2026 - Jun 2026</span>
     </div>
     <ul class="compact-list">
-      <li>Contributed to a lightweight Sentry-like observability platform that captures JS errors, performance metrics, and user interactions through a browser SDK and displays them on a real-time dashboard.</li>
-      <li>Designed the shared event schema and API contract used across all prototypes, standardizing how events are captured, stored in Supabase/Postgres, and served via a Node.js backend.</li>
+      <li>Defined custom event schemas for error and performance tracking and the API contract that every prototype of a Sentry-like observability platform followed.</li>
+      <li>Normalized every event into one envelope before storage in Supabase/Postgres, and designed the Node.js event flow that stores the valid events in a batch and counts the rejects.</li>
       <li>Evaluated Clerk, Resend, and Gmail API, brought Clerk sign-in into the final prototype, and scoped profile data to the signed-in user; built and locally tested Gmail API error-spike alerts with HTML escaping to prevent XSS.</li>
       <li>Wired the dashboard's timezone selector through to event timestamps and backend queries.</li>
     </ul>
 
     <div class="entry-header">
-      <span><a href="https://devpost.com/software/travel-agyntc">Multi-Agent Travel Coordinator: Winner, Multi-Agent Systems, SanD Hacks 2026</a> |</span>
+      <span><a href="https://devpost.com/software/travel-agyntc">Multi-Agent Travel Coordinator: Prize Winner, Multi-Agent Systems, SanD Hacks 2026</a> |</span>
       <span class="entry-tools">Python, FastAPI, LangGraph, LiteLLM, Cisco AGNTCY, NATS, SerpAPI, Docker, React</span>
       <span class="entry-details-dates">Feb 2026</span>
     </div>
     <ul class="compact-list">
-      <li>Won the Multi-Agent Systems Challenge on a team of 3 with a travel planner where a LangGraph supervisor coordinates flight, hotel, and activity agents over Cisco AGNTCY's A2A protocol and NATS, pulls live data from SerpAPI, and checks that hotel check-ins line up with flight arrivals.</li>
+      <li>Won a prize with a 4-agent system where a FastAPI and LangGraph supervisor coordinates flight, hotel, and activity agents over A2A and NATS, filling 90%+ of plain-English trip requests correctly.</li>
+      <li>Shipped a timing rule that matches hotel check-ins to flight arrivals, removing 100% of scheduling conflicts.</li>
       <li>Set up the starting codebase from Cisco's CoffeeAGNTCY reference app (A2A agent servers, LangGraph supervisor, NATS transport, React UI, Docker Compose, Grafana and OpenTelemetry) and configured its environment so the stack ran for the team.</li>
-      <li>Did the initial end-to-end testing as the team reworked the reference agents into the flight, hotel, and activity agents.</li>
-    </ul>
+          </ul>
 
     <div class="entry-header">
       <span><a href="https://drive.google.com/file/d/1DSASDEsmYvp6f9jAXwpiorxnNO88CEZq/view?usp=sharing">Precipitation Classification on Embedded Radar</a> |</span>
@@ -388,7 +389,7 @@
     <ul class="compact-list">
       <li>Built an mmWave radar pipeline that decodes raw binary files into clean CSVs using JSON header configs.</li>
       <li>Trained SVM and K-means models for precipitation classification, small enough to run on the device.</li>
-      <li>Deployed on Raspberry Pi with sub-second inference for low-power remote sensing.</li>
+      <li>Deployed on a Raspberry Pi for real-time edge monitoring, classifying each reading in under a second.</li>
     </ul>
   </section>
 

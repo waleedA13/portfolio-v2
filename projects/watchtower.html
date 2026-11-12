@@ -44,7 +44,7 @@
         <li><a href="../index.html#about">About</a></li>
         <li><a href="../index.html#experience">Work</a></li>
         <li><a class="nav-active" aria-current="true" href="../index.html#projects">Projects</a></li>
-        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li><a href="../assets/resume.html" target="_blank" rel="noopener">Resume</a></li>
         <li>
           <button class="theme-toggle" id="theme-toggle" aria-label="Dark mode" aria-pressed="false">
             <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -59,16 +59,17 @@
     <article class="cs wrap-narrow">
       <header class="cs-head">
         <a class="back" href="../index.html#projects">&larr; All projects</a>
-        <p class="work-meta">CSE 110 team project, Apr to Jun 2026</p>
+        <p class="work-meta">CSE 110 team project, Apr to Jun 2026. My role: data and backend logic owner</p>
         <h1 class="cs-title">Watchtower</h1>
         <p class="cs-lede">Our team built a small error and performance monitor: drop a script into a web app and its errors, slow routes, and clicks show up on a dashboard.</p>
       </header>
       <dl class="kv cs-facts">
         <div><dt>Result</dt><dd>Backend deployed on Render, with a test app on GitHub Pages sending it events.</dd></div>
+        <div><dt>Role</dt><dd>Data and backend logic owner</dd></div>
         <div><dt>What I did</dt><dd>I wrote the shared event schema and API contract and the first version of Gmail error alerts (tested locally, never shipped). I also brought Clerk sign-in into the final prototype, wired up the timezone selector, fixed the profile and lint errors, and rewrote the README setup guide.</dd></div>
         <div><dt>Team</dt><dd>CSE 110 group 9</dd></div>
         <div><dt>Stack</dt><dd>JavaScript, Node.js, Supabase (Postgres), Clerk, Gmail API, Jest, Playwright, Render</dd></div>
-        <div><dt>Links</dt><dd><a class="link" href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank">Code</a> <a class="link" href="https://cse110-sp26-group09.github.io/Watchtower-test-app/" target="_blank">Test app</a></dd></div>
+        <div><dt>Links</dt><dd><a class="link" href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project" target="_blank" rel="noopener">Code</a> <a class="link" href="https://cse110-sp26-group09.github.io/Watchtower-test-app/" target="_blank" rel="noopener">Test app</a></dd></div>
       </dl>
       <section class="cs-section" id="">
         <h2>What it does</h2>
@@ -78,8 +79,8 @@
       <section class="cs-section" id="">
         <h2>One contract for every prototype</h2>
         <p>Early on, the team split into groups building competing prototypes. They could only be compared fairly if they sent and accepted the same events, so I wrote the shared event schema and API contract (v1) that every prototype followed. The goal was that either team's backend could serve either team's frontend with no changes.</p>
-<p>Every event has the same envelope: three required fields (<code>type</code>, <code>timestamp</code>, <code>data</code>), optional context the SDK fills in (<code>sessionId</code>, <code>userId</code>, <code>deployVersion</code>, <code>appName</code>, <code>url</code>, <code>route</code>), and a <code>receivedAt</code> the server adds on ingest. Later I audited the SDK and server against the spec field by field. Everything was captured, with two small labeling gaps in feedback and logout events, which I documented.</p>
-<p>The contract also set how the API behaves. <code>POST /api/events</code> takes a batch and accepts what it can: events that fail the envelope check are dropped and counted in a <code>rejected</code> field, and the valid ones are still stored. Only a body that isn't JSON gets a 400. Reads go through <code>GET /api/events</code> (filter by type, deploy version, and limit) and <code>/api/stats</code>. v1 also specced a server-sent events stream, but the final prototype's dashboard polls for stats every 3 seconds instead.</p>
+<p>Every event has the same envelope: three required fields (<code>type</code>, <code>timestamp</code>, <code>data</code>), optional context the SDK fills in (<code>sessionId</code>, <code>userId</code>, <code>deployVersion</code>, <code>appName</code>, <code>url</code>, <code>route</code>), and a <code>receivedAt</code> the server adds on ingest. The server normalizes every event to that envelope before it writes to Supabase, so errors, performance timings, and clicks are stored in one shape and queried the same way. Later I audited the SDK and server against the spec field by field. Everything was captured, with two small labeling gaps in feedback and logout events, which I documented.</p>
+<p>I also designed the backend event flow in the contract. <code>POST /api/events</code> takes a batch and accepts what it can: events that fail the envelope check are dropped and counted in a <code>rejected</code> field, and the valid ones are still stored. Only a body that isn't JSON gets a 400. Reads go through <code>GET /api/events</code> (filter by type, deploy version, and limit) and <code>/api/stats</code>. v1 also specced a server-sent events stream, but the final prototype's dashboard polls for stats every 3 seconds instead.</p>
       </section>
       <section class="cs-section" id="">
         <h2>Sign-in and alerts</h2>
@@ -100,7 +101,7 @@
     </article>
 
     <nav class="pager wrap-narrow" aria-label="More projects">
-      <a class="pg prev" href="talk-to-robot.html"><span class="pg-dir">← Previous</span><span class="pg-title">Talk-to-Robot</span><span class="pg-note">100% on coordinates, 40 to 65% on offsets</span></a><a class="pg next" href="travel-coordinator.html"><span class="pg-dir">Next →</span><span class="pg-title">Multi-Agent Travel Coordinator</span><span class="pg-note">Winner, Multi-Agent Systems Challenge</span></a>
+      <a class="pg prev" href="talk-to-robot.html"><span class="pg-dir">← Previous</span><span class="pg-title">Talk-to-Robot</span><span class="pg-note">100% on coordinates, 40 to 65% on offsets</span></a><a class="pg next" href="travel-coordinator.html"><span class="pg-dir">Next →</span><span class="pg-title">Multi-Agent Travel Coordinator</span><span class="pg-note">Prize winner, Multi-Agent Systems Challenge</span></a>
     </nav>
   </main>
 
@@ -108,9 +109,9 @@
     <div class="footer-content">
       <p class="footer-hello">If you want to talk about any of this, email me: <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
       <ul class="footer-links">
-        <li><a href="https://github.com/waleedA13" target="_blank">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">LinkedIn</a></li>
-        <li><a href="../assets/resume.html" target="_blank">Resume</a></li>
+        <li><a href="https://github.com/waleedA13" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="../assets/resume.html" target="_blank" rel="noopener">Resume</a></li>
       </ul>
       <p class="footer-copyright">&copy; 2026 Waleed Alghaithi</p>
     </div>
