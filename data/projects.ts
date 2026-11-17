@@ -461,6 +461,157 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "tiny-infer",
+    title: "Tiny Infer",
+    summary:
+      "A transformer inference engine in plain C that runs a small language model on a CPU, with no PyTorch and no BLAS.",
+    highlight:
+      "**188** tokens/s on 2 threads, up from **121** on 1, with matmul split across cores by a pthreads pool.",
+    context: "Solo side project · Oct 2026 – now",
+    meta: "Solo side project, Oct 2026 to now",
+    lede: "A transformer inference engine in plain C, built to run a 15M-parameter TinyStories-format model on a CPU, one token at a time, with no PyTorch and no BLAS.",
+    dates: "October 2026 – present",
+    team: "Solo",
+    tags: ["C", "pthreads", "Make", "GitHub Actions"],
+    image: {
+      src: "/img/projects/thumb-tiny-infer.svg",
+      alt: "Bar chart of Tiny Infer: 121 tokens per second on 1 thread and 188 on 2.",
+      width: 960,
+      height: 600,
+    },
+    links: [{ label: "Code", href: "https://github.com/waleedA13/tiny-infer" }],
+    facts: [
+      {
+        label: "Result",
+        text: "121 tokens/s on 1 thread, 188 on 2, with about 91% of the time in matmul. Measured on a 2-vCPU cloud VM with synthetic weights. No numbers on real weights yet.",
+      },
+      {
+        label: "What I did",
+        text: "Solo. I wrote all of it: the forward pass, BPE encoder, pthreads matmul, int8 path, benchmark mode, self-tests, and CI. File formats follow llama2.c.",
+      },
+      { label: "Team", text: "Solo" },
+      { label: "Stack", text: "C, pthreads, Make, GitHub Actions, AddressSanitizer, UBSan" },
+    ],
+    pagerNote: "188 vs 121 tokens/s on 2 vs 1 threads",
+    sections: [
+      {
+        id: "why-build-it",
+        title: "Why build it",
+        blocks: [
+          {
+            kind: "p",
+            text: "I use models all day in research, but PyTorch hides the part I wanted to understand: the work the CPU does to produce the next word. In C, I write every matmul and manage every buffer and thread myself.",
+          },
+          {
+            kind: "p",
+            text: "It's also a test bed for an idea from my research. A Mixture-of-Experts model only uses a few experts per token. If you can guess which ones come next, you can load their weights early and keep the CPU busy. The last item on the roadmap is a toy MoE layer to try that.",
+          },
+        ],
+      },
+      {
+        id: "one-token-start-to-finish",
+        title: "One token, start to finish",
+        blocks: [
+          {
+            kind: "ol",
+            items: [
+              "Look up the token's embedding.",
+              "For each layer: RMSNorm, then three matmuls for the query, key, and value vectors.",
+              "Rotate the query and key by the token's position (RoPE), and write the key and value into the KV cache so later tokens don't recompute them.",
+              "Score the query against every cached key, softmax the scores, and mix the cached values.",
+              "Project back, add the residual, then RMSNorm and the SwiGLU feed-forward, and add the residual again.",
+              "After the last layer, one more matmul turns the hidden state into a score for every word in the vocabulary, and the sampler picks one (greedy, or with temperature).",
+            ],
+          },
+          {
+            kind: "p",
+            text: "I `mmap` the model file, so startup is close to instant and the OS pages weights in as they're used. Prompts go through a BPE encoder I wrote against the llama2.c tokenizer format.",
+          },
+        ],
+      },
+      {
+        id: "where-the-time-goes",
+        title: "Where the time goes",
+        blocks: [
+          {
+            kind: "p",
+            text: "`make bench` builds a separate `-O3 -march=native -ffast-math` binary (so I can't time a debug build by accident), generates 200 tokens with greedy sampling, throws away a warm-up run, and reports the median of 5. The tokenizer and printing stay off the clock. It splits each token's time into matmul, attention, sampling, and everything else.",
+          },
+          {
+            kind: "p",
+            text: "The first measurement ran at 666 tokens per second with 96.5% of the time inside `matmul()`, but that skeleton only had the embedding and the output layer, so it mostly confirmed the timers work.",
+          },
+          {
+            kind: "p",
+            text: "Both runs used a 2-vCPU cloud VM (Intel Xeon, 2.8 GHz) and synthetic weights shaped like stories15M. The weight values don't affect speed, but these aren't laptop numbers or the real model. Results with the full forward pass:",
+          },
+          {
+            kind: "table",
+            headers: ["Threads", "Tokens/s (median of 5)", "Time in matmul"],
+            rows: [
+              ["1", "121", "94%"],
+              ["2", "188", "91%"],
+            ],
+            note: "fp32, 200 tokens greedy from BOS. Shared VMs are noisy: the 2-thread min and max in one run were 173 and 204.",
+          },
+          { kind: "p", text: "Matmul still takes most of the time with attention in, so SIMD matmul is next." },
+        ],
+      },
+      {
+        id: "making-matmul-faster",
+        title: "Making matmul faster",
+        blocks: [
+          { kind: "h3", text: "Threads" },
+          {
+            kind: "p",
+            text: "A pthreads pool splits the output rows of each matmul across cores. Rows are independent, so threads never write to the same memory. `-j` sets the thread count. By default it uses every core.",
+          },
+          { kind: "h3", text: "int8 weights" },
+          {
+            kind: "p",
+            text: "`--int8` stores every weight as an 8-bit integer in groups of 32, with one float scale per group (`scale = max|w| / 127`). Activations get the same treatment just before each matmul, so the inner loop multiplies int8 by int8 and adds up in int32. That's about a quarter of the memory traffic of fp32. `--compare` runs both versions on the same prompt and prints the numeric error, the speed of each, and both stories side by side, so I can see when quantization changes the output.",
+          },
+        ],
+      },
+      {
+        id: "testing-and-ci",
+        title: "Testing and CI",
+        blocks: [
+          {
+            kind: "p",
+            text: "Every kernel (matmul, softmax, RMSNorm, the thread pool, int8) has its own self-test, run by `make test`. `make debug` rebuilds with the address and undefined-behavior sanitizers on.",
+          },
+          {
+            kind: "p",
+            text: "Two real bugs so far. The loader checks that the weights end exactly where the file does, and that check showed I was skipping twice too many floats for llama2.c's unused legacy RoPE tables, so real checkpoints would have been rejected. And the macOS build broke because macOS hides the constant I use to count cores (`_SC_NPROCESSORS_ONLN`) when only `_POSIX_C_SOURCE` is set. Defining `_DARWIN_C_SOURCE` fixed it.",
+          },
+          {
+            kind: "p",
+            text: "One GitHub Actions workflow chains four jobs: `build-and-test → sanitizers → package → release`. Pushes and pull requests run the first two on Linux and macOS. A version tag runs all four jobs and attaches Linux and macOS binaries to a GitHub release, though I haven't tagged one yet.",
+          },
+        ],
+      },
+      {
+        id: "next",
+        title: "Next",
+        blocks: [
+          {
+            kind: "ul",
+            items: [
+              "Run the benchmark on a laptop with the real stories15M weights for each version: naive, threaded, SIMD, int8.",
+              "Hand-written NEON and AVX2 matmul kernels.",
+              "A toy MoE layer with expert prefetching.",
+            ],
+          },
+          {
+            kind: "p",
+            text: "The checkpoint and tokenizer formats follow [llama2.c](https://github.com/karpathy/llama2.c), which I used as a reference for file layout.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "lego-spatial-reasoning",
     title: "Tracing a 30B vision model's LEGO puzzle failures",
     summary:
@@ -647,151 +798,118 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "tiny-infer",
-    title: "Tiny Infer",
-    summary:
-      "A transformer inference engine in plain C that runs a small language model on a CPU, with no PyTorch and no BLAS.",
+    slug: "watchtower",
+    title: "Watchtower",
+    summary: "A lightweight tool that shows web teams the errors, slowdowns and user activity on their live site.",
     highlight:
-      "**188** tokens/s on 2 threads, up from **121** on 1, with matmul split across cores by a pthreads pool.",
-    context: "Solo side project · Oct 2026 – now",
-    meta: "Solo side project, Oct 2026 to now",
-    lede: "A transformer inference engine in plain C, built to run a 15M-parameter TinyStories-format model on a CPU, one token at a time, with no PyTorch and no BLAS.",
-    dates: "October 2026 – present",
-    team: "Solo",
-    tags: ["C", "pthreads", "Make", "GitHub Actions"],
+      "Owned data and backend logic: wrote the event schema and API contract **every prototype** used, and designed the backend event flow.",
+    context: "UC San Diego course project (CSE 110)",
+    meta: "CSE 110 team project, Apr to Jun 2026. My role: data and backend logic owner",
+    lede: "Our team built a small error and performance monitor: drop a script into a web app and its errors, slow routes, and clicks show up on a dashboard.",
+    dates: "April – June 2026",
+    team: "CSE 110 group 9",
+    tags: ["JavaScript", "Node.js", "Supabase", "Clerk", "Jest", "Gmail API"],
     image: {
-      src: "/img/projects/thumb-tiny-infer.svg",
-      alt: "Bar chart of Tiny Infer: 121 tokens per second on 1 thread and 188 on 2.",
+      src: "/img/projects/thumb-watchtower.webp",
+      alt: "Watchtower dashboard with health scores and a radar chart.",
       width: 960,
       height: 600,
     },
-    links: [{ label: "Code", href: "https://github.com/waleedA13/tiny-infer" }],
+    links: [
+      { label: "Code", href: "https://github.com/cse110-sp26-group09/Watchtower-Course-Project" },
+      { label: "Test app", href: "https://cse110-sp26-group09.github.io/Watchtower-test-app/" },
+    ],
     facts: [
       {
         label: "Result",
-        text: "121 tokens/s on 1 thread, 188 on 2, with about 91% of the time in matmul. Measured on a 2-vCPU cloud VM with synthetic weights. No numbers on real weights yet.",
+        text: "Backend deployed on Render, with a test app on GitHub Pages sending it events.",
       },
+      { label: "Role", text: "Data and backend logic owner" },
       {
         label: "What I did",
-        text: "Solo. I wrote all of it: the forward pass, BPE encoder, pthreads matmul, int8 path, benchmark mode, self-tests, and CI. File formats follow llama2.c.",
+        text: "I wrote the shared event schema and API contract and the first version of Gmail error alerts (tested locally, never shipped). I also brought Clerk sign-in into the final prototype, wired up the timezone selector, fixed the profile and lint errors, and rewrote the README setup guide.",
       },
-      { label: "Team", text: "Solo" },
-      { label: "Stack", text: "C, pthreads, Make, GitHub Actions, AddressSanitizer, UBSan" },
+      { label: "Team", text: "CSE 110 group 9" },
+      {
+        label: "Stack",
+        text: "JavaScript, Node.js, Supabase (Postgres), Clerk, Gmail API, Jest, Playwright, Render",
+      },
     ],
-    pagerNote: "188 vs 121 tokens/s on 2 vs 1 threads",
+    pagerNote: "Backend deployed on Render",
     sections: [
       {
-        id: "why-build-it",
-        title: "Why build it",
+        id: "what-it-does",
+        title: "What it does",
         blocks: [
           {
             kind: "p",
-            text: "I use models all day in research, but PyTorch hides the part I wanted to understand: the work the CPU does to produce the next word. In C, I write every matmul and manage every buffer and thread myself.",
+            text: "A dependency-free browser SDK captures JavaScript errors, clicks and custom events, route changes, and page-load timing, then sends them in batches to a Node.js backend on Render. The backend stores events in Supabase (Postgres) and serves a dashboard behind Clerk sign-in, where each user only sees their own apps' data. Errors and metrics are tagged with a deploy version, so you can tell which release made things worse.",
           },
           {
-            kind: "p",
-            text: "It's also a test bed for an idea from my research. A Mixture-of-Experts model only uses a few experts per token. If you can guess which ones come next, you can load their weights early and keep the CPU busy. The last item on the roadmap is a toy MoE layer to try that.",
-          },
-        ],
-      },
-      {
-        id: "one-token-start-to-finish",
-        title: "One token, start to finish",
-        blocks: [
-          {
-            kind: "ol",
-            items: [
-              "Look up the token's embedding.",
-              "For each layer: RMSNorm, then three matmuls for the query, key, and value vectors.",
-              "Rotate the query and key by the token's position (RoPE), and write the key and value into the KV cache so later tokens don't recompute them.",
-              "Score the query against every cached key, softmax the scores, and mix the cached values.",
-              "Project back, add the residual, then RMSNorm and the SwiGLU feed-forward, and add the residual again.",
-              "After the last layer, one more matmul turns the hidden state into a score for every word in the vocabulary, and the sampler picks one (greedy, or with temperature).",
+            kind: "figure",
+            plate: true,
+            images: [
+              {
+                src: "/img/projects/watchtower-architecture.webp",
+                alt: "Hand-drawn style architecture diagram: a monitored browser app with an embedded SDK posts events to a Node.js server on Render, which stores them in Supabase tables and verifies dashboard users with Clerk.",
+                width: 1600,
+                height: 900,
+              },
             ],
-          },
-          {
-            kind: "p",
-            text: "I `mmap` the model file, so startup is close to instant and the OS pages weights in as they're used. Prompts go through a BPE encoder I wrote against the llama2.c tokenizer format.",
+            caption:
+              "System architecture, drawn by our team. The SDK posts batches to the Node.js server; the dashboard signs in through Clerk.",
           },
         ],
       },
       {
-        id: "where-the-time-goes",
-        title: "Where the time goes",
+        id: "one-contract",
+        title: "One contract for every prototype",
         blocks: [
           {
             kind: "p",
-            text: "`make bench` builds a separate `-O3 -march=native -ffast-math` binary (so I can't time a debug build by accident), generates 200 tokens with greedy sampling, throws away a warm-up run, and reports the median of 5. The tokenizer and printing stay off the clock. It splits each token's time into matmul, attention, sampling, and everything else.",
+            text: "Early on, the team split into groups building competing prototypes. They could only be compared fairly if they sent and accepted the same events, so I wrote the shared event schema and API contract (v1) that every prototype followed. The goal was that either team's backend could serve either team's frontend with no changes.",
           },
           {
             kind: "p",
-            text: "The first measurement ran at 666 tokens per second with 96.5% of the time inside `matmul()`, but that skeleton only had the embedding and the output layer, so it mostly confirmed the timers work.",
+            text: "Every event has the same envelope: three required fields (`type`, `timestamp`, `data`), optional context the SDK fills in (`sessionId`, `userId`, `deployVersion`, `appName`, `url`, `route`), and a `receivedAt` the server adds on ingest. The server normalizes every event to that envelope before it writes to Supabase, so errors, performance timings, and clicks are stored in one shape and queried the same way. Later I audited the SDK and server against the spec field by field. Everything was captured, with two small labeling gaps in feedback and logout events, which I documented.",
           },
           {
             kind: "p",
-            text: "Both runs used a 2-vCPU cloud VM (Intel Xeon, 2.8 GHz) and synthetic weights shaped like stories15M. The weight values don't affect speed, but these aren't laptop numbers or the real model. Results with the full forward pass:",
+            text: "I also designed the backend event flow in the contract. `POST /api/events` takes a batch and accepts what it can: events that fail the envelope check are dropped and counted in a `rejected` field, and the valid ones are still stored. Only a body that isn't JSON gets a 400. Reads go through `GET /api/events` (filter by type, deploy version, and limit) and `/api/stats`. v1 also specced a server-sent events stream, but the final prototype's dashboard polls for stats every 3 seconds instead.",
           },
-          {
-            kind: "table",
-            headers: ["Threads", "Tokens/s (median of 5)", "Time in matmul"],
-            rows: [
-              ["1", "121", "94%"],
-              ["2", "188", "91%"],
-            ],
-            note: "fp32, 200 tokens greedy from BOS. Shared VMs are noisy: the 2-thread min and max in one run were 173 and 204.",
-          },
-          { kind: "p", text: "Matmul still takes most of the time with attention in, so SIMD matmul is next." },
         ],
       },
       {
-        id: "making-matmul-faster",
-        title: "Making matmul faster",
+        id: "sign-in-and-alerts",
+        title: "Sign-in and alerts",
         blocks: [
-          { kind: "h3", text: "Threads" },
+          { kind: "h3", text: "Sign-in" },
           {
             kind: "p",
-            text: "A pthreads pool splits the output rows of each matmul across cores. Rows are independent, so threads never write to the same memory. `-j` sets the thread count. By default it uses every core.",
+            text: "I researched Clerk for sign-in, and Resend versus the Gmail API for alert emails. A teammate wrote our first Clerk integration. When we picked the final prototype, I brought Clerk sign-in into it: I repointed the sign-in redirect and config, moved the dashboard auth guard over, and added the signed-in user label and a Logout button. Later I fixed the profile page. It showed a hardcoded name, and now it shows the signed-in user's name and initials, scoped to their user ID.",
           },
-          { kind: "h3", text: "int8 weights" },
+          { kind: "h3", text: "Error-spike emails" },
           {
             kind: "p",
-            text: "`--int8` stores every weight as an 8-bit integer in groups of 32, with one float scale per group (`scale = max|w| / 127`). Activations get the same treatment just before each matmul, so the inner loop multiplies int8 by int8 and adds up in int32. That's about a quarter of the memory traffic of fp32. `--compare` runs both versions on the same prompt and prints the numeric error, the speed of each, and both stories side by side, so I can see when quantization changes the output.",
-          },
-        ],
-      },
-      {
-        id: "testing-and-ci",
-        title: "Testing and CI",
-        blocks: [
-          {
-            kind: "p",
-            text: "Every kernel (matmul, softmax, RMSNorm, the thread pool, int8) has its own self-test, run by `make test`. `make debug` rebuilds with the address and undefined-behavior sanitizers on.",
+            text: "I built the first version of email alerts with the Gmail API (OAuth2 through Nodemailer). When an incoming batch has at least `ERROR_ALERT_THRESHOLD` errors (default 5), the server emails the route, the deploy version, and the first error message. Anyone who can trigger an error in a monitored app controls that message, so I escaped the HTML before it goes into the email.",
           },
           {
             kind: "p",
-            text: "Two real bugs so far. The loader checks that the weights end exactly where the file does, and that check showed I was skipping twice too many floats for llama2.c's unused legacy RoPE tables, so real checkpoints would have been rejected. And the macOS build broke because macOS hides the constant I use to count cores (`_SC_NPROCESSORS_ONLN`) when only `_POSIX_C_SOURCE` is set. Defining `_DARWIN_C_SOURCE` fixed it.",
-          },
-          {
-            kind: "p",
-            text: "One GitHub Actions workflow chains four jobs: `build-and-test → sanitizers → package → release`. Pushes and pull requests run the first two on Linux and macOS. A version tag runs all four jobs and attaches Linux and macOS binaries to a GitHub release, though I haven't tagged one yet.",
+            text: "The threshold counts errors per batch, not per minute, so it's a rough spike signal. We tested alerts only locally. In September 2026 a teammate's security review removed the mailer from `main`, because a public route for registering alert recipients made a Nodemailer advisory reachable.",
           },
         ],
       },
       {
-        id: "next",
-        title: "Next",
+        id: "smaller-fixes",
+        title: "Smaller fixes",
         blocks: [
           {
             kind: "ul",
             items: [
-              "Run the benchmark on a laptop with the real stories15M weights for each version: naive, threaded, SIMD, int8.",
-              "Hand-written NEON and AVX2 matmul kernels.",
-              "A toy MoE layer with expert prefetching.",
+              "Wired the dashboard's timezone selector through to event timestamps and the backend, with unit tests for the event store.",
+              "Fixed lint failures that were blocking CI.",
+              "Rewrote the README's project structure and setup guide for the final prototype.",
             ],
-          },
-          {
-            kind: "p",
-            text: "The checkpoint and tokenizer formats follow [llama2.c](https://github.com/karpathy/llama2.c), which I used as a reference for file layout.",
           },
         ],
       },
@@ -1035,124 +1153,6 @@ export const projects: Project[] = [
           {
             kind: "p",
             text: "We'd let you set your own filters, like nonstop-only or a higher hotel rating, and add booking links so you can buy from the same page.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    slug: "watchtower",
-    title: "Watchtower",
-    summary: "A lightweight tool that shows web teams the errors, slowdowns and user activity on their live site.",
-    highlight:
-      "Owned data and backend logic: wrote the event schema and API contract **every prototype** used, and designed the backend event flow.",
-    context: "UC San Diego course project (CSE 110)",
-    meta: "CSE 110 team project, Apr to Jun 2026. My role: data and backend logic owner",
-    lede: "Our team built a small error and performance monitor: drop a script into a web app and its errors, slow routes, and clicks show up on a dashboard.",
-    dates: "April – June 2026",
-    team: "CSE 110 group 9",
-    tags: ["JavaScript", "Node.js", "Supabase", "Clerk", "Jest", "Gmail API"],
-    image: {
-      src: "/img/projects/thumb-watchtower.webp",
-      alt: "Watchtower dashboard with health scores and a radar chart.",
-      width: 960,
-      height: 600,
-    },
-    links: [
-      { label: "Code", href: "https://github.com/cse110-sp26-group09/Watchtower-Course-Project" },
-      { label: "Test app", href: "https://cse110-sp26-group09.github.io/Watchtower-test-app/" },
-    ],
-    facts: [
-      {
-        label: "Result",
-        text: "Backend deployed on Render, with a test app on GitHub Pages sending it events.",
-      },
-      { label: "Role", text: "Data and backend logic owner" },
-      {
-        label: "What I did",
-        text: "I wrote the shared event schema and API contract and the first version of Gmail error alerts (tested locally, never shipped). I also brought Clerk sign-in into the final prototype, wired up the timezone selector, fixed the profile and lint errors, and rewrote the README setup guide.",
-      },
-      { label: "Team", text: "CSE 110 group 9" },
-      {
-        label: "Stack",
-        text: "JavaScript, Node.js, Supabase (Postgres), Clerk, Gmail API, Jest, Playwright, Render",
-      },
-    ],
-    pagerNote: "Backend deployed on Render",
-    sections: [
-      {
-        id: "what-it-does",
-        title: "What it does",
-        blocks: [
-          {
-            kind: "p",
-            text: "A dependency-free browser SDK captures JavaScript errors, clicks and custom events, route changes, and page-load timing, then sends them in batches to a Node.js backend on Render. The backend stores events in Supabase (Postgres) and serves a dashboard behind Clerk sign-in, where each user only sees their own apps' data. Errors and metrics are tagged with a deploy version, so you can tell which release made things worse.",
-          },
-          {
-            kind: "figure",
-            plate: true,
-            images: [
-              {
-                src: "/img/projects/watchtower-architecture.webp",
-                alt: "Hand-drawn style architecture diagram: a monitored browser app with an embedded SDK posts events to a Node.js server on Render, which stores them in Supabase tables and verifies dashboard users with Clerk.",
-                width: 1600,
-                height: 900,
-              },
-            ],
-            caption:
-              "System architecture, drawn by our team. The SDK posts batches to the Node.js server; the dashboard signs in through Clerk.",
-          },
-        ],
-      },
-      {
-        id: "one-contract",
-        title: "One contract for every prototype",
-        blocks: [
-          {
-            kind: "p",
-            text: "Early on, the team split into groups building competing prototypes. They could only be compared fairly if they sent and accepted the same events, so I wrote the shared event schema and API contract (v1) that every prototype followed. The goal was that either team's backend could serve either team's frontend with no changes.",
-          },
-          {
-            kind: "p",
-            text: "Every event has the same envelope: three required fields (`type`, `timestamp`, `data`), optional context the SDK fills in (`sessionId`, `userId`, `deployVersion`, `appName`, `url`, `route`), and a `receivedAt` the server adds on ingest. The server normalizes every event to that envelope before it writes to Supabase, so errors, performance timings, and clicks are stored in one shape and queried the same way. Later I audited the SDK and server against the spec field by field. Everything was captured, with two small labeling gaps in feedback and logout events, which I documented.",
-          },
-          {
-            kind: "p",
-            text: "I also designed the backend event flow in the contract. `POST /api/events` takes a batch and accepts what it can: events that fail the envelope check are dropped and counted in a `rejected` field, and the valid ones are still stored. Only a body that isn't JSON gets a 400. Reads go through `GET /api/events` (filter by type, deploy version, and limit) and `/api/stats`. v1 also specced a server-sent events stream, but the final prototype's dashboard polls for stats every 3 seconds instead.",
-          },
-        ],
-      },
-      {
-        id: "sign-in-and-alerts",
-        title: "Sign-in and alerts",
-        blocks: [
-          { kind: "h3", text: "Sign-in" },
-          {
-            kind: "p",
-            text: "I researched Clerk for sign-in, and Resend versus the Gmail API for alert emails. A teammate wrote our first Clerk integration. When we picked the final prototype, I brought Clerk sign-in into it: I repointed the sign-in redirect and config, moved the dashboard auth guard over, and added the signed-in user label and a Logout button. Later I fixed the profile page. It showed a hardcoded name, and now it shows the signed-in user's name and initials, scoped to their user ID.",
-          },
-          { kind: "h3", text: "Error-spike emails" },
-          {
-            kind: "p",
-            text: "I built the first version of email alerts with the Gmail API (OAuth2 through Nodemailer). When an incoming batch has at least `ERROR_ALERT_THRESHOLD` errors (default 5), the server emails the route, the deploy version, and the first error message. Anyone who can trigger an error in a monitored app controls that message, so I escaped the HTML before it goes into the email.",
-          },
-          {
-            kind: "p",
-            text: "The threshold counts errors per batch, not per minute, so it's a rough spike signal. We tested alerts only locally. In September 2026 a teammate's security review removed the mailer from `main`, because a public route for registering alert recipients made a Nodemailer advisory reachable.",
-          },
-        ],
-      },
-      {
-        id: "smaller-fixes",
-        title: "Smaller fixes",
-        blocks: [
-          {
-            kind: "ul",
-            items: [
-              "Wired the dashboard's timezone selector through to event timestamps and the backend, with unit tests for the event store.",
-              "Fixed lint failures that were blocking CI.",
-              "Rewrote the README's project structure and setup guide for the final prototype.",
-            ],
           },
         ],
       },
