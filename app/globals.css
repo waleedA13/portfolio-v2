@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --paper: #f3f5f4;
+  --raised: #ffffff;
+  --ink: #14221c;
+  --soft: #3d5248;
+  --faint: #6d7f76;
+  --rule: #d7e0db;
+  --accent: #0c7a62;
+  --footer: #14221c;
+  --footer-ink: #f3f5f4;
+  --footer-faint: #9aafa6;
+  --footer-accent: #8ee0c8;
+}
+
+.dark {
+  --paper: #101614;
+  --raised: #1a2420;
+  --ink: #e7f2ec;
+  --soft: #c5d5cc;
+  --faint: #8ea399;
+  --rule: #2a3832;
+  --accent: #3dbea0;
+  --footer: #0b100e;
+  --footer-accent: #8ee0c8;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-raised: var(--raised);
+  --color-ink: var(--ink);
+  --color-soft: var(--soft);
+  --color-faint: var(--faint);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-footer: var(--footer);
+  --color-footer-ink: var(--footer-ink);
+  --color-footer-faint: var(--footer-faint);
+  --color-footer-accent: var(--footer-accent);
+  --font-sans: var(--font-sans), Figtree, system-ui, sans-serif;
+  --font-display: var(--font-display), "Bricolage Grotesque", system-ui, sans-serif;
+  --font-mono: var(--font-mono), "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); }
+::selection { background: var(--accent); color: white; }
+
+.chart-dark { display: none; }
+.dark .chart-light { display: none; }
+.dark .chart-dark { display: block; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

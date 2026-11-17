@@ -185,14 +185,18 @@
         width: auto;
         max-width: none;
         padding: 0;
-        margin: 1cm;
+        margin: 0;
+        line-height: 1.4;
         font-size: 9pt;
         background-color: var(--color-surface);
         -webkit-print-color-adjust: exact;
         color-adjust: exact;
       }
 
-      @page { margin: 0; }
+      @page { size: letter; margin: 1cm; }
+
+      h2, .entry-header, .entry-details { break-after: avoid; }
+      .compact-list li { break-inside: avoid; }
 
       h1 { font-size: 15pt; }
       h2 { font-size: 11pt; }
@@ -302,6 +306,18 @@
 
   <section>
     <h2>Projects</h2>
+    <div class="entry-header">
+      <span><a href="https://github.com/waleedA13/TheraCheck">TheraCheck: Therapist Directory Verification, SanD Hacks Fall 2026</a> |</span>
+      <span class="entry-tools">TypeScript, Next.js, Bright Data, Gemini, Neon Postgres, Vitest, Playwright</span>
+      <span class="entry-details-dates">Nov 2026</span>
+    </div>
+    <ul class="compact-list">
+      <li>Built and deployed TheraCheck on a team of 3 to rank Cigna directory listings using public evidence, with source links, license status, and an explanation for each result.</li>
+      <li>Built Bright Data directory and evidence collectors with NPI lookups; collected 300 listings across 6 California cities and found web evidence for 104. Fixed cross-city deduplication so repeat runs inserted no duplicates.</li>
+      <li>Matched California DCA licensee files by license number or name and location, linking 75 of 300 listings to license records; hand-checked 5 records on the DCA site.</li>
+      <li>Set up the Next.js app, Neon Postgres schema, and scoring; built a queued re-check worker with row locking that preserves prior results when no fresh evidence is found.</li>
+    </ul>
+
     <div class="entry-header">
       <span><a href="https://devpost.com/software/bayt-qareeb">Bayt Qareeb: Prize Winner, MTC x Replit x Manara West Buildathon (Track 1)</a> |</span>
       <span class="entry-tools">Next.js, TypeScript, React, Tailwind, Mapbox GL, Prisma, GitHub Actions, Vercel</span>

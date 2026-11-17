@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#4b5563"/></marker>
+  </defs>
+  <rect width="960" height="600" fill="#fff"/>
+  <g fill="#eef4fd" stroke="#3b78d8" stroke-width="2">
+    <rect x="28" y="66" width="382" height="176" rx="12"/>
+    <rect x="550" y="66" width="382" height="176" rx="12"/>
+    <rect x="550" y="358" width="382" height="176" rx="12"/>
+    <rect x="28" y="358" width="382" height="176" rx="12"/>
+  </g>
+  <g stroke="#4b5563" stroke-width="2" marker-end="url(#a)">
+    <line x1="420" y1="154" x2="538" y2="154"/>
+    <line x1="741" y1="252" x2="741" y2="346"/>
+    <line x1="540" y1="446" x2="422" y2="446"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <g font-size="25" font-weight="700" fill="#1f2937">
+      <text x="219" y="106">mmWave Radar</text>
+      <text x="741" y="106">Decoder</text>
+      <text x="741" y="398">Classifier</text>
+      <text x="219" y="398">Raspberry Pi</text>
+    </g>
+    <g font-size="18" fill="#4b5563">
+      <text x="219" y="148" font-style="italic">raw binary files</text>
+      <text x="219" y="178">one file per reading,</text>
+      <text x="219" y="204">not readable on its own</text>
+      <text x="741" y="178">reads each header with</text>
+      <text x="741" y="204">a JSON config, writes clean CSV</text>
+      <text x="741" y="470">small enough to run on a Pi</text>
+      <text x="219" y="470">precipitation label</text>
+      <text x="219" y="496">in under a second</text>
+    </g>
+    <g font-family="'Courier New', monospace" font-size="19" fill="#2563eb">
+      <text x="741" y="148">header.json &#8594; data.csv</text>
+      <text x="741" y="440">SVM + K-means</text>
+      <text x="219" y="440">field device</text>
+    </g>
+  </g>
+</svg>
