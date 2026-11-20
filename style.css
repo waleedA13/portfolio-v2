@@ -871,3 +871,4 @@ body.dark-mode .case-figure .plate img { filter: brightness(0.9); }
   .resume-list .project { grid-template-columns: minmax(0, 13rem) minmax(0, 1fr); }
   .resume-list .project-shot { max-width: none; }
 }
+.resume-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }

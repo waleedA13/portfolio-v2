@@ -1,6 +1,6 @@
 {
   "framework": null,
   "installCommand": "echo skip",
-  "buildCommand": "rm -rf static && mkdir static && cp -r index.html resumes.html style.css script.js assets projects static/",
+  "buildCommand": "rm -rf static && mkdir static && cp -r index.html resumes.html cv.html style.css script.js assets projects static/",
   "outputDirectory": "static"
 }
