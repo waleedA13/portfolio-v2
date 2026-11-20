@@ -23,7 +23,7 @@ export const education = [
     degree: "Bachelor of Science in Computer Science",
     school: "University of California San Diego, Warren College",
     detail: "GPA 3.71/4.00",
-    dates: "Expected June 2027",
+    dates: "Expected December 2027",
     coursework:
       "Algorithms, Software Engineering, Advanced Data Structures, ML: Learning Algorithms, AI: Search & Reasoning, Deep Reinforcement Learning, Systems Programming, Linear Algebra",
   },
