@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waleed Alghaithi - Software Engineer Resume</title>
+  <style>
+    :root {
+      /* Colors */
+      --color-primary: #2c3e50;
+      --color-primary-light: #3b5e82;
+      --color-muted: #7f8c8d;
+      --color-bg: #f9f9f9;
+      --color-surface: #fff;
+      --color-on-primary: #ecf0f1;
+      --color-link-hover: #2980b9;
+
+      /* Typography */
+      --font-family-base: 'Poppins', sans-serif;
+      --fs-base: 0.833rem;   /* ~10pt */
+      --fs-h1: 1.25rem;      /* ~15pt */
+      --fs-h2: 0.917rem;     /* ~11pt */
+      --fs-contact: 0.75rem; /* ~9pt */
+      --fs-tools: 0.75rem;   /* ~9pt */
+      --fs-details: 0.667rem;/* ~8pt */
+      --fs-gpa: 0.583rem;    /* ~7pt */
+      --line-height-base: 1.6;
+
+      /* Spacing scale */
+      --space-3xs: 0.0625rem;
+      --space-2xs: 0.125rem;
+      --space-xs: 0.3125rem;
+      --space-sm: 0.625rem;
+      --space-md: 1.25rem;
+
+      /* Layout */
+      --content-max-width: 53.125rem; /* ~850px */
+      --radius-base: 0.5rem;
+      --shadow-header: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+      --transition-base: color 0.3s ease;
+    }
+
+    html {
+      font-size: 100%; /* 1rem = 16px, scales with user/browser preferences */
+    }
+
+    @media (max-width: 37.5rem) {
+      html { font-size: 93.75%; }
+    }
+
+    @media (max-width: 25rem) {
+      html { font-size: 87.5%; }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-family-base);
+      line-height: var(--line-height-base);
+      color: var(--color-primary);
+      width: 100%;
+      max-width: var(--content-max-width);
+      margin: 0 auto;
+      padding: var(--space-md);
+      font-size: var(--fs-base);
+      background-color: var(--color-bg);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: var(--space-3xs);
+      background-color: var(--color-primary);
+      padding: var(--space-sm);
+      border-radius: var(--radius-base);
+      box-shadow: var(--shadow-header);
+    }
+
+    h1 {
+      font-size: var(--fs-h1);
+      font-weight: 700;
+      margin: 0 0 var(--space-2xs) 0;
+      color: var(--color-surface);
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      font-size: var(--fs-contact);
+      font-weight: 300;
+      color: var(--color-on-primary);
+    }
+
+    .contact-info p { margin: 0; }
+
+    .contact-info a {
+      color: var(--color-on-primary);
+      text-decoration: none;
+      transition: var(--transition-base);
+    }
+
+    .contact-info a:hover { color: var(--color-primary); }
+
+    .ico { height: 0.9em; width: auto; fill: currentColor; vertical-align: -0.1em; margin-right: var(--space-2xs); }
+
+    h2 {
+      font-size: var(--fs-h2);
+      font-weight: 600;
+      border-bottom: 1px solid var(--color-primary-light);
+      padding-bottom: var(--space-2xs);
+      margin: var(--space-xs) 0;
+      color: var(--color-primary);
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 600;
+      color: var(--color-primary);
+      flex-wrap: wrap;
+    }
+
+    .entry-details {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      font-style: italic;
+      margin-bottom: var(--space-3xs);
+      font-size: var(--fs-details);
+      color: var(--color-muted);
+    }
+
+    .entry-details span:last-child {
+      margin-left: auto;
+    }
+
+    .entry-tools {
+      font-style: italic;
+      font-size: var(--fs-tools);
+      color: var(--color-muted);
+      flex-grow: 1;
+    }
+
+    .entry-details-dates {
+      font-style: italic;
+      font-weight: 600;
+      font-size: var(--fs-details);
+      color: var(--color-muted);
+      white-space: nowrap;
+      margin-left: auto;
+    }
+
+    .entry-details-gpa {
+      font-style: italic;
+      font-size: var(--fs-gpa);
+      color: var(--color-muted);
+    }
+
+    .compact-list {
+      margin: var(--space-2xs) 0;
+      padding-left: var(--space-md);
+    }
+
+    .compact-list li { margin-bottom: var(--space-3xs); }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: var(--transition-base);
+    }
+
+    a:hover {
+      color: var(--color-link-hover);
+      text-decoration: underline;
+    }
+
+    @media print {
+      body {
+        width: auto;
+        max-width: none;
+        padding: 0;
+        margin: 1cm;
+        font-size: 9pt;
+        background-color: var(--color-surface);
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+      }
+
+      @page { margin: 0; }
+
+      h1 { font-size: 15pt; }
+      h2 { font-size: 11pt; }
+      .contact-info { font-size: 8.6pt; column-gap: 14px; flex-wrap: nowrap; white-space: nowrap; }
+      .contact-break { flex-basis: 100%; height: 0; }
+      .entry-details { font-size: 8pt; }
+      .compact-list { padding-left: 15px; }
+      header { box-shadow: none; }
+      body { line-height: 1.52; }
+      .compact-list li { margin-bottom: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Waleed Alghaithi</h1>
+    <div class="contact-info">
+      <p><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 188.6C0 84.4 86 0 192 0s192 84.4 192 188.6c0 119.3-120.2 262.3-170.4 316.8-11.8 12.8-31.5 12.8-43.3 0C120.1 450.9-.1 307.9-.1 188.6zM192 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128"/></svg> San Diego, CA</p>
+      <p><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg> <a href="mailto:waleedalghaithi13@gmail.com">waleedalghaithi13@gmail.com</a></p>
+      <p><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg> <a href="https://www.linkedin.com/in/waleedalghaithi/" target="_blank">linkedin.com/in/waleedalghaithi</a></p>
+      <p><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg> <a href="https://waleeda13.github.io/portfolio-v2/" target="_blank">waleeda13.github.io/portfolio-v2</a></p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Education</h2>
+    <div class="entry-header">
+      <span>Bachelor of Science in Computer Science</span>
+      <span>University of California San Diego</span>
+    </div>
+    <div class="entry-details" style="flex-wrap: nowrap; align-items: flex-start;">
+      <span style="flex: 1; min-width: 0;">Coursework: Algorithms, Software Engineering, Advanced Data Structures, Systems Programming, ML: Learning Algorithms, Linear Algebra<br>GPA: 3.71/4.00</span>
+      <span style="white-space: nowrap;">Anticipated Dec 2027</span>
+    </div>
+    <div class="entry-header">
+      <span>Associate of Science in Computer Science &amp; Science and Math</span>
+      <span>City College of San Francisco</span>
+    </div>
+    <div class="entry-details">
+      <span>GPA: 4.00/4.00</span>
+      <span>Aug 2022 - May 2025</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="entry-header">
+      <span>Research Engineer, ML Systems</span>
+      <span>San Diego, CA</span>
+    </div>
+    <div class="entry-details">
+      <span>University of California San Diego</span>
+      <span>August 2026 - Present</span>
+    </div>
+    <ul class="compact-list">
+      <li>Built the seeded data collection loop and Parquet storage for Qwen1.5-MoE-A2.7B routing traces, with 25 unit tests.</li>
+      <li>Fixed run reproducibility with seeding so experiments rerun the same way across machines and batches.</li>
+    </ul>
+
+    <div class="entry-header">
+      <span>Machine Learning Engineer Intern</span>
+      <span>Berkeley, CA</span>
+    </div>
+    <div class="entry-details">
+      <span>Lawrence Berkeley National Laboratory</span>
+      <span>June 2023 - August 2023</span>
+    </div>
+    <ul class="compact-list">
+      <li>Built a pipeline that decodes raw mmWave radar binaries into validated CSV datasets using JSON header configs.</li>
+      <li>Deployed SVM and K-means classifiers on a Raspberry Pi for real-time edge monitoring, under a second per reading.</li>
+    </ul>
+
+    <div class="entry-header">
+      <span>Course Tutor, CSE 6R (Python)</span>
+      <span>San Diego, CA</span>
+    </div>
+    <div class="entry-details">
+      <span>University of California San Diego</span>
+      <span>August 2026 - September 2026</span>
+    </div>
+    <ul class="compact-list">
+      <li>Led weekly discussion sections and office hours, helping first-time programmers debug Python programs.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="entry-header">
+      <span><a href="https://github.com/waleedA13/TheraCheck">TheraCheck: SanD Hacks Fall 2026</a> |</span>
+      <span class="entry-tools">Next.js, TypeScript, Bright Data, Gemini, Postgres</span>
+      <span class="entry-details-dates">Nov 2026</span>
+    </div>
+    <ul class="compact-list">
+      <li>Built and deployed an app that ranks 300 Cigna therapist listings by public evidence that they are available.</li>
+      <li>Set up the Next.js app, Postgres schema, and scoring; built web collectors that found evidence for 104 of 300 listings.</li>
+      <li>Built a queued re-check worker with Postgres row locking that keeps the prior result when no new evidence is found.</li>
+    </ul>
+
+    <div class="entry-header">
+      <span><a href="https://devpost.com/software/bayt-qareeb">Bayt Qareeb: Prize Winner, Manara West Buildathon</a> |</span>
+      <span class="entry-tools">Next.js, TypeScript, Mapbox, Prisma</span>
+      <span class="entry-details-dates">Nov 2026</span>
+    </div>
+    <ul class="compact-list">
+      <li>Built and deployed a map-first housing finder for verified .edu students in one day, with 80 listings on 7 campuses.</li>
+      <li>Hardened CI with least-privilege permissions, SHA-pinned actions, npm audit, secret scanning, and CodeQL.</li>
+    </ul>
+
+    <div class="entry-header">
+      <span><a href="https://devpost.com/software/enrollguard">Coverage Keeper: Prize Winner, Solix AI Hackathon 2026</a> |</span>
+      <span class="entry-tools">TypeScript, Claude API, zod, Playwright</span>
+      <span class="entry-details-dates">Oct 2026</span>
+    </div>
+    <ul class="compact-list">
+      <li>Built an app that reads Medicaid letters in English or Spanish, getting 24/24 deadlines right on held-out test letters.</li>
+      <li>Added rate limiting and oversized-body rejection to the letter-reading API and covered it with Playwright tests.</li>
+    </ul>
+
+    <div class="entry-header">
+      <span><a href="https://github.com/cse110-sp26-group09/Watchtower-Course-Project">Watchtower: Data and Backend Logic Owner</a> |</span>
+      <span class="entry-tools">Node.js, Supabase, Clerk, Jest, Playwright</span>
+      <span class="entry-details-dates">Apr 2026 - Jun 2026</span>
+    </div>
+    <ul class="compact-list">
+      <li>Defined custom event schemas for error and performance tracking and the API contract every prototype followed.</li>
+      <li>Brought Clerk sign-in into the final prototype and built Gmail API error-spike alerts with HTML escaping against XSS.</li>
+    </ul>
+
+    <div class="entry-header">
+      <span><a href="https://github.com/waleedA13/tiny-infer">Tiny Infer: Transformer Inference Engine in C</a> |</span>
+      <span class="entry-tools">C, pthreads, Make, GitHub Actions</span>
+      <span class="entry-details-dates">Oct 2026 - Present</span>
+    </div>
+    <ul class="compact-list">
+      <li>Building an LLM inference engine in plain C (no PyTorch or BLAS) that runs a 15M-parameter model on a CPU.</li>
+      <li>Parallelized matmul with a pthreads pool; set up CI that tests on Linux and macOS under ASan and UBSan.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <ul class="compact-list">
+      <li><strong>Languages:</strong> Python, C, C++, Java, JavaScript, TypeScript, SQL</li>
+      <li><strong>Web &amp; Backend:</strong> React, Next.js, Node.js, FastAPI, REST APIs, PostgreSQL, MySQL, Supabase, Prisma, Tailwind</li>
+      <li><strong>Testing &amp; DevOps:</strong> Docker, GitHub Actions, Jest, Vitest, Playwright, AddressSanitizer/UBSan, CodeQL, Vercel</li>
+      <li><strong>Systems &amp; Tools:</strong> Linux/Unix, pthreads, Make, Git, Jira, data structures &amp; algorithms, OOP</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Certifications</h2>
+    <div class="entry-header">
+      <span>AWS Certified AI Practitioner</span>
+      <span>Amazon Web Services, Issued Sep 2026</span>
+    </div>
+  </section>
+</body>
+</html>

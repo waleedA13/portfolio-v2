@@ -862,3 +862,12 @@ body.dark-mode .case-figure .plate img { filter: brightness(0.9); }
   .quick-facts { grid-template-columns: 1fr; gap: 1rem; }
   .quick-facts li { grid-template-columns: 4.25rem 1fr; align-items: center; gap: 0.75rem; }
 }
+
+/* Resumes page: portrait page previews */
+.resume-list .project-shot { aspect-ratio: 17 / 22; max-width: 11rem; }
+.resume-list .project-shot img { object-position: top center; }
+.resume-full { margin: 2rem 0 4rem; padding-top: 1.5rem; border-top: 0.0625rem solid var(--rule); color: var(--ink-soft); }
+@media (min-width: 47.5em) {
+  .resume-list .project { grid-template-columns: minmax(0, 13rem) minmax(0, 1fr); }
+  .resume-list .project-shot { max-width: none; }
+}
