@@ -4,7 +4,7 @@ My personal site: research, work, and projects, with a printable resume.
 
 ## Live Site
 
-**[waleedA13.github.io/portfolio-v2](https://waleedA13.github.io/portfolio-v2)**
+**[waleedalghaithi.vercel.app](https://waleedalghaithi.vercel.app/)**
 
 ## Features
 

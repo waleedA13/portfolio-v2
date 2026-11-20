@@ -1,6 +1,6 @@
 export const site = {
   name: "Waleed Alghaithi",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://waleedA13.github.io/portfolio-v2",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://waleedalghaithi.vercel.app",
   title: "Waleed Alghaithi",
   description:
     "Waleed Alghaithi is a computer science student at UC San Diego. He does research on how large models work inside, and he builds software with other people.",
