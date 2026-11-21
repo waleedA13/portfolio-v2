@@ -75,7 +75,7 @@ export type Job = {
 export const jobs: Job[] = [
   {
     dates: "Aug 2026 – now",
-    role: "Undergraduate Research Engineer",
+    role: "Research Engineer",
     org: "UC San Diego",
     tools: "Python · PyTorch · PyArrow · Qwen1.5-MoE",
     bullets: [
@@ -97,7 +97,7 @@ export const jobs: Job[] = [
   },
   {
     dates: "Jan – Aug 2026",
-    role: "Undergraduate Research Engineer, McNair Scholars Program",
+    role: "Research Engineer, McNair Scholars Program",
     org: "UC San Diego",
     tools: "Python · Qwen3-VL · RunPod · NumPy · scikit-learn",
     writeup: { href: "/projects/lego-spatial-reasoning/", label: "Read the write-up" },

@@ -643,7 +643,7 @@ export const projects: Project[] = [
         label: "What I did",
         text: "I wrote and ran the experiment code: the benchmark runs, the routing logger (forward hooks on every router), layer scoring, clustering, ablations, and the stats. My scripts are in `scripts/`; `code/LEGO-Puzzles` is the benchmark's own eval framework.",
       },
-      { label: "Role", text: "Undergraduate researcher, McNair Scholars Program" },
+      { label: "Role", text: "Research Engineer, McNair Scholars Program" },
       {
         label: "Stack",
         text: "Python, PyTorch, Hugging Face Transformers, RunPod A100s, NumPy, Pandas, scikit-learn",
