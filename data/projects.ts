@@ -626,7 +626,7 @@ export const projects: Project[] = [
     tags: ["Python", "PyTorch", "Qwen3-VL", "RunPod", "NumPy", "Pandas", "scikit-learn"],
     image: {
       src: "/img/projects/thumb-lego.webp",
-      alt: "A LEGO assembly used in the spatial-reasoning benchmark.",
+      alt: "Research poster: Uncovering the Limits of Spatial Reasoning in Artificial Intelligence.",
       width: 960,
       height: 600,
     },
@@ -1170,8 +1170,8 @@ export const projects: Project[] = [
     team: "Internship. I was the machine learning engineer intern.",
     tags: ["Python", "NumPy", "Pandas", "Linux", "Raspberry Pi"],
     image: {
-      src: "/img/projects/thumb-radar.svg",
-      alt: "Diagram from raw mmWave radar files, through a decoder and an SVM and K-means classifier, to a Raspberry Pi.",
+      src: "/img/projects/thumb-radar.webp",
+      alt: "First page of the research paper Characterization of Precipitation using mmWave Radars.",
       width: 960,
       height: 600,
     },
