@@ -285,18 +285,6 @@
   <section>
     <h2>Projects</h2>
     <div class="entry-header">
-      <span><a href="https://github.com/waleedA13/tiny-infer">Tiny Infer: Transformer Inference Engine in C</a> |</span>
-      <span class="entry-tools">C, pthreads, Make, GitHub Actions</span>
-      <span class="entry-details-dates">Oct 2026 - Present</span>
-    </div>
-    <ul class="compact-list">
-      <li>Building an LLM inference engine in plain C (no PyTorch or BLAS) that runs a 15M-parameter model on a CPU.</li>
-      <li>Implemented attention with RoPE and a KV cache, SwiGLU, RMSNorm, and BPE; added group-wise int8 quantization.</li>
-      <li>Profiled per-op time (~91% in matmul), then parallelized matmul with pthreads: 121 to 188 tokens/s.</li>
-      <li>Set up CI that builds and tests on Linux and macOS, reruns under ASan and UBSan, and publishes release binaries.</li>
-    </ul>
-
-    <div class="entry-header">
       <span><a href="https://waleedalghaithi.vercel.app/projects/talk-to-robot.html">Talk-to-Robot: LLM Spatial Grounding for Robot Control</a> |</span>
       <span class="entry-tools">Python, Gemini, MuJoCo, Stable-Baselines3</span>
       <span class="entry-details-dates">Spring 2026</span>
@@ -304,7 +292,18 @@
     <ul class="compact-list">
       <li>Measured whether Gemini can turn plain-English commands into goals for a SAC+HER pushing policy in MuJoCo.</li>
       <li>Found Gemini hit 100% on coordinates and named regions but 40-65% on relative offsets, where a regex scored 100%.</li>
+      <li>Showed that retraining the controller on Gemini's targets hit every goal it was given but could not recover off-table ones.</li>
       <li>Fixed two evaluation-harness bugs and wrote one of three pre-registered annotation sets for the intent tier.</li>
+    </ul>
+
+    <div class="entry-header">
+      <span><a href="https://github.com/waleedA13/TheraCheck">TheraCheck: SanD Hacks Fall 2026</a> |</span>
+      <span class="entry-tools">Next.js, TypeScript, Bright Data, Gemini, Postgres</span>
+      <span class="entry-details-dates">Nov 2026</span>
+    </div>
+    <ul class="compact-list">
+      <li>Built and deployed an app that ranks 300 Cigna therapist listings by public evidence that they are available.</li>
+      <li>Used Gemini to extract structured facts from therapist pages; a deterministic score ranks the listings.</li>
     </ul>
 
     <div class="entry-header">
@@ -331,9 +330,9 @@
   <section>
     <h2>Skills</h2>
     <ul class="compact-list">
-      <li><strong>ML &amp; AI:</strong> PyTorch, Hugging Face Transformers, deep learning, LLMs and multimodal models, quantization (int8, bitsandbytes 4-bit), reinforcement learning (Stable-Baselines3), scikit-learn</li>
+      <li><strong>ML &amp; AI:</strong> PyTorch, Hugging Face Transformers, deep learning, LLMs and multimodal models, quantization (bitsandbytes 4-bit), reinforcement learning (Stable-Baselines3), scikit-learn</li>
       <li><strong>Data &amp; Evaluation:</strong> Python, NumPy, Pandas, Parquet, SQL, ablation studies, statistical testing (McNemar's), clustering (k-medoids), evaluation design</li>
-      <li><strong>Infrastructure:</strong> A100 GPUs (RunPod), C, pthreads, Linux, Docker, Git, GitHub Actions, LLM APIs (Claude, Gemini), LangGraph</li>
+      <li><strong>Infrastructure:</strong> A100 GPUs (RunPod), Linux, Docker, Git, GitHub Actions, LLM APIs (Claude, Gemini), LangGraph</li>
     </ul>
   </section>
 </body>
